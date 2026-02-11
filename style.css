@@ -407,7 +407,7 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
 
     section.relative.bg-cover.bg-center.h-\[85vh\] {
         margin-top: 0px !important;
-        height: 50vh !important;
+        height: 90vh !important;
         background-position: center !important;
     }
 
@@ -779,6 +779,7 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
 .group:hover .group-hover\:translate-y-0 {
     transform: translateY(0);
 }
+
 
 
 
