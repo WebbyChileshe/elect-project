@@ -286,12 +286,7 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
         width: 100%;
     }
     
-    /* Hero section - mobile */
-    section.relative.bg-cover.bg-center.h-\[85vh\] {
-        margin-top: -15px !important;
-        height: 60vh !important;
-        background-position: center !important;
-    }
+
     
     /* Hero content - mobile */
     section.relative.bg-cover.bg-center.h-\[85vh\] .max-w-7xl {
@@ -778,6 +773,7 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
 .group:hover .group-hover\:translate-y-0 {
     transform: translateY(0);
 }
+
 
 
 
