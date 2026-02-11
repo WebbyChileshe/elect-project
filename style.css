@@ -288,7 +288,7 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
     
     /* Hero section - mobile */
     section.relative.bg-cover.bg-center.h-\[85vh\] {
-        margin-top: 20px !important;
+        margin-top: 5px !important;
         height: 60vh !important;
         background-position: center !important;
     }
@@ -781,5 +781,6 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
 .group:hover .group-hover\:translate-y-0 {
     transform: translateY(0);
 }
+
 
 
