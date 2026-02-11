@@ -1,24 +1,14 @@
 <div id="header"></div>
+
 <script>
-fetch("header.html")
+fetch("/components/header.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("header").innerHTML = data;
-    
-    // Add this: Set a CSS variable with header height
-    setTimeout(() => {
-        const headerHeight = document.querySelector('header')?.offsetHeight || 80;
-        document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
-        
-        // Apply to hero section
-        const heroSection = document.querySelector('.relative.bg-cover.bg-center.h-\[85vh\]');
-        if (heroSection) {
-            heroSection.style.marginTop = headerHeight + 'px';
-        }
-    }, 100); // Small delay to ensure header is rendered
   })
   .catch(err => console.error("Header load failed", err));
 </script>
+
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
