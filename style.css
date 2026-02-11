@@ -67,7 +67,6 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
 
 /* ===== LOADING STATE ===== */
 #header {
-    min-height: 120px;
     background: white;
 }
 
@@ -407,7 +406,7 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
 
     section.relative.bg-cover.bg-center.h-\[85vh\] {
         margin-top: 50px !important;
-        height: 70vh !important;
+        height: 82vh !important;
         background-position: center !important;
     }
 
@@ -779,6 +778,7 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
 .group:hover .group-hover\:translate-y-0 {
     transform: translateY(0);
 }
+
 
 
 
