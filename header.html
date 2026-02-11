@@ -1,172 +1,84 @@
-
 <header class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
-
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
         <!-- Left Logo -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 sm:gap-4">
             <a href="../pages/index.php">
-                <img
-                    src="/ELECT/assets/images/ELECT-Logo.png"
-                    class="h-14 md:h-20 w-auto"
-                    alt="ELECT Logo">
+                <img src="/ELECT/assets/images/ELECT-Logo.png" class="h-12 sm:h-14 md:h-20 w-auto" alt="ELECT Logo">
             </a>
-
-            <span
-                class="font-semibold text-green-700 leading-tight text-sm md:text-base hidden md:block">
+            <span class="font-semibold text-green-700 leading-tight text-xs sm:text-sm md:text-base hidden sm:block">
                 Energy Efficient Lighting
-                <br>
-                for Clean Energy Transitions<br>
+                <br class="hidden sm:block">
+                for Clean Energy Transitions<br class="hidden sm:block">
                 in Zambia
             </span>
         </div>
 
-        <!-- Mobile Menu Button - Always visible on mobile -->
-        <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1 w-8">
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-end">
+            <span class="menu-line w-7 h-0.5 bg-gray-700 rounded transition-all"></span>
+            <span class="menu-line w-7 h-0.5 bg-gray-700 rounded transition-all"></span>
+            <span class="menu-line w-5 h-0.5 bg-gray-700 rounded transition-all"></span>
         </button>
 
         <!-- Desktop Right Logo -->
         <div class="hidden md:flex items-center gap-4">
-            <img src="/ELECT/assets/images/EU.png" class="h-12" alt="EU Logo">
+            <img src="/ELECT/assets/images/EU.png" class="h-10 lg:h-12" alt="EU Logo">
         </div>
     </div>
 
-    <!-- Orange Navigation Banner - HIDDEN ON MOBILE -->
-    <div class="orange-banner desktop-only" style="overflow: visible;">
-        <div class="navigation-container">
-            <div class="nav-links">
-                <!-- Home -->
-                <a href="../pages/index.php" class="nav-link">
-                    <span>Home</span>
-                </a>
-
-                <!-- About dropdown -->
-                <div class="dropdown-container">
-                    <a href="About.php" class="nav-link nav-link-with-arrow">
-                        <span>About</span>
-                        <i class="fas fa-chevron-down"></i>
+    <!-- Orange Navigation Banner - DESKTOP ONLY -->
+    <div class="orange-banner hidden md:block bg-gradient-to-r from-[#fdbf30] to-[#ff9900] py-2 lg:py-3">
+        <div class="navigation-container max-w-7xl mx-auto px-6">
+            <div class="nav-links flex justify-center items-center gap-4 lg:gap-8">
+                <a href="../pages/index.php" class="nav-link text-gray-800 hover:text-gray-900 font-semibold text-sm lg:text-base relative py-1">Home</a>
+                
+                <!-- About Dropdown -->
+                <div class="dropdown-container relative">
+                    <a href="../pages/About.php" class="nav-link nav-link-with-arrow flex items-center gap-1 text-gray-800 hover:text-gray-900 font-semibold text-sm lg:text-base relative py-1">
+                        About <i class="fas fa-chevron-down text-xs"></i>
                     </a>
-                    <div class="dropdown-menu">
-                        <a href="About.php#overview" class="dropdown-item">
-                            <i class="fas fa-eye"></i>
-                            <span>Project Overview</span>
-                        </a>
-                        <a href="About.php#background" class="dropdown-item">
-                            <i class="fas fa-history"></i>
-                            <span>Background</span>
-                        </a>
-                        <a href="About.php#target" class="dropdown-item">
-                            <i class="fas fa-users"></i>
-                            <span>Our Audience</span>
-                        </a>
+                    <div class="dropdown-menu absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white shadow-xl rounded-lg opacity-0 invisible transition-all duration-300 z-50">
+                        <a href="../pages/About.php#overview" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Project Overview</a>
+                        <a href="../pages/About.php#background" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Background</a>
+                        <a href="../pages/About.php#target" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Our Audience</a>
                     </div>
                 </div>
 
-                <!-- Objectives dropdown -->
-                <div class="dropdown-container">
-                    <a href="Objectives.php" class="nav-link nav-link-with-arrow">
-                        <span>Objectives</span>
-                        <i class="fas fa-chevron-down"></i>
+                <!-- Objectives Dropdown -->
+                <div class="dropdown-container relative">
+                    <a href="../pages/Objectives.php" class="nav-link nav-link-with-arrow flex items-center gap-1 text-gray-800 hover:text-gray-900 font-semibold text-sm lg:text-base relative py-1">
+                        Objectives <i class="fas fa-chevron-down text-xs"></i>
                     </a>
-                    <div class="dropdown-menu">
-                        <a href="Objectives.php#main" class="dropdown-item">
-                            <i class="fas fa-bullseye"></i>
-                            <span>Main Objectives</span>
-                        </a>
-                        <a href="Objectives.php#outcomes" class="dropdown-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Outcomes & Benefits</span>
-                        </a>
+                    <div class="dropdown-menu absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white shadow-xl rounded-lg opacity-0 invisible transition-all duration-300 z-50">
+                        <a href="../pages/Objectives.php#main" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Main Objectives</a>
+                        <a href="../pages/Objectives.php#outcomes" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Outcomes & Benefits</a>
                     </div>
                 </div>
 
-                <!-- Partners -->
-                <a href="Partners.php" class="nav-link">
-                    <span>Partners</span>
-                </a>
+                <a href="../pages/Partners.php" class="nav-link text-gray-800 hover:text-gray-900 font-semibold text-sm lg:text-base relative py-1">Partners</a>
 
-                <!-- Activities dropdown -->
-                <div class="dropdown-container">
-                    <a href="Events.php" class="nav-link nav-link-with-arrow">
-                        <span>Activities</span>
-                        <i class="fas fa-chevron-down"></i>
+                <!-- Activities Dropdown -->
+                <div class="dropdown-container relative">
+                    <a href="../pages/Events.php" class="nav-link nav-link-with-arrow flex items-center gap-1 text-gray-800 hover:text-gray-900 font-semibold text-sm lg:text-base relative py-1">
+                        Activities <i class="fas fa-chevron-down text-xs"></i>
                     </a>
-                    <div class="dropdown-menu">
-                        <a href="News.php#latest" class="dropdown-item">
-                            <i class="fas fa-newspaper"></i>
-                            <span>Latest News</span>
-                        </a>
-                        <a href="Events.php#upcoming" class="dropdown-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Events</span>
-                        </a>
-                        <a href="Events.php#media" class="dropdown-item">
-                            <i class="fas fa-images"></i>
-                            <span>Gallery</span>
-                        </a>
+                    <div class="dropdown-menu absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white shadow-xl rounded-lg opacity-0 invisible transition-all duration-300 z-50">
+                        <a href="../pages/News.php#latest" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Latest News</a>
+                        <a href="../pages/Events.php#upcoming" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Events</a>
+                        <a href="../pages/Events.php#media" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Gallery</a>
                     </div>
                 </div>
 
-                <!-- Curriculum dropdown with grid layout -->
-                <div class="dropdown-container">
-                    <a href="Curriculum.php" class="nav-link nav-link-with-arrow">
-                        <span>Curriculum</span>
-                        <i class="fas fa-chevron-down"></i>
+                <!-- Curriculum Dropdown -->
+                <div class="dropdown-container relative">
+                    <a href="../pages/Curriculum.php" class="nav-link nav-link-with-arrow flex items-center gap-1 text-gray-800 hover:text-gray-900 font-semibold text-sm lg:text-base relative py-1">
+                        Curriculum <i class="fas fa-chevron-down text-xs"></i>
                     </a>
-                    <div class="dropdown-menu grid-dropdown">
-                        <div class="grid-dropdown-container">
-                            <!-- Left column -->
-                            <div class="dropdown-column">
-                                <a href="Curriculum.php#objectives" class="dropdown-item">
-                                    <i class="fas fa-bullseye"></i>
-                                    <div>
-                                        <span class="dropdown-title">Objectives</span>
-                                        <span class="dropdown-desc">Program goals & aims</span>
-                                    </div>
-                                </a>
-                                <a href="Curriculum.php#learning-outcomes" class="dropdown-item">
-                                    <i class="fas fa-graduation-cap"></i>
-                                    <div>
-                                        <span class="dropdown-title">Learning Outcomes</span>
-                                        <span class="dropdown-desc">Skills & knowledge gained</span>
-                                    </div>
-                                </a>
-                                <a href="Curriculum.php#target-group" class="dropdown-item">
-                                    <i class="fas fa-users"></i>
-                                    <div>
-                                        <span class="dropdown-title">Target Group</span>
-                                        <span class="dropdown-desc">Who should participate</span>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Right column -->
-                            <div class="dropdown-column">
-                                <a href="Curriculum.php#duration" class="dropdown-item">
-                                    <i class="fas fa-clock"></i>
-                                    <div>
-                                        <span class="dropdown-title">Duration</span>
-                                        <span class="dropdown-desc">Program timeline</span>
-                                    </div>
-                                </a>
-                                <a href="Curriculum.php#delivery-format" class="dropdown-item">
-                                    <i class="fas fa-laptop"></i>
-                                    <div>
-                                        <span class="dropdown-title">Delivery Format</span>
-                                        <span class="dropdown-desc">How it's delivered</span>
-                                    </div>
-                                </a>
-                                <a href="Curriculum.php#application-process" class="dropdown-item">
-                                    <i class="fas fa-file-signature"></i>
-                                    <div>
-                                        <span class="dropdown-title">Application Process</span>
-                                        <span class="dropdown-desc">How to apply</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                    <div class="dropdown-menu absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-white shadow-xl rounded-lg opacity-0 invisible transition-all duration-300 z-50">
+                        <a href="../pages/Curriculum.php#objectives" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Objectives</a>
+                        <a href="../pages/Curriculum.php#learning-outcomes" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Learning Outcomes</a>
+                        <a href="../pages/Curriculum.php#target-group" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Target Group</a>
+                        <a href="../pages/Curriculum.php#duration" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600">Duration</a>
                     </div>
                 </div>
             </div>
@@ -174,165 +86,132 @@
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div id="menuOverlay" class="menu-overlay"></div>
+    <div id="menuOverlay" class="menu-overlay fixed inset-0 bg-black/50 z-40 hidden"></div>
 
-    <!-- Enhanced Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu">
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-[280px] h-full bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
         <!-- Close Button -->
-        <button class="close-menu-btn" id="closeMenuBtn">
-            <i class="fas fa-times text-xl"></i>
+        <button id="closeMenuBtn" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-all">
+            <i class="fas fa-times text-gray-600 text-xl"></i>
         </button>
 
-        <!-- Menu Header with ELECT Logo -->
-        <div class="mobile-menu-header">
+        <!-- Menu Header -->
+        <div class="mobile-menu-header p-6 border-b">
             <a href="../pages/index.php" class="flex items-center gap-3">
-                <img
-                    src="/ELECT/assets/images/ELECT-Logo.png"
-                    alt="ELECT Logo"
-                    class="h-12 w-auto">
+                <img src="/ELECT/assets/images/ELECT-Logo.png" alt="ELECT Logo" class="h-12 w-auto">
                 <div class="text-left">
                     <h2 class="font-bold text-lg text-green-700">ELECT Project</h2>
-                    <p class="text-sm text-gray-600">Energy Efficient Lighting</p>
+                    <p class="text-xs text-gray-600">Energy Efficient Lighting</p>
                 </div>
             </a>
         </div>
 
         <!-- Menu Items -->
-        <a href="../pages/index.php" class="mobile-menu-item">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
+        <div class="p-4">
+            <a href="../pages/index.php" class="mobile-menu-item flex items-center gap-3 p-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 rounded-lg transition-all">
+                <i class="fas fa-home w-5"></i>
+                <span>Home</span>
+            </a>
+            <a href="../pages/About.php" class="mobile-menu-item flex items-center gap-3 p-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 rounded-lg transition-all">
+                <i class="fas fa-info-circle w-5"></i>
+                <span>About</span>
+            </a>
+            <a href="../pages/Objectives.php" class="mobile-menu-item flex items-center gap-3 p-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 rounded-lg transition-all">
+                <i class="fas fa-bullseye w-5"></i>
+                <span>Objectives</span>
+            </a>
+            <a href="../pages/Partners.php" class="mobile-menu-item flex items-center gap-3 p-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 rounded-lg transition-all">
+                <i class="fas fa-handshake w-5"></i>
+                <span>Partners</span>
+            </a>
+            <a href="../pages/Events.php" class="mobile-menu-item flex items-center gap-3 p-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 rounded-lg transition-all">
+                <i class="fas fa-calendar w-5"></i>
+                <span>News & Events</span>
+            </a>
+            <a href="../pages/Curriculum.php" class="mobile-menu-item flex items-center gap-3 p-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 rounded-lg transition-all">
+                <i class="fas fa-graduation-cap w-5"></i>
+                <span>Curriculum</span>
+            </a>
+            <a href="../pages/Contacts.php" class="mobile-menu-item flex items-center gap-3 p-3 text-gray-700 hover:bg-gray-50 hover:text-green-600 rounded-lg transition-all">
+                <i class="fas fa-address-book w-5"></i>
+                <span>Contact</span>
+            </a>
+        </div>
 
-        <a href="../pages/About.php" class="mobile-menu-item">
-            <i class="fas fa-info-circle"></i>
-            <span>About</span>
-        </a>
-
-        <a href="../pages/Objectives.php" class="mobile-menu-item">
-            <i class="fas fa-bullseye"></i>
-            <span>Objectives</span>
-        </a>
-
-        <a href="../pages/Partners.php" class="mobile-menu-item">
-            <i class="fas fa-handshake"></i>
-            <span>Partners</span>
-        </a>
-
-        <a href="../pages/Events.php" class="mobile-menu-item">
-            <i class="fas fa-newspaper"></i>
-            <span>News & Events</span>
-        </a>
-
-        <a href="../pages/Curriculum.php" class="mobile-menu-item">
-            <i class="fas fa-graduation-cap"></i>
-            <span>Curriculum</span>
-        </a>
-
-        <a href="../pages/Gallery.php" class="mobile-menu-item">
-            <i class="fas fa-images"></i>
-            <span>Gallery</span>
-        </a>
-
-        <a href="../pages/Contacts.php" class="mobile-menu-item">
-            <i class="fas fa-address-book"></i>
-            <span>Contact</span>
-        </a>
-
-        <!-- Logos Section at Bottom -->
-        <div class="mobile-logos">
-            <div class="logos-row">
-                <img src="/ELECT/assets/images/EU.png" alt="EU Logo" class="eu-logo-mobile">
+        <!-- Mobile Logos -->
+        <div class="mobile-logos absolute bottom-0 left-0 right-0 p-6 border-t bg-gray-50">
+            <div class="flex justify-center">
+                <img src="/ELECT/assets/images/EU.png" alt="EU Logo" class="h-10 w-auto">
             </div>
         </div>
     </div>
 </header>
 
-<!-- MOBILE MENU JAVASCRIPT - INSIDE HEADER.HTML -->
 <script>
+// Mobile menu functionality - INSIDE header.html
 (function() {
     'use strict';
     
-    // Function to initialize mobile menu
     function initMobileMenu() {
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const closeMenuBtn = document.getElementById('closeMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuOverlay = document.getElementById('menuOverlay');
         
-        // Check if all elements exist
         if (!mobileMenuBtn || !closeMenuBtn || !mobileMenu || !menuOverlay) {
             console.log('Mobile menu elements not ready, retrying...');
-            setTimeout(initMobileMenu, 50);
+            setTimeout(initMobileMenu, 100);
             return;
         }
-        
-        console.log('Mobile menu initialized');
-        
-        // Remove any existing event listeners by cloning
-        const newMobileMenuBtn = mobileMenuBtn.cloneNode(true);
-        mobileMenuBtn.parentNode.replaceChild(newMobileMenuBtn, mobileMenuBtn);
-        
-        const newCloseMenuBtn = closeMenuBtn.cloneNode(true);
-        closeMenuBtn.parentNode.replaceChild(newCloseMenuBtn, closeMenuBtn);
-        
-        // Get fresh references
-        const btn = document.getElementById('mobileMenuBtn');
-        const closeBtn = document.getElementById('closeMenuBtn');
-        const menu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('menuOverlay');
-        
-        // Open menu function
+
         function openMenu() {
-            menu.classList.add('active');
-            overlay.classList.add('active');
-            btn.classList.add('active');
+            mobileMenu.classList.remove('-translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
+            menuOverlay.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
-        
-        // Close menu function
+
         function closeMenu() {
-            menu.classList.remove('active');
-            overlay.classList.remove('active');
-            btn.classList.remove('active');
+            mobileMenu.classList.add('-translate-x-full');
+            mobileMenu.classList.remove('translate-x-0');
+            menuOverlay.classList.add('hidden');
             document.body.style.overflow = '';
         }
+
+        // Remove existing listeners and add new ones
+        mobileMenuBtn.replaceWith(mobileMenuBtn.cloneNode(true));
+        closeMenuBtn.replaceWith(closeMenuBtn.cloneNode(true));
         
-        // Event listeners
-        btn.addEventListener('click', function(e) {
+        const newMobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const newCloseMenuBtn = document.getElementById('closeMenuBtn');
+        const newMobileMenu = document.getElementById('mobileMenu');
+        const newMenuOverlay = document.getElementById('menuOverlay');
+
+        newMobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             openMenu();
         });
-        
-        closeBtn.addEventListener('click', function(e) {
+
+        newCloseMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             closeMenu();
         });
-        
-        overlay.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+
+        newMenuOverlay.addEventListener('click', function() {
             closeMenu();
         });
-        
-        // Close menu when clicking on menu links
-        const menuLinks = menu.querySelectorAll('.mobile-menu-item');
-        menuLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
-                closeMenu();
-            });
-        });
-        
-        // Close with Escape key
+
+        // Close on escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && menu.classList.contains('active')) {
+            if (e.key === 'Escape' && !mobileMenu.classList.contains('-translate-x-full')) {
                 closeMenu();
             }
         });
     }
-    
-    // Start initialization when DOM is ready
+
+    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initMobileMenu);
     } else {
@@ -340,7 +219,3 @@
     }
 })();
 </script>
-
-
-
-
