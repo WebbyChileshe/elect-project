@@ -1,14 +1,5 @@
 
 
-<script>
-fetch("header.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("header").innerHTML = data;
-  })
-  .catch(err => console.error("Header load failed", err));
-</script>
-
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -24,7 +15,7 @@ fetch("header.html")
 
 <div id="header">
 <!-- HERO SECTION -->
-<section class="relative bg-cover bg-center h-[85vh]" style="background-image:url('../assets/images/hero.jpg');">
+<section class="relative bg-cover bg-center h-[85vh]" style="background-image:url('ELECT/assets/images/hero.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
     
     <!-- Small Play Button (Bottom Right of Hero) -->
@@ -831,6 +822,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+<script>
+fetch("header.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+  })
+  .catch(err => console.error("Header load failed", err));
+</script>
+
 
 
 
