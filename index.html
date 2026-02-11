@@ -1,131 +1,99 @@
+<div id="header"></div>
+
 <script>
-// Single header fetch with proper error handling and responsive fixes
+// SINGLE HEADER FETCH SCRIPT - Put this right after the header div
 (function() {
     'use strict';
     
-    function initHeader() {
+    function loadHeader() {
         const headerDiv = document.getElementById('header');
-        if (!headerDiv) return;
-        
+        if (!headerDiv) {
+            console.error('Header div not found');
+            return;
+        }
+
         // Show loading state
-        headerDiv.style.minHeight = '70px';
-        headerDiv.style.background = '#f9fafb';
+        headerDiv.innerHTML = '<div style="height: 70px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite;"></div>';
         
-        fetch("header.html")
-            .then(res => {
-                if (!res.ok) throw new Error('Network response was not ok');
-                return res.text();
+        // Add loading animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes loading {
+                0% { background-position: 200% 0; }
+                100% { background-position: -200% 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Fetch header
+        fetch('header.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
             })
             .then(data => {
                 headerDiv.innerHTML = data;
                 
-                // Wait for DOM update
+                // Initialize everything after header is loaded
                 setTimeout(() => {
+                    // Fix header and hero position
                     fixHeaderAndHeroPosition();
-                    initMobileMenu(); // Reinitialize mobile menu after header loads
-                }, 50);
+                    
+                    // Reinitialize any page-specific functions
+                    if (typeof initDesktopFeatures === 'function') {
+                        initDesktopFeatures();
+                    }
+                    if (typeof initVideoPlayers === 'function') {
+                        initVideoPlayers();
+                    }
+                    if (typeof initNewsSlider === 'function') {
+                        initNewsSlider();
+                    }
+                }, 100);
             })
-            .catch(err => {
-                console.error("Header load failed:", err);
-                headerDiv.innerHTML = '<div style="background:white; padding:20px; text-align:center">Header failed to load</div>';
+            .catch(error => {
+                console.error('Header load failed:', error);
+                headerDiv.innerHTML = `
+                    <header style="background: white; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div style="max-width: 1200px; margin: 0 auto;">
+                            <h1 style="color: #247646; font-size: 24px;">ELECT Project</h1>
+                            <p style="color: #666; font-size: 14px;">Header failed to load. Please refresh.</p>
+                        </div>
+                    </header>
+                `;
             });
     }
-    
-    // Centralized function for header/hero positioning
+
+    // Fix header and hero positioning
     function fixHeaderAndHeroPosition() {
         const header = document.querySelector('header');
         const orangeBanner = document.querySelector('.orange-banner');
-        const hero = document.querySelector('.relative.bg-cover.bg-center.h-\\[85vh\\]');
+        const hero = document.querySelector('.relative.bg-cover.bg-center');
         
         if (!hero || !header) return;
         
         let offset = header.offsetHeight;
         
-        // Only add orange banner height on desktop
         if (orangeBanner && window.innerWidth >= 769) {
             offset += orangeBanner.offsetHeight;
         }
         
         hero.style.marginTop = offset + 'px';
     }
-    
-    // Mobile menu initialization
-    function initMobileMenu() {
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const closeMenuBtn = document.getElementById('closeMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        
-        if (!mobileMenuBtn || !closeMenuBtn || !mobileMenu || !menuOverlay) {
-            return; // Elements not ready yet
-        }
-        
-        // Remove existing listeners
-        const newBtn = mobileMenuBtn.cloneNode(true);
-        mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
-        
-        const newCloseBtn = closeMenuBtn.cloneNode(true);
-        closeMenuBtn.parentNode.replaceChild(newCloseBtn, closeMenuBtn);
-        
-        // Get fresh references
-        const btn = document.getElementById('mobileMenuBtn');
-        const closeBtn = document.getElementById('closeMenuBtn');
-        const menu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('menuOverlay');
-        
-        function openMenu() {
-            menu.classList.add('active');
-            overlay.classList.add('active');
-            btn.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeMenu() {
-            menu.classList.remove('active');
-            overlay.classList.remove('active');
-            btn.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            openMenu();
-        });
-        
-        closeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            closeMenu();
-        });
-        
-        overlay.addEventListener('click', closeMenu);
-        
-        // Close menu on link click
-        menu.querySelectorAll('.mobile-menu-item').forEach(link => {
-            link.addEventListener('click', closeMenu);
-        });
-        
-        // Close with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && menu.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-    }
-    
-    // Run on load and resize
-    window.addEventListener('load', fixHeaderAndHeroPosition);
-    window.addEventListener('resize', () => {
-        requestAnimationFrame(fixHeaderAndHeroPosition);
-    });
-    
-    // Start header loading
+
+    // Load header when page loads
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initHeader);
+        document.addEventListener('DOMContentLoaded', loadHeader);
     } else {
-        initHeader();
+        loadHeader();
     }
+
+    // Handle resize
+    window.addEventListener('resize', function() {
+        setTimeout(fixHeaderAndHeroPosition, 50);
+    });
 })();
 </script>
 
@@ -963,6 +931,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </script>
 </body>
 </html>
+
 
 
 
