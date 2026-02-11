@@ -1,3 +1,58 @@
+/* INSTANT HEADER FIXES */
+#header {
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+}
+
+header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+}
+
+/* Hero margin fix */
+section.relative.bg-cover.bg-center {
+    margin-top: 0 !important; /* Will be set by JavaScript */
+}
+
+/* Mobile menu button - always visible on mobile */
+@media (max-width: 768px) {
+    #mobileMenuBtn {
+        display: flex !important;
+        background-color: #247646 !important;
+        border: none !important;
+        outline: none !important;
+    }
+    
+    .orange-banner {
+        display: none !important;
+    }
+}
+
+/* Desktop menu - centered */
+@media (min-width: 769px) {
+    .orange-banner {
+        display: block !important;
+    }
+    
+    .orange-banner .flex {
+        justify-content: center !important;
+    }
+    
+    #mobileMenuBtn {
+        display: none !important;
+    }
+}
+
+/* Dropdown hover */
+.group:hover .absolute {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
 * {
     margin: 0;
     padding: 0;
@@ -554,3 +609,4 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
         height: auto !important;
     }
 }
+
