@@ -56,7 +56,7 @@ header {
 
 /* ===== HERO SECTION ===== */
 section.relative.bg-cover.bg-center.h-\[85vh\] {
-    margin-top: 0px; /* Desktop fallback */
+    margin-top: 50px; /* Desktop fallback */
     position: relative;
     z-index: 1;
     transition: margin-top 0.3s ease;
@@ -406,7 +406,7 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
 }
 
     section.relative.bg-cover.bg-center.h-\[85vh\] {
-        margin-top: -40px !important;
+        margin-top: 50px !important;
         height: 70vh !important;
         background-position: center !important;
     }
@@ -779,6 +779,7 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
 .group:hover .group-hover\:translate-y-0 {
     transform: translateY(0);
 }
+
 
 
 
