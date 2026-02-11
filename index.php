@@ -1,0 +1,808 @@
+<?php include '../includes/header.php'; ?>
+
+<!-- HERO SECTION -->
+<section class="relative bg-cover bg-center h-[85vh]" style="background-image:url('../assets/images/hero.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    
+    <!-- Small Play Button (Bottom Right of Hero) -->
+    <div id="smallPlayButton" class="absolute bottom-6 right-6 z-20 opacity-0 transition-opacity duration-1000 ease-out hidden">
+        <button class=" w-full h-32 flex items-center gap-3 bg-black/70 hover:bg-black/80 backdrop-blur-sm text-white px-5 py-3 rounded shadow-2xl transition-all duration-300 group">
+            <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center group-hover:bg-blue-700 transition-colors">
+                <i class="fas fa-play text-white text-lg ml-1"></i>
+            </div>
+            <div class="text-left">
+                <h4 class="font-bold text-sm">Watch Introduction</h4>
+                <p class="text-xs opacity-90">1:30 min</p>
+            </div>
+        </button>
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
+        <div class="text-white max-w-xl">
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+                Energy Efficient Lighting for a Clean Energy <span class="text-[#247646]">Future</span>
+            </h1>
+            <p class="mt-6 text-lg">
+                An EU co-funded initiative empowering Zambia's transition through education, innovation, and international collaboration.
+            </p>
+            <a href="pages/about.php" class="inline-flex items-center gap-2 mt-8 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
+                <i class="fas fa-book-open"></i>
+                Learn More
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- VIDEO OVERLAY -->
+<div id="videoOverlay" class="fixed inset-0 bg-black/90 z-50 hidden opacity-0 transition-all duration-700 ease-out hidden">
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+        <div class="relative w-full max-w-4xl mx-auto">
+            <!-- Video Container with Fade-in Animation -->
+            <div id="videoContainer" class="opacity-0 transform translate-x-20 transition-all duration-1000 ease-out">
+                <div class="relative bg-black/70 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden">
+                    <!-- Video Header -->
+                    <div class="bg-gradient-to-r from-blue-900/80 to-blue-700/80 p-6">
+                        <h2 class="text-2xl md:text-3xl font-bold text-white text-center">
+                            ELECT Project Overview
+                        </h2>
+                        <p class="text-white/80 text-center mt-2">
+                            Introduction to our mission and vision for energy-efficient lighting
+                        </p>
+                    </div>
+                    
+                    <!-- Video Player -->
+                    <div class="p-4 md:p-6">
+                        <video id="mainVideo" class="w-full h-auto rounded-lg shadow-lg" controls preload="metadata" poster="../assets/images/video-thumbnail.jpg">
+                            <source src="../assets/videos/overview.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="p-4 md:p-6 bg-black/50">
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button id="closeVideoBtn" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2">
+                                <i class="fas fa-times"></i>
+                                Close Video
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Close Button (X) -->
+            <button id="closeOverlayBtn" class="absolute top-4 right-4 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors duration-300 flex items-center justify-center">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<section class="bg-white py-20" id="aboutSection">
+  <div class="max-w-7xl mx-auto px-6 mb-6">
+    <h2 class="text-3xl md:text-4xl text-center font-bold text-[#247646] mb-3">About the ELECT Project</h2>
+
+    <!-- TOP CONTENT ROW -->
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- LEFT TEXT -->
+      <div class="animate-fadeIn">
+        <h2 class="text-xl font-bold text-[#247646] leading-tight">
+          Improving <br> The Accessibility <br>
+          And Quality of Higher Education <br>in Energy Efficient Lighting
+        </h2>
+
+        <p class="mt-6 text-gray-600 leading-relaxed max-w-md">
+          ELECT is a curriculum development project aimed to improve the accessibility
+          and quality of higher education in the field of energy efficient lighting at Universities in Zambia.
+          The project is being implemented at two Universities in Zambia in cooperation with two European Universities.
+        </p>
+
+        <p class="mt-4 text-gray-600 leading-relaxed max-w-md">
+          The main activities of the project include the mordenization of bachelor's and diploma curricula,
+          the introduction of innovative teaching and learning methods, the establishment of teaching and research infrastructure, and teacher training.
+        </p>
+        
+        <!-- READ MORE BUTTON -->
+        <a href="pages/About.php" class="inline-flex items-center gap-2 mt-6 px-5 py-3 bg-[#247646] hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-300">
+            Read More on ELECT About
+        </a>
+      </div>
+
+      <!-- RIGHT IMAGE + VIDEO + FLOATING CARD -->
+      <div class="relative animate-fadeIn delay-200">
+          <!-- Image Container -->
+          <div class="relative">
+              <!-- Main Image -->
+              <img id="aboutImage" src="../assets/images/About.jpg"
+                  alt="ELECT Project Activity"
+                  class="rounded shadow w-full object-cover">
+              
+              <!-- Video Wrapper (hidden by default) -->
+              <div id="aboutVideoWrapper" class="absolute inset-0">
+                  <video id="aboutVideo" controls class="w-full h-full">
+                      <source src="../assets/Video/overview.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video>
+                  
+                  <!-- Close Video Button -->
+                  <div class="video-controls-overlay">
+                      <button id="closeAboutVideoBtn" class="close-video-btn" title="Close Video">
+                          <i class="fas fa-times"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</section>   
+
+<!-- OBJECTIVES SECTION -->
+<section class="py-20">
+  <div class="max-w-7xl mx-auto mt-6 px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Our Core Objectives</h2>
+      <div class="w-24 h-1 bg-[#247646] mx-auto mb-6"></div>
+      <p class="text-gray-600 mx-auto text-lg leading-relaxed">
+        The overall objective of the ELECT project is to improve access and quality of higher education in energy efficient lighting in Zambia, through the development and implementation of a modern curriculum, applied research, and international collaboration.
+      </p>
+    </div>
+    
+    <!-- Objectives Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- OBJECTIVE 1 -->
+        <div class="group">
+            <!-- Image Container with Multiple Images -->
+            <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
+                <div class="objective-1-image active" style="background-image: url('../assets/images/lightbulb.jpg');"></div>
+                <div class="objective-1-image" style="background-image: url('../assets/images/lightbulb.jpeg');"></div>
+                <div class="objective-1-image" style="background-image: url('../assets/images/About.jpg');"></div>
+            </div>
+            
+            <h3 class="font-bold text-xl text-gray-800 mb-4">Awareness & Cooperation</h3>
+            <p class="text-gray-600 leading-relaxed">
+                To raise awareness and stimulate cooperation between universities, industry, and public sectors for promoting energy efficient lighting.
+            </p>
+        </div>
+        
+        <!-- OBJECTIVE 2 -->
+        <div class="group">
+            <!-- Image Container with Multiple Images -->
+            <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
+                <div class="objective-2-image active" style="background-image: url('../assets/images/pedagogical.jpg');"></div>
+                <div class="objective-2-image" style="background-image: url('../assets/images/pedagogical.png');"></div>
+                <div class="objective-2-image" style="background-image: url('../assets/images/news1.jpg');"></div>
+            </div>
+            
+            <h3 class="font-bold text-xl text-gray-800 mb-4">Pedagogical Excellence</h3>
+            <p class="text-gray-600 leading-relaxed">
+                To improve pedagogical expertise and teaching infrastructure for high quality, student-centered digital education.
+            </p>
+        </div>
+        
+        <!-- OBJECTIVE 3 -->
+        <div class="group">
+            <!-- Image Container with Multiple Images -->
+            <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
+                <div class="objective-3-image active" style="background-image: url('../assets/images/news2.jpg');"></div>
+                <div class="objective-3-image" style="background-image: url('../assets/images/news3.jpg');"></div>
+                <div class="objective-3-image" style="background-image: url('../assets/images/hero.jpg');"></div>
+            </div>
+            
+            <h3 class="font-bold text-xl text-gray-800 mb-4">Curriculum Development</h3>
+            <p class="text-gray-600 leading-relaxed">
+                To develop and modernize courses with hands-on learning in efficient and smart lighting technologies.
+            </p>
+        </div>
+        
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS SECTION -->
+<section class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-3">Our Partners</h2>
+            <div class="w-24 h-1 bg-[#247646] mx-auto mb-4"></div>
+            <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                Working together with leading academic institutions to advance energy efficiency
+            </p>
+        </div>
+
+        <!-- Partner Logos with Names -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Aalto University -->
+            <div class="text-center">
+                <div class="p-8 mb-3 h-48 flex items-center justify-center">
+                    <!-- Logo - increased size -->
+                    <img src="../assets/images/aalto-university-logo-finland.jpg" alt="Aalto University Logo" class="h-32 w-auto max-w-full">
+                </div>
+                <a href="https://www.aalto.fi" target="_blank" class="font-bold text-lg text-gray-800 hover:text-[#247646] transition-colors inline-block mt-2">
+                    Aalto University
+                </a>
+                <p class="text-sm text-gray-500 mt-1">Finland</p>
+            </div>
+
+            <!-- Mulungushi University -->
+            <div class="text-center">
+                <div class="p-8 mb-3 h-48 flex items-center justify-center">
+                    <!-- Logo - increased size -->
+                    <img src="../assets/images/MU-logo.png" alt="Mulungushi University Logo" class="h-32 w-auto max-w-full">
+                </div>
+                <a href="https://www.mu.ac.zm" target="_blank" class="font-bold text-lg text-gray-800 hover:text-[#247646] transition-colors inline-block mt-2">
+                    Mulungushi University
+                </a>
+                <p class="text-sm text-gray-500 mt-1">Zambia</p>
+            </div>
+
+            <!-- Copperbelt University -->
+            <div class="text-center">
+                <div class="p-8 mb-3 h-48 flex items-center justify-center">
+                    <!-- Logo - increased size -->
+                    <img src="../assets/images/Copperbelt-University.jpeg" alt="Copperbelt University Logo" class="h-32 w-auto max-w-full">
+                </div>
+                <a href="https://www.cbu.ac.zm" target="_blank" class="font-bold text-lg text-gray-800 hover:text-[#247646] transition-colors inline-block mt-2">
+                    Copperbelt University
+                </a>
+                <p class="text-sm text-gray-500 mt-1">Zambia</p>
+            </div>
+
+            <!-- Hellenic Open University -->
+            <div class="text-center">
+                <div class="p-8 mb-3 h-48 flex items-center justify-center">
+                    <!-- Logo - increased size -->
+                    <img src="../assets/images/Hellenic-logo.png" alt="Hellenic Open University Logo" class="h-32 w-auto max-w-full">
+                </div>
+                <a href="https://www.eap.gr" target="_blank" class="font-bold text-lg text-gray-800 hover:text-[#247646] transition-colors inline-block mt-2">
+                    Hellenic Open University
+                </a>
+                <p class="text-sm text-gray-500 mt-1">Greece</p>
+            </div>
+        </div>
+
+        <!-- Note about logos -->
+        <div class="mt-12 text-center text-sm text-gray-500">
+            <p>Click on university names to visit their official websites</p>
+        </div>
+    </div>
+</section>
+
+<!-- NEWS SECTION -->
+<section id="newsSection" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- Section Header -->
+        <div class="border-b-4 border-red-600 pb-4 mb-8">
+            <h2 class="text-3xl font-bold text-gray-900">ELECT News & Updates</h2>
+            <p class="text-gray-600 mt-2">Latest developments from the Energy Efficient Lighting project</p>
+        </div>
+        
+        <!-- Main News Grid with Slider -->
+        <div class="grid lg:grid-cols-3 gap-8">
+            
+            <!-- Featured/Lead Story Slider (Left Column) -->
+            <div class="lg:col-span-2">
+                <div class="border-r lg:pr-8">
+                    <!-- Slider Container -->
+                    <div class="relative overflow-hidden rounded mb-6 h-64 md:h-80 lg:h-96">
+                        <!-- Slider Items -->
+                        <div class="slider-container absolute inset-0">
+                            <!-- Slide 1 -->
+                            <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="0">
+                                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('../assets/images/hero.jpg');"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
+                                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                        <span class="inline-block bg-red-600 text-white px-3 py-1 text-sm font-semibold mb-3">
+                                            FEATURED
+                                        </span>
+                                        <h3 class="text-2xl md:text-3xl font-bold mb-2 leading-tight">
+                                            ELECT Project Launches New Training Program for Energy Professionals
+                                        </h3>
+                                        <p class="text-gray-200 mb-3 line-clamp-2">
+                                            The ELECT initiative has launched an intensive training program aimed at building capacity among energy professionals in Zambia.
+                                        </p>
+                                        <div class="flex items-center text-sm">
+                                            <span class="flex items-center mr-6">
+                                                <i class="fas fa-calendar-alt mr-2"></i>
+                                                2 hours ago
+                                            </span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-eye mr-2"></i>
+                                                1,245 views
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 2 -->
+                            <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="1">
+                                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('../assets/images/news1.jpg');"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
+                                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                        <span class="inline-block bg-blue-600 text-white px-3 py-1 text-sm font-semibold mb-3">
+                                            WORKSHOP
+                                        </span>
+                                        <h3 class="text-2xl md:text-3xl font-bold mb-2 leading-tight">
+                                            Hands-on Workshop for University Lecturers Concludes Successfully
+                                        </h3>
+                                        <p class="text-gray-200 mb-3 line-clamp-2">
+                                            Capacity building session held at UNZA with participation from 30 lecturers across Zambian universities.
+                                        </p>
+                                        <div class="flex items-center text-sm">
+                                            <span class="flex items-center mr-6">
+                                                <i class="fas fa-calendar-alt mr-2"></i>
+                                                3 days ago
+                                            </span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-eye mr-2"></i>
+                                                987 views
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 3 -->
+                            <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="2">
+                                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('../assets/images/news2.jpg');"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
+                                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                        <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm font-semibold mb-3">
+                                            RESEARCH
+                                        </span>
+                                        <h3 class="text-2xl md:text-3xl font-bold mb-2 leading-tight">
+                                            New Research Shows 40% Energy Savings from Pilot Installations
+                                        </h3>
+                                        <p class="text-gray-200 mb-3 line-clamp-2">
+                                            Initial results from pilot projects demonstrate significant efficiency gains in lighting systems across partner institutions.
+                                        </p>
+                                        <div class="flex items-center text-sm">
+                                            <span class="flex items-center mr-6">
+                                                <i class="fas fa-calendar-alt mr-2"></i>
+                                                2 days ago
+                                            </span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-eye mr-2"></i>
+                                                1,542 views
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 4 -->
+                            <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="3">
+                                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('../assets/images/hero.jpg');"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
+                                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                        <span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm font-semibold mb-3">
+                                            COLLABORATION
+                                        </span>
+                                        <h3 class="text-2xl md:text-3xl font-bold mb-2 leading-tight">
+                                            EU Delegation Visits Project Sites, Commends Progress
+                                        </h3>
+                                        <p class="text-gray-200 mb-3 line-clamp-2">
+                                            European Union representatives visit partner universities to assess project implementation and impact.
+                                        </p>
+                                        <div class="flex items-center text-sm">
+                                            <span class="flex items-center mr-6">
+                                                <i class="fas fa-calendar-alt mr-2"></i>
+                                                5 days ago
+                                            </span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-eye mr-2"></i>
+                                                2,134 views
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slider Navigation Dots (Buttons hidden) -->
+                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+                            <div class="slider-dot w-3 h-3 /50 cursor-pointer hover:bg-white transition-colors" data-slide="0"></div>
+                            <div class="slider-dot w-3 h-3 /50 cursor-pointer hover:bg-white transition-colors" data-slide="1"></div>
+                            <div class="slider-dot w-3 h-3 /50 cursor-pointer hover:bg-white transition-colors" data-slide="2"></div>
+                            <div class="slider-dot w-3 h-3 /50 cursor-pointer hover:bg-white transition-colors" data-slide="3"></div>
+                        </div>
+                        
+                        <!-- Slider Navigation Arrows -->
+                        <button class="slider-prev absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all z-10">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slider-next absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all z-10">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Sub Stories -->
+                    <div class="grid md:grid-cols-2 gap-6 border-t pt-6">
+                        <article class="border-b pb-6">
+                            <h4 class="font-bold text-lg mb-2">
+                                <a href="#" class="text-gray-900 hover:text-[#247646] transition-colors">
+                                    New Curriculum Materials Released Online
+                                </a>
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Educational resources for energy-efficient lighting now available for download...
+                            </p>
+                            <span class="text-xs text-gray-500">1 week ago</span>
+                        </article>
+                        
+                        <article class="border-b pb-6">
+                            <h4 class="font-bold text-lg mb-2">
+                                <a href="#" class="text-gray-900 hover:text-[#247646] transition-colors">
+                                    Student Exchange Program Applications Open
+                                </a>
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Opportunity for Zambian students to study at European partner universities...
+                            </p>
+                            <span class="text-xs text-gray-500">1 week ago</span>
+                        </article>
+                    </div>    
+                  <!-- View All Button -->
+                  <div class="text-center mt-12">
+                      <a href="pages/news.php" class="inline-flex text-center w-full items-center gap-2 bg-[#247646] text-white px-6 py-3 rounded font-semibold transition-colors duration-300 hover:bg-[#1d5f38]">
+                          <i class="fas fa-newspaper"></i>
+                          View All News Stories
+                      </a>
+                  </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar Stories (Right Column) -->
+            <div class="space-y-8">
+                <!-- Latest Updates -->
+                <div class="p-6 rounded-lg">
+                    <h3 class="font-bold text-xl mb-4 pb-2 border-b">Latest Updates</h3>
+                    <div class="space-y-4">
+                        <article>
+                            <h4 class="font-semibold mb-1">
+                                <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
+                                    New Research Partnership with European Universities
+                                </a>
+                            </h4>
+                            <p class="text-sm text-gray-600">Collaboration aims to advance energy-efficient lighting research...</p>
+                            <span class="text-xs text-gray-500">Yesterday</span>
+                        </article>
+                        
+                        <article>
+                            <h4 class="font-semibold mb-1">
+                                <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
+                                    Industry Advisory Board Meeting Held
+                                </a>
+                            </h4>
+                            <p class="text-sm text-gray-600">Stakeholders discuss curriculum alignment with industry needs...</p>
+                            <span class="text-xs text-gray-500">4 days ago</span>
+                        </article>
+                        
+                        <article>
+                            <h4 class="font-semibold mb-1">
+                                <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
+                                    Publication in International Journal
+                                </a>
+                            </h4>
+                            <p class="text-sm text-gray-600">ELECT research team publishes findings in Energy Efficiency journal...</p>
+                            <span class="text-xs text-gray-500">1 week ago</span>
+                        </article>
+                    </div>
+                </div>
+                
+                <!-- Most Read -->
+                <div>
+                    <h3 class="font-bold text-xl mb-4 pb-2 border-b">Most Read</h3>
+                    <div class="space-y-4">
+                        <article class="flex gap-3">
+                            <div class="flex-shrink-0 w-20 h-16">
+                                <div class="w-full h-full bg-cover bg-center bg-no-repeat rounded" style="background-image: url('../assets/images/news1.jpg');"></div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm mb-1">
+                                    <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
+                                        Energy Efficiency Report Published
+                                    </a>
+                                </h4>
+                                <span class="text-xs text-gray-500">2,456 views</span>
+                            </div>
+                        </article>
+                        
+                        <article class="flex gap-3">
+                            <div class="flex-shrink-0 w-20 h-16">
+                                <div class="w-full h-full bg-cover bg-center bg-no-repeat rounded" style="background-image: url('../assets/images/news2.jpg');"></div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sm mb-1">
+                                    <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
+                                        Project Annual Review Results
+                                    </a>
+                                </h4>
+                                <span class="text-xs text-gray-500">1,987 views</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                
+                <!-- Categories -->
+                <div>
+                    <h3 class="font-bold text-xl mb-4 pb-2 border-b">Categories</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded text-sm transition-colors">
+                            Research
+                        </a>
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded text-sm transition-colors">
+                            Events
+                        </a>
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded text-sm transition-colors">
+                            Publications
+                        </a>
+                        <a href="#" class="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded text-sm transition-colors">
+                            Training
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php include '../includes/footer.php'; ?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Video Elements for Hero section
+    const smallPlayButton = document.getElementById('smallPlayButton');
+    const videoOverlay = document.getElementById('videoOverlay');
+    const videoContainer = document.getElementById('videoContainer');
+    const mainVideo = document.getElementById('mainVideo');
+    const closeVideoBtn = document.getElementById('closeVideoBtn');
+    const closeOverlayBtn = document.getElementById('closeOverlayBtn');
+    
+    // About Section Video Elements
+    const aboutSection = document.getElementById('aboutSection');
+    const aboutVideoWrapper = document.getElementById('aboutVideoWrapper');
+    const aboutVideo = document.getElementById('aboutVideo');
+    const aboutImage = document.getElementById('aboutImage');
+    const closeAboutVideoBtn = document.getElementById('closeAboutVideoBtn');
+    const floatingCard = document.getElementById('floatingCard');
+    
+    // Objectives Elements for Image Rotation
+    const objectiveImages = [
+        document.querySelectorAll('.objective-1-image'),
+        document.querySelectorAll('.objective-2-image'),
+        document.querySelectorAll('.objective-3-image')
+    ];
+    
+    // News Slider Elements
+    const sliderItems = document.querySelectorAll('.slider-item');
+    const sliderDots = document.querySelectorAll('.slider-dot');
+    
+    let currentSlide = 0;
+    let slideInterval;
+    let aboutVideoTriggered = false;
+    let objectivesInterval;
+    let objectiveCurrentImages = [0, 0, 0];
+    
+    // Play button on scroll from hero section
+    function showPlayButton() {
+        smallPlayButton.classList.remove('opacity-0');
+        smallPlayButton.classList.add('opacity-100');
+    }
+    
+    function hidePlayButton() {
+        smallPlayButton.classList.remove('opacity-100');
+        smallPlayButton.classList.add('opacity-0');
+    }
+    
+    // Show video overlay with animation (hero section)
+    function showVideoOverlay() {
+        videoOverlay.classList.remove('hidden');
+        
+        // Reset video to beginning
+        mainVideo.currentTime = 0;
+        
+        setTimeout(() => {
+            videoOverlay.classList.remove('opacity-0');
+            videoOverlay.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                videoContainer.classList.remove('opacity-0');
+                videoContainer.classList.remove('translate-x-20');
+                videoContainer.classList.add('opacity-100');
+                videoContainer.classList.add('translate-x-0');
+            }, 300);
+            
+            document.body.style.overflow = 'hidden';
+        }, 10);
+    }
+    
+    // Hide video overlay (hero section)
+    function hideVideoOverlay() {
+        mainVideo.pause();
+        
+        videoContainer.classList.remove('opacity-100');
+        videoContainer.classList.remove('translate-x-0');
+        videoContainer.classList.add('opacity-0');
+        videoContainer.classList.add('translate-x-20');
+        
+        videoOverlay.classList.remove('opacity-100');
+        videoOverlay.classList.add('opacity-0');
+        
+        setTimeout(() => {
+            videoOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 700);
+    }
+    
+    // SHOW VIDEO IN ABOUT SECTION
+    function showVideoInAboutSection() {
+        if (aboutVideoTriggered) return;
+        aboutVideoTriggered = true;
+        
+        // Fade out the image slightly
+        aboutImage.classList.add('fade-out');
+        
+        // Show and animate the video wrapper
+        setTimeout(() => {
+            aboutVideoWrapper.classList.add('active');
+            
+            // Start playing the video
+            setTimeout(() => {
+                aboutVideo.play().catch(e => {
+                    console.log("Autoplay prevented:", e);
+                });
+            }, 500);
+        }, 300);
+    }
+    
+    // HIDE VIDEO IN ABOUT SECTION
+    function hideVideoInAboutSection() {
+        // Pause the video
+        aboutVideo.pause();
+        
+        // Hide the video wrapper
+        aboutVideoWrapper.classList.remove('active');
+        
+        // Restore the image fully
+        aboutImage.classList.remove('fade-out');
+        
+        // Reset flag so video can be triggered again
+        setTimeout(() => {
+            aboutVideoTriggered = false;
+        }, 1000);
+    }
+    
+    // OBJECTIVES IMAGE ROTATION
+    function rotateObjectiveImages() {
+        objectiveImages.forEach((images, objectiveIndex) => {
+            if (images.length > 0) {
+                // Hide all images for this objective
+                images.forEach(img => {
+                    img.classList.remove('active');
+                });
+                
+                // Show current image
+                objectiveCurrentImages[objectiveIndex] = 
+                    (objectiveCurrentImages[objectiveIndex] + 1) % images.length;
+                images[objectiveCurrentImages[objectiveIndex]].classList.add('active');
+            }
+        });
+    }
+    
+    function initObjectivesImageRotation() {
+        // Start rotation every 5 seconds
+        objectivesInterval = setInterval(rotateObjectiveImages, 5000);
+        
+        // Initial rotation
+        rotateObjectiveImages();
+    }
+    
+    // Scroll detection
+    window.addEventListener('scroll', function() {
+        const heroSection = document.querySelector('.relative.bg-cover');
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        const viewportHeight = window.innerHeight;
+        
+        // Show play button when user starts scrolling down from hero section
+        if (heroBottom < viewportHeight * 0.9) {
+            showPlayButton();
+        } else {
+            hidePlayButton();
+        }
+        
+        // Check if About section is in view for video animation
+        const aboutSectionRect = aboutSection.getBoundingClientRect();
+        if (aboutSectionRect.top < viewportHeight * 0.7 && 
+            aboutSectionRect.bottom > 0 && 
+            !aboutVideoTriggered) {
+            showVideoInAboutSection();
+        }
+    });
+    
+    // Event Listeners for Hero Section Video
+    smallPlayButton.addEventListener('click', showVideoOverlay);
+    closeVideoBtn.addEventListener('click', hideVideoOverlay);
+    closeOverlayBtn.addEventListener('click', hideVideoOverlay);
+    
+    // Event Listeners for About Section Video
+    closeAboutVideoBtn.addEventListener('click', hideVideoInAboutSection);
+    
+    // Close overlay when clicking on background (hero section)
+    videoOverlay.addEventListener('click', function(event) {
+        if (event.target === videoOverlay) {
+            hideVideoOverlay();
+        }
+    });
+    
+    // Close with Escape key (both videos)
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            if (!videoOverlay.classList.contains('hidden')) {
+                hideVideoOverlay();
+            }
+            if (aboutVideoWrapper.classList.contains('active')) {
+                hideVideoInAboutSection();
+            }
+        }
+    });
+    
+    // Video ended events
+    mainVideo.addEventListener('ended', function() {
+        setTimeout(() => {
+            hideVideoOverlay();
+        }, 2000);
+    });
+    
+    aboutVideo.addEventListener('ended', function() {
+        // Loop the video in About section
+        setTimeout(() => {
+            aboutVideo.currentTime = 0;
+            aboutVideo.play();
+        }, 1000);
+    });
+    
+    // News Slider Functions
+    function showSlide(index) {
+        sliderItems.forEach(item => {
+            item.classList.remove('opacity-100');
+            item.classList.add('opacity-0');
+        });
+        
+        sliderItems[index].classList.remove('opacity-0');
+        sliderItems[index].classList.add('opacity-100');
+        
+        sliderDots.forEach(dot => {
+            dot.classList.remove('bg-white');
+            dot.classList.add('bg-white/50');
+        });
+        sliderDots[index].classList.remove('bg-white/50');
+        sliderDots[index].classList.add('bg-white');
+        
+        currentSlide = index;
+    }
+    
+    function nextSlide() {
+        let nextIndex = (currentSlide + 1) % sliderItems.length;
+        showSlide(nextIndex);
+    }
+    
+    function startSlider() {
+        slideInterval = setInterval(nextSlide, 10000);
+    }
+    
+    // Initialize
+    showSlide(0);
+    startSlider();
+    
+    // Initialize play button opacity
+    smallPlayButton.classList.remove('opacity-0');
+    smallPlayButton.classList.add('opacity-0');
+    
+    // Initialize objectives image rotation
+    initObjectivesImageRotation();
+});
+</script>
