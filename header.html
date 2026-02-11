@@ -251,6 +251,12 @@
 (function() {
     'use strict';
     
+    // Check if already initialized
+    if (window.ELECT_mobileMenuInitialized) {
+        console.log('Mobile menu already initialized, skipping...');
+        return;
+    }
+    
     // Function to initialize mobile menu
     function initMobileMenu() {
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -267,7 +273,38 @@
         
         console.log('Mobile menu initialized');
         
-        // Remove any existing event listeners by cloning
+        // Set flag to prevent double initialization
+        window.ELECT_mobileMenuInitialized = true;
+        
+        // DON'T clone and replace - this was causing issues
+        // Just use the existing elements
+        
+        // Open menu function
+        function openMenu(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            mobileMenuBtn.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close menu function
+        function closeMenu(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Remove existing event listeners by removing and re-adding
+        // Create new button references to avoid duplicate listeners
         const newMobileMenuBtn = mobileMenuBtn.cloneNode(true);
         mobileMenuBtn.parentNode.replaceChild(newMobileMenuBtn, mobileMenuBtn);
         
@@ -275,57 +312,32 @@
         closeMenuBtn.parentNode.replaceChild(newCloseMenuBtn, closeMenuBtn);
         
         // Get fresh references
-        const btn = document.getElementById('mobileMenuBtn');
-        const closeBtn = document.getElementById('closeMenuBtn');
-        const menu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('menuOverlay');
+        const freshBtn = document.getElementById('mobileMenuBtn');
+        const freshCloseBtn = document.getElementById('closeMenuBtn');
+        const freshMenu = document.getElementById('mobileMenu');
+        const freshOverlay = document.getElementById('menuOverlay');
         
-        // Open menu function
-        function openMenu() {
-            menu.classList.add('active');
-            overlay.classList.add('active');
-            btn.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // Close menu function
-        function closeMenu() {
-            menu.classList.remove('active');
-            overlay.classList.remove('active');
-            btn.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        // Store references globally for cleanup
+        window.ELECT_mobileMenuBtn = freshBtn;
+        window.ELECT_closeMenuBtn = freshCloseBtn;
+        window.ELECT_mobileMenu = freshMenu;
+        window.ELECT_menuOverlay = freshOverlay;
+        window.ELECT_closeMenuFunction = closeMenu;
         
         // Event listeners
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openMenu();
-        });
-        
-        closeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeMenu();
-        });
-        
-        overlay.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeMenu();
-        });
+        freshBtn.addEventListener('click', openMenu);
+        freshCloseBtn.addEventListener('click', closeMenu);
+        freshOverlay.addEventListener('click', closeMenu);
         
         // Close menu when clicking on menu links
-        const menuLinks = menu.querySelectorAll('.mobile-menu-item');
+        const menuLinks = freshMenu.querySelectorAll('.mobile-menu-item');
         menuLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
-                closeMenu();
-            });
+            link.addEventListener('click', closeMenu);
         });
         
         // Close with Escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && menu.classList.contains('active')) {
+            if (e.key === 'Escape' && freshMenu.classList.contains('active')) {
                 closeMenu();
             }
         });
