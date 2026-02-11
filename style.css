@@ -703,23 +703,30 @@
 
 }
 /* Add to your style.css */
-body {
-    margin: 0;
-    padding: 0;
+
+/* Ensure header has proper positioning */
+header {
+    position: relative; /* or fixed if you want sticky header */
+    width: 100%;
+    z-index: 1000;
 }
 
-#header {
-    position: relative;
-    z-index: 50;
-}
-
-/* Push hero section down by header height */
+/* Push hero section down by the full header height */
 section.relative.bg-cover.bg-center.h-\[85vh\] {
-    margin-top: 80px; /* Adjust based on your header height */
+    margin-top: 120px; /* Adjust this value - total header height */
+    position: relative;
+    z-index: 1;
 }
 
+/* OR more precisely - target the first hero section */
+.relative.bg-cover.bg-center.h-\[85vh\]:first-of-type {
+    margin-top: 120px;
+}
+
+/* Mobile adjustment */
 @media (max-width: 768px) {
     section.relative.bg-cover.bg-center.h-\[85vh\] {
-        margin-top: 60px; /* Smaller margin for mobile */
+        margin-top: 100px; /* Smaller margin for mobile */
     }
 }
+
