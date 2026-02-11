@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum - ELECT Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #fdbf30 0%, #16a34a 100%);
+        }
+        
+        /* .section-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        } */
+        
+        .section-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .highlight-green {
+            background-color: #f0fdf4;
+            border-left: 4px solid #16a34a;
+        }
+        
+        .highlight-orange {
+            background-color: #fffbeb;
+            border-left: 4px solid #fdbf30;
+        }
+        
+        .curriculum-icon {
+            background: linear-gradient(135deg, #16a34a 0%, #0d8b3a 100%);
+            color: white;
+            border-radius: 12px;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #16a34a;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #16a34a 0%, #0d8b3a 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.2);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #16a34a;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 10px);
+            background-color: #e5e7eb;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .partner-logo {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-gradient {
+                padding: 3rem 1rem;
+            }
+            
+            .section-card {
+                border-radius: 5px;
+            }
+            .section-card:hover{
+              box-shadow: none;
+            }
+            .breadcrumb {
+              display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+  <?php include '../includes/header.php'; ?>
+
+    <!-- Hero Section -->
+<section class="relative bg-cover bg-center h-[50vh]" style="background-image:url('../assets/images/news-hero.png');">
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div> 
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl pt-32 mx-auto px-6">
+            <div class="text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">About ELECT</h1>
+                <p class="text-xl max-w-3xl">
+                    Improving The Accessibility And Quality of Higher Education in Energy Efficient Lighting
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- BREADCRUMB -->
+    <div class=" breadcrumb shadow-sm bg-white sticky top-40 z-50 ">
+        <div class="max-w-7xl mx-auto px-6">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="../index.php" class="text-blue-600 hover:text-blue-800">Home</a>
+                <span class="text-gray-400">/</span>
+                <span class="text-gray-600">About ELECT</span>
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="py-3 flex overflow-x-auto space-x-6">
+                <a href="#objectives" class="whitespace-nowrap text-gray-600 hover:text-green-700">
+                    <i class="fas fa-bullseye mr-2"></i>Objectives
+                </a>
+                <a href="#learning-outcomes" class="whitespace-nowrap text-gray-600 hover:text-green-700">
+                    <i class="fas fa-graduation-cap mr-2"></i>Learning Outcomes
+                </a>
+                <a href="#target-group" class="whitespace-nowrap text-gray-600 hover:text-green-700">
+                    <i class="fas fa-users mr-2"></i>Target Group
+                </a>
+                <a href="#duration" class="whitespace-nowrap text-gray-600 hover:text-green-700">
+                    <i class="fas fa-clock mr-2"></i>Duration
+                </a>
+                <a href="#delivery-format" class="whitespace-nowrap text-gray-600 hover:text-green-700">
+                    <i class="fas fa-laptop mr-2"></i>Delivery Format
+                </a>
+                <a href="#application-process" class="whitespace-nowrap text-gray-600 hover:text-green-700">
+                    <i class="fas fa-file-signature mr-2"></i>Application
+                </a>
+            </div>
+        </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div class="bg-white ">
+
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- OBJECTIVES SECTION -->
+<section class="py-20">
+  <div class="mx-auto mt-10 md:px-6">
+    <!-- Section Header -->
+    <div class="mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Our Core Objectives</h2>
+      <div class="w-24 h-1 bg-[#247646] mx-auto mb-6"></div>
+      <p class="text-gray-600 mx-auto text-lg leading-relaxed">
+        The overall objective of the ELECT project is to improve access and quality of higher education in energy efficient lighting in Zambia, through the development and implementation of a modern curriculum, applied research, and international collaboration.
+      </p>
+    </div>
+    
+    <!-- Objectives Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- OBJECTIVE 1 -->
+        <div class="group">
+            <!-- Image Container with Multiple Images -->
+            <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
+                <div class="objective-1-image active" style="background-image: url('../assets/images/lightbulb.jpg');"></div>
+                <div class="objective-1-image" style="background-image: url('../assets/images/lightbulb.jpeg');"></div>
+                <div class="objective-1-image" style="background-image: url('../assets/images/About.jpg');"></div>
+            </div>
+            
+            <h3 class="font-bold text-xl text-gray-800 mb-4">Awareness & Cooperation</h3>
+            <p class="text-gray-600 leading-relaxed">
+                To raise awareness and stimulate cooperation between universities, industry, and public sectors for promoting energy efficient lighting.
+            </p>
+        </div>
+        
+        <!-- OBJECTIVE 2 -->
+        <div class="group">
+            <!-- Image Container with Multiple Images -->
+            <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
+                <div class="objective-2-image active" style="background-image: url('../assets/images/pedagogical.jpg');"></div>
+                <div class="objective-2-image" style="background-image: url('../assets/images/pedagogical.png');"></div>
+                <div class="objective-2-image" style="background-image: url('../assets/images/news1.jpg');"></div>
+            </div>
+            
+            <h3 class="font-bold text-xl text-gray-800 mb-4">Pedagogical Excellence</h3>
+            <p class="text-gray-600 leading-relaxed">
+                To improve pedagogical expertise and teaching infrastructure for high quality, student-centered digital education.
+            </p>
+        </div>
+        
+        <!-- OBJECTIVE 3 -->
+        <div class="group">
+            <!-- Image Container with Multiple Images -->
+            <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
+                <div class="objective-3-image active" style="background-image: url('../assets/images/news2.jpg');"></div>
+                <div class="objective-3-image" style="background-image: url('../assets/images/news3.jpg');"></div>
+                <div class="objective-3-image" style="background-image: url('../assets/images/hero.jpg');"></div>
+            </div>
+            
+            <h3 class="font-bold text-xl text-gray-800 mb-4">Curriculum Development</h3>
+            <p class="text-gray-600 leading-relaxed">
+                To develop and modernize courses with hands-on learning in efficient and smart lighting technologies.
+            </p>
+        </div>
+        
+    </div>
+  </div>
+</section>
+
+        <!-- Learning Outcomes Section -->
+        <section id="learning-outcomes" class="mb-20 scroll-mt-24">
+            <div class="flex items-center mb-3">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Learning Outcomes</h2>
+            </div>
+            
+            <div class=" md:px-8 mb-3">
+                <p class="text-gray-700 mb-8 text-lg">
+                    Graduates of the ELECT programme will acquire comprehensive knowledge and practical skills in energy-efficient lighting, preparing them to lead Zambia's sustainable energy transition.
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="module-card p-6 rounded border">
+                        <div class="text-[#fdbf30] mb-4">
+                            <i class="fas fa-lightbulb text-3xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-3">Technical Expertise</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Principles of energy-efficient lighting</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Smart lighting system design</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Lighting control technologies</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card p-6 bg-white rounded-lg border">
+                        <div class="text-[#fdbf30] mb-4">
+                            <i class="fas fa-cogs text-3xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-3">Practical Skills</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Energy auditing and assessment</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Lighting system installation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Performance monitoring & evaluation</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="module-card p-6 bg-white rounded-lg border">
+                        <div class="text-[#fdbf30] mb-4">
+                            <i class="fas fa-chart-line text-3xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-3">Professional Development</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Project management in energy sector</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Policy and regulation understanding</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Sustainable business models</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-6 bg-white">
+                <div class="flex flex-col md:flex-row items-start md:items-center">
+                    <div class="flex text-lg items-start mb-4 md:mb-0 md:w-2/3">
+                        <div class="p-3 rounded-lg mr-4">
+                            <i class="fas fa-award text-blue-600 text-8xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">Certification</h4>
+                            <p class="text-[#247646]">
+                                Successful completion leads to a joint certification from participating universities, recognized within the Erasmus+ programme framework.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Image on the right -->
+                    <div class="md:w-1/3 md:pl-6">
+                        <div class="relative overflow-hidden">
+                            <img 
+                                src="/ELECT/assets/images/imageby.png" 
+                                alt="ELECT Programme Certificate Sample"
+                                class="object-cover">
+                            <div class="absolute inset-0"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Target Audience -->
+    <section id="target" class="py-20">
+        <div class="max-w-7xl mx-auto md:px-6">
+            <div class="mb-16">
+                <h2 class="section-title text-3xl font-bold text-[#247646] inline-block">Target Audience</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto mt-4">
+                    The key stakeholders and beneficiaries of the ELECT Project's initiatives
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- University Students -->
+                <div class="p-8 shadow">
+                    <div class="text-center mb-6">
+                        <div class="inline-block p-4">
+                            <i class="fas fa-user-graduate text-3xl text-[#fdbf30]"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">University Students</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Engineering and technology students</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Energy studies programs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Graduate researchers</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Academic Staff -->
+                <div class="p-8 shadow">
+                    <div class="text-center mb-6">
+                        <div class="inline-block p-4">
+                            <i class="fas fa-chalkboard-teacher text-3xl text-[#fdbf30]"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Academic Staff</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>University lecturers and professors</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Technical trainers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Curriculum developers</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-8 shadow">
+                    <div class="text-center mb-6">
+                        <div class="inline-block p-4">
+                            <i class="fas fa-user-graduate text-3xl text-[#fdbf30]"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Technicians</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Engineering and technology students</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Energy studies programs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Graduate researchers</span>
+                        </li>
+                    </ul>
+                </div>
+                  <div class=" p-8 shadow">
+                    <div class="text-center mb-6">
+                        <div class="inline-block p-4">
+                            <i class="fas fa-user-graduate text-3xl text-[#fdbf30]"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Enginneers</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Engineering and technology students</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Energy studies programs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Graduate researchers</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Duration Section -->
+        <section id="duration" class="mb-20 scroll-mt-24">
+            <div class="flex items-center mb-8">
+                <!-- <div class="curriculum-icon w-12 h-12 flex items-center justify-center mr-4">
+                    <i class="fas fa-clock text-xl"></i>
+                </div> -->
+                <h2 class="text-3xl font-bold text-gray-800">Programme Duration</h2>
+            </div>
+            
+            <div class="section-card md:px-8">
+                <!-- <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <div class="text-center p-6 rounded-lg">
+                        <div class="text-4xl font-bold mb-2">3</div>
+                        <div class="font-semibold text-gray-800">Years</div>
+                        <p class="text-gray-600 text-sm mt-2">Project Duration (2026-2029)</p>
+                    </div>
+                    
+                    <div class="text-center p-6 rounded-lg">
+                        <div class="text-4xl font-bold mb-2">2</div>
+                        <div class="font-semibold text-gray-800">Semesters</div>
+                        <p class="text-gray-600 text-sm mt-2">Core Curriculum per academic year</p>
+                    </div>
+                    
+                    <div class="text-center p-6 rounded-lg">
+                        <div class="text-4xl font-bold mb-2">180</div>
+                        <div class="font-semibold text-gray-800">ECTS Credits</div>
+                        <p class="text-gray-600 text-sm mt-2">Total for Bachelor's programme</p>
+                    </div>
+                </div> -->
+                
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">Programme Timeline</h3>
+                
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="bg-white p-6 rounded-lg border">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-gray-800">Year 1: Foundation & Curriculum Development</h4>
+                                <span class="text-[#247646] md:text-sm text-xs font-medium md:px-3 md:py-1">Jan - Dec 2026</span>
+                            </div>
+                            <p class="text-gray-600">Curriculum design, infrastructure setup, and initial training of trainers</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white p-6 rounded-lg border">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-gray-800">Year 2: Implementation & Piloting</h4>
+                                <span class="text-[#247646] md:text-sm text-xs font-medium md:px-3 md:py-1">Jan - Dec 2027</span>
+                            </div>
+                            <p class="text-gray-600">Full implementation of updated curricula, student enrollment, and industry engagement</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white p-6 rounded-lg border">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-gray-800">Year 3: Scaling & Sustainability</h4>
+                                <span class=" text-[#247646] md:text-sm text-xs font-medium md:px-3 md:py-1">Jan - Dec 2028</span>
+                            </div>
+                            <p class="text-gray-600">Programme evaluation, scaling to other institutions, and sustainability planning</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+                    <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-calendar-alt text-green-600 mr-2"></i>
+                        Academic Calendar
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-semibold text-gray-700 mb-2">Semester 1</h5>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex justify-between">
+                                    <span>Orientation & Registration</span>
+                                    <span class="font-medium">January</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Core Module Delivery</span>
+                                    <span class="font-medium">February - May</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Mid-term Assessments</span>
+                                    <span class="font-medium">April</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-gray-700 mb-2">Semester 2</h5>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex justify-between">
+                                    <span>Advanced Modules</span>
+                                    <span class="font-medium">June - September</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Practical Projects</span>
+                                    <span class="font-medium">August - October</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Final Assessments</span>
+                                    <span class="font-medium">November</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- Delivery Format Section -->
+        <section id="delivery-format" class="mb-10 scroll-mt-24">
+            <div class="flex items-center mb-8">
+                <h2 class="text-3xl font-bold text-[#247646]">Delivery Format</h2>
+            </div>
+            
+            <div class="section-card md:p-8">
+                <p class="text-gray-700 mb-8 text-lg">
+                    The ELECT programme employs a blended learning approach combining traditional classroom instruction with innovative digital tools and hands-on practical experience.
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Learning Modalities</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start p-5 bg-white border rounded-lg hover:border-green-300 transition">
+                                <div class="p-3 rounded-lg mr-4">
+                                    <i class="fas fa-chalkboard text-[#fdbf30]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Face-to-Face Instruction</h4>
+                                    <p class="text-gray-600">Traditional classroom sessions at Copperbelt University and Mulungushi University with expert faculty</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start p-5 bg-white border rounded-lg hover:border-blue-300 transition">
+                                <div class="p-3 rounded-lg mr-4">
+                                    <i class="fas fa-desktop text-[#fdbf30]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Online Learning Platform</h4>
+                                    <p class="text-gray-600">Access to digital resources, recorded lectures, and interactive modules through the ELECT Learning Management System</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start p-5 bg-white border rounded-lg hover:border-orange-300 transition">
+                                <div class="p-3 rounded-lg mr-4">
+                                    <i class="fas fa-flask text-[#fdbf30]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Laboratory & Practical Sessions</h4>
+                                    <p class="text-gray-600">Hands-on training in newly established lighting laboratories with modern equipment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Teaching Resources</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start p-5 bg-white border rounded-lg hover:border-purple-300 transition">
+                                <div class="p-3 rounded-lg mr-4">
+                                    <i class="fas fa-book-open text-[#fdbf30]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Digital Learning Materials</h4>
+                                    <p class="text-gray-600">Comprehensive e-books, video tutorials, case studies, and simulation tools developed specifically for the programme</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start p-5 bg-white border rounded-lg hover:border-red-300 transition">
+                                <div class="p-3 rounded-lg mr-4">
+                                    <i class="fas fa-comments text-[#fdbf30]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Interactive Sessions</h4>
+                                    <p class="text-gray-600">Webinars, discussion forums, and Q&A sessions with international experts from Aalto University and Hellenic Open University</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start p-5 bg-white border rounded-lg hover:border-yellow-300 transition">
+                                <div class="p-3 rounded-lg mr-4">
+                                    <i class="fas fa-industry text-[#fdbf30]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-2">Industry Visits</h4>
+                                    <p class="text-gray-600">Field trips to energy companies, lighting manufacturers, and sustainable building projects</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Application Process Section -->
+        <section id="application-process" class="mb-20 scroll-mt-24">
+            <div class="flex items-center mb-8">
+                <h2 class="text-3xl font-bold text-[#247646]">Application Process</h2>
+            </div>
+            
+            <div class="section-card md:p-8">
+                <p class="text-gray-700 mb-8 text-lg">
+                    The application process for the ELECT programme is designed to be transparent, accessible, and merit-based. Follow these steps to apply for the 2026 academic year.
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-10">
+                    <!-- <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Application Timeline</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="bg-green-100 text-green-800 font-bold p-3 rounded-lg mr-4">1</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Application Period Opens</h4>
+                                    <p class="text-gray-600 text-sm">September 1, 2025</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="bg-blue-100 text-blue-800 font-bold p-3 rounded-lg mr-4">2</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Application Deadline</h4>
+                                    <p class="text-gray-600 text-sm">December 15, 2025</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="bg-orange-100 text-orange-800 font-bold p-3 rounded-lg mr-4">3</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Selection & Interviews</h4>
+                                    <p class="text-gray-600 text-sm">January 2026</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="bg-purple-100 text-purple-800 font-bold p-3 rounded-lg mr-4">4</div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Programme Commencement</h4>
+                                    <p class="text-gray-600 text-sm">February 1, 2026</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Required Documents</h3>
+                        
+                        <div class="p-6 rounded mb-6">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-exclamation-circle text-yellow-600 mr-2"></i>
+                                All applicants must submit:
+                            </h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-file-alt text-green-500 mt-1 mr-3"></i>
+                                    <span>Completed online application form</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-certificate text-green-500 mt-1 mr-3"></i>
+                                    <span>Certified copies of academic transcripts and certificates</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-passport text-green-500 mt-1 mr-3"></i>
+                                    <span>Copy of National Registration Card or passport</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-user text-green-500 mt-1 mr-3"></i>
+                                    <span>Curriculum Vitae (CV) or resume</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-pen text-green-500 mt-1 mr-3"></i>
+                                    <span>Letter of motivation (maximum 500 words)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-5 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-info-circle text-blue-600 mr-2"></i>
+                                Additional for Industry Applicants
+                            </h4>
+                            <p class="text-gray-600 text-sm">
+                                Industry applicants should include employer recommendation letters and evidence of relevant work experience.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid text-center md:grid-cols-2 gap-8">
+                    <div class="p-6 rounded-lg border border-green-100">
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-laptop-code text-green-600 mr-2"></i>
+                            Online Application Portal
+                        </h4>
+                        <p class="text-gray-700 mb-4">
+                            All applications must be submitted through the official ELECT online application system:
+                        </p>
+                        <a href="#" class="btn-primary inline-flex items-center">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Access Application Portal
+                        </a>
+                        <p class="text-gray-600 text-center text-sm mt-4">
+                            <i class="fas fa-lock mr-1"></i>
+                            Secure portal with data encryption and privacy protection
+                        </p>
+                    </div>
+                    
+                    <div class="p-6 bg-gray-50 rounded-lg border">
+                        <h4 class="font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-question-circle text-gray-600 mr-2"></i>
+                            Need Assistance?
+                        </h4>
+                        <p class="text-gray-700 mb-4">
+                            For questions about the application process or programme details:
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-green-600 mr-3"></i>
+                                <span class="text-gray-700">elect.admissions@cbu.ac.zm</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-green-600 mr-3"></i>
+                                <span class="text-gray-700">+260 123 456 789</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-green-600 mr-3"></i>
+                                <span class="text-gray-700">Copperbelt University, Kitwe, Zambia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="mb-20">
+            <div class="bg-[#247646] rounded-2xl p-8 md:p-12 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Join the Energy Transition?</h2>
+                <p class="text-white/90 max-w-2xl mx-auto mb-8">
+                    Apply now for the ELECT programme and become part of Zambia's next generation of energy-efficient lighting experts.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#application-process" class="btn-primary bg-white text-green-700 hover:bg-gray-50">
+                        <i class="fas fa-file-signature mr-2"></i>Apply Now
+                    </a>
+                    <a href="#" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold transition">
+                        <i class="fas fa-download mr-2"></i>Download Brochure
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <img src="/ELECT/assets/images/ELECT-Logo.png" alt="ELECT Logo" class="h-12 w-auto mb-4">
+                    <p class="text-gray-300 text-sm">
+                        Energy Efficient Lighting for Clean Energy Transitions in Zambia
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.php" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="About.php" class="text-gray-300 hover:text-white">About Project</a></li>
+                        <li><a href="Curriculum.php" class="text-gray-300 hover:text-white">Curriculum</a></li>
+                        <li><a href="Partners.php" class="text-gray-300 hover:text-white">Partners</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Contact Information</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>Copperbelt University, Kitwe, Zambia</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3"></i>
+                            <span>info@elect-zambia.org</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Funded By</h4>
+                    <img src="/ELECT/assets/images/EU.png" alt="European Union" class="h-12 w-auto">
+                    <p class="text-gray-300 text-sm mt-2">
+                        Erasmus+ Programme of the European Union
+                    </p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2025 ELECT Project. All rights reserved. | Project Start: 1 January 2026 | Duration: 3 years</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update URL without page jump
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+        
+        // Highlight active section in quick nav
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.quick-nav a').forEach(link => {
+                        link.classList.remove('text-green-700', 'font-semibold');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('text-green-700', 'font-semibold');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Add quick-nav class to navigation
+        document.querySelector('.bg-white.shadow-sm').classList.add('quick-nav');
+    </script>
+</body>
+</html>
