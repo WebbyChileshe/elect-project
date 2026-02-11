@@ -700,4 +700,26 @@
         border-right: none;
         border-bottom: 1px solid #e5e7eb;
     }
+
+}
+/* Add to your style.css */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    position: relative;
+    z-index: 50;
+}
+
+/* Push hero section down by header height */
+section.relative.bg-cover.bg-center.h-\[85vh\] {
+    margin-top: 80px; /* Adjust based on your header height */
+}
+
+@media (max-width: 768px) {
+    section.relative.bg-cover.bg-center.h-\[85vh\] {
+        margin-top: 60px; /* Smaller margin for mobile */
+    }
 }
