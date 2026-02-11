@@ -1,99 +1,72 @@
 <div id="header"></div>
 
 <script>
-// SINGLE HEADER FETCH SCRIPT - Put this right after the header div
+// FIXED: Header loading with proper margin calculation
 (function() {
     'use strict';
     
     function loadHeader() {
         const headerDiv = document.getElementById('header');
-        if (!headerDiv) {
-            console.error('Header div not found');
-            return;
-        }
+        if (!headerDiv) return;
 
-        // Show loading state
-        headerDiv.innerHTML = '<div style="height: 70px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite;"></div>';
-        
-        // Add loading animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes loading {
-                0% { background-position: 200% 0; }
-                100% { background-position: -200% 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Fetch header
         fetch('header.html')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error('Header fetch failed');
                 return response.text();
             })
             .then(data => {
                 headerDiv.innerHTML = data;
                 
-                // Initialize everything after header is loaded
+                // Wait for DOM to update, then fix position
                 setTimeout(() => {
-                    // Fix header and hero position
                     fixHeaderAndHeroPosition();
                     
-                    // Reinitialize any page-specific functions
-                    if (typeof initDesktopFeatures === 'function') {
-                        initDesktopFeatures();
+                    // Re-initialize mobile menu from header
+                    if (typeof window.initMobileMenu === 'function') {
+                        window.initMobileMenu();
                     }
-                    if (typeof initVideoPlayers === 'function') {
-                        initVideoPlayers();
-                    }
-                    if (typeof initNewsSlider === 'function') {
-                        initNewsSlider();
-                    }
-                }, 100);
+                    
+                    // Dispatch event for other scripts
+                    window.dispatchEvent(new CustomEvent('headerLoaded'));
+                }, 50);
             })
             .catch(error => {
-                console.error('Header load failed:', error);
-                headerDiv.innerHTML = `
-                    <header style="background: white; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                        <div style="max-width: 1200px; margin: 0 auto;">
-                            <h1 style="color: #247646; font-size: 24px;">ELECT Project</h1>
-                            <p style="color: #666; font-size: 14px;">Header failed to load. Please refresh.</p>
-                        </div>
-                    </header>
-                `;
+                console.error('Header load error:', error);
             });
     }
-
-    // Fix header and hero positioning
+    
+    // FIXED: Accurate header height calculation
     function fixHeaderAndHeroPosition() {
         const header = document.querySelector('header');
-        const orangeBanner = document.querySelector('.orange-banner');
         const hero = document.querySelector('.relative.bg-cover.bg-center');
         
-        if (!hero || !header) return;
+        if (!header || !hero) return;
         
-        let offset = header.offsetHeight;
+        // Get exact header height including all elements
+        const headerHeight = header.offsetHeight;
         
-        if (orangeBanner && window.innerWidth >= 769) {
-            offset += orangeBanner.offsetHeight;
-        }
+        // Apply margin to hero
+        hero.style.marginTop = headerHeight + 'px';
         
-        hero.style.marginTop = offset + 'px';
+        console.log('Header height:', headerHeight, 'applied to hero');
     }
 
-    // Load header when page loads
+    // Load header
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', loadHeader);
     } else {
         loadHeader();
     }
 
-    // Handle resize
+    // Handle resize with debounce
+    let resizeTimer;
     window.addEventListener('resize', function() {
-        setTimeout(fixHeaderAndHeroPosition, 50);
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(fixHeaderAndHeroPosition, 100);
     });
+    
+    // Listen for header loaded event
+    window.addEventListener('headerLoaded', fixHeaderAndHeroPosition);
 })();
 </script>
 
@@ -931,6 +904,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </script>
 </body>
 </html>
+
 
 
 
