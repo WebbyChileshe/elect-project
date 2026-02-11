@@ -1,5 +1,22 @@
 <div id="header"></div>
 <script>
+// Clean up previous header instance if it exists
+if (window.ELECT_mobileMenuInitialized) {
+    // Remove event listeners if possible
+    if (window.ELECT_mobileMenuBtn) {
+        window.ELECT_mobileMenuBtn.removeEventListener('click', window.ELECT_openMenuFunction);
+    }
+    if (window.ELECT_closeMenuBtn) {
+        window.ELECT_closeMenuBtn.removeEventListener('click', window.ELECT_closeMenuFunction);
+    }
+    if (window.ELECT_menuOverlay) {
+        window.ELECT_menuOverlay.removeEventListener('click', window.ELECT_closeMenuFunction);
+    }
+    
+    // Reset flag
+    window.ELECT_mobileMenuInitialized = false;
+}
+
 fetch("header.html")
   .then(res => res.text())
   .then(data => {
@@ -1008,6 +1025,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </script>
 </body>
 </html>
+
 
 
 
