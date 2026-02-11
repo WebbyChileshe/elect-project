@@ -1,72 +1,49 @@
 <div id="header"></div>
 
+<!-- IMMEDIATE HEADER LOADING - NO DELAY -->
 <script>
-// FIXED: Header loading with proper margin calculation
+// DIRECT HEADER INJECTION - INSTANT LOAD
 (function() {
     'use strict';
     
-    function loadHeader() {
-        const headerDiv = document.getElementById('header');
-        if (!headerDiv) return;
-
-        fetch('header.html')
-            .then(response => {
-                if (!response.ok) throw new Error('Header fetch failed');
-                return response.text();
-            })
-            .then(data => {
-                headerDiv.innerHTML = data;
-                
-                // Wait for DOM to update, then fix position
-                setTimeout(() => {
-                    fixHeaderAndHeroPosition();
-                    
-                    // Re-initialize mobile menu from header
-                    if (typeof window.initMobileMenu === 'function') {
-                        window.initMobileMenu();
-                    }
-                    
-                    // Dispatch event for other scripts
-                    window.dispatchEvent(new CustomEvent('headerLoaded'));
-                }, 50);
-            })
-            .catch(error => {
-                console.error('Header load error:', error);
-            });
+    // Try to load from cache first
+    if (sessionStorage.getItem('headerHTML')) {
+        document.getElementById('header').innerHTML = sessionStorage.getItem('headerHTML');
+        setTimeout(fixHeaderPosition, 10);
     }
     
-    // FIXED: Accurate header height calculation
-    function fixHeaderAndHeroPosition() {
+    // Fetch fresh header
+    fetch('header.html?_=' + Date.now())
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header').innerHTML = data;
+            sessionStorage.setItem('headerHTML', data);
+            fixHeaderPosition();
+        })
+        .catch(() => {
+            // Fallback header if fetch fails
+            document.getElementById('header').innerHTML = `
+                <header style="background:white; box-shadow:0 2px 4px rgba(0,0,0,0.1); position:fixed; top:0; left:0; right:0; z-index:50;">
+                    <div style="max-width:1200px; margin:0 auto; padding:15px 20px; display:flex; justify-content:space-between; align-items:center;">
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <img src="/ELECT/assets/images/ELECT-Logo.png" style="height:50px;" alt="ELECT">
+                            <span style="color:#247646; font-weight:600;">ELECT Project</span>
+                        </div>
+                    </div>
+                </header>
+            `;
+            fixHeaderPosition();
+        });
+    
+    function fixHeaderPosition() {
         const header = document.querySelector('header');
         const hero = document.querySelector('.relative.bg-cover.bg-center');
-        
-        if (!header || !hero) return;
-        
-        // Get exact header height including all elements
-        const headerHeight = header.offsetHeight;
-        
-        // Apply margin to hero
-        hero.style.marginTop = headerHeight + 'px';
-        
-        console.log('Header height:', headerHeight, 'applied to hero');
+        if (header && hero) {
+            hero.style.marginTop = header.offsetHeight + 'px';
+        }
     }
-
-    // Load header
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadHeader);
-    } else {
-        loadHeader();
-    }
-
-    // Handle resize with debounce
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(fixHeaderAndHeroPosition, 100);
-    });
     
-    // Listen for header loaded event
-    window.addEventListener('headerLoaded', fixHeaderAndHeroPosition);
+    window.addEventListener('resize', fixHeaderPosition);
 })();
 </script>
 
@@ -904,6 +881,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </script>
 </body>
 </html>
+
 
 
 
