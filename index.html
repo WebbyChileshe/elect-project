@@ -1,4 +1,15 @@
 <?php include '../includes/header.php'; ?>
+<div id="header"></div>
+
+<script>
+fetch("/ELECT/includes/header.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+  })
+  .catch(err => console.error("Header load failed", err));
+</script>
+
 
 <!-- HERO SECTION -->
 <section class="relative bg-cover bg-center h-[85vh]" style="background-image:url('../assets/images/hero.jpg');">
@@ -805,4 +816,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize objectives image rotation
     initObjectivesImageRotation();
 });
+
 </script>
