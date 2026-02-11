@@ -1,40 +1,132 @@
-<div id="header"></div>
-
 <script>
-fetch("header.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("header").innerHTML = data;
-
-    // Wait for next paint so DOM is updated
-    requestAnimationFrame(() => {
-      fixHeaderAndHeroPosition();
-      // Optional: re-initialize any other features that need fresh DOM
-      initDesktopFeatures();   // if you still want to keep this function
+// Single header fetch with proper error handling and responsive fixes
+(function() {
+    'use strict';
+    
+    function initHeader() {
+        const headerDiv = document.getElementById('header');
+        if (!headerDiv) return;
+        
+        // Show loading state
+        headerDiv.style.minHeight = '70px';
+        headerDiv.style.background = '#f9fafb';
+        
+        fetch("header.html")
+            .then(res => {
+                if (!res.ok) throw new Error('Network response was not ok');
+                return res.text();
+            })
+            .then(data => {
+                headerDiv.innerHTML = data;
+                
+                // Wait for DOM update
+                setTimeout(() => {
+                    fixHeaderAndHeroPosition();
+                    initMobileMenu(); // Reinitialize mobile menu after header loads
+                }, 50);
+            })
+            .catch(err => {
+                console.error("Header load failed:", err);
+                headerDiv.innerHTML = '<div style="background:white; padding:20px; text-align:center">Header failed to load</div>';
+            });
+    }
+    
+    // Centralized function for header/hero positioning
+    function fixHeaderAndHeroPosition() {
+        const header = document.querySelector('header');
+        const orangeBanner = document.querySelector('.orange-banner');
+        const hero = document.querySelector('.relative.bg-cover.bg-center.h-\\[85vh\\]');
+        
+        if (!hero || !header) return;
+        
+        let offset = header.offsetHeight;
+        
+        // Only add orange banner height on desktop
+        if (orangeBanner && window.innerWidth >= 769) {
+            offset += orangeBanner.offsetHeight;
+        }
+        
+        hero.style.marginTop = offset + 'px';
+    }
+    
+    // Mobile menu initialization
+    function initMobileMenu() {
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        if (!mobileMenuBtn || !closeMenuBtn || !mobileMenu || !menuOverlay) {
+            return; // Elements not ready yet
+        }
+        
+        // Remove existing listeners
+        const newBtn = mobileMenuBtn.cloneNode(true);
+        mobileMenuBtn.parentNode.replaceChild(newBtn, mobileMenuBtn);
+        
+        const newCloseBtn = closeMenuBtn.cloneNode(true);
+        closeMenuBtn.parentNode.replaceChild(newCloseBtn, closeMenuBtn);
+        
+        // Get fresh references
+        const btn = document.getElementById('mobileMenuBtn');
+        const closeBtn = document.getElementById('closeMenuBtn');
+        const menu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('menuOverlay');
+        
+        function openMenu() {
+            menu.classList.add('active');
+            overlay.classList.add('active');
+            btn.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+            btn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openMenu();
+        });
+        
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeMenu();
+        });
+        
+        overlay.addEventListener('click', closeMenu);
+        
+        // Close menu on link click
+        menu.querySelectorAll('.mobile-menu-item').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        
+        // Close with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    }
+    
+    // Run on load and resize
+    window.addEventListener('load', fixHeaderAndHeroPosition);
+    window.addEventListener('resize', () => {
+        requestAnimationFrame(fixHeaderAndHeroPosition);
     });
-  })
-  .catch(err => console.error("Header load failed", err));
-
-// Centralized function — call it after load & on resize
-function fixHeaderAndHeroPosition() {
-  const header       = document.querySelector('header');
-  const orangeBanner = document.querySelector('.orange-banner');
-  const hero         = document.querySelector('.relative.bg-cover.bg-center.h-\\85vh\\]');
-
-  if (!hero || !header) return;
-
-  let offset = header.offsetHeight;
-
-  // If orange banner is visible → add its height
-  if (orangeBanner && window.innerWidth >= 769) {
-    offset += orangeBanner.offsetHeight;
-  }
-
-  hero.style.marginTop = offset + 'px';
-}
-
-// Run on resize too (orange banner hides/shows)
-window.addEventListener('resize', fixHeaderAndHeroPosition);
+    
+    // Start header loading
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHeader);
+    } else {
+        initHeader();
+    }
+})();
 </script>
 
 
@@ -60,32 +152,32 @@ window.addEventListener('resize', fixHeaderAndHeroPosition);
 </head>
 <body>
     <!-- Your header content -->
-<!-- HERO SECTION -->
-<section class="relative bg-cover bg-center h-[85vh]" style="background-image:url('ELECT/assets/images/hero.jpg');">
+<!-- HERO SECTION - Responsive version -->
+<section class="relative bg-cover bg-center min-h-[60vh] md:h-[85vh] flex items-center" style="background-image:url('ELECT/assets/images/hero.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
     
-    <!-- Small Play Button (Bottom Right of Hero) -->
-    <div id="smallPlayButton" class="absolute bottom-6 right-6 z-20 opacity-0 transition-opacity duration-1000 ease-out hidden">
-        <button class=" w-full h-32 flex items-center gap-3 bg-black/70 hover:bg-black/80 backdrop-blur-sm text-white px-5 py-3 rounded shadow-2xl transition-all duration-300 group">
-            <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center group-hover:bg-blue-700 transition-colors">
-                <i class="fas fa-play text-white text-lg ml-1"></i>
+    <!-- Small Play Button - Show on scroll, hidden on mobile by default -->
+    <div id="smallPlayButton" class="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20 opacity-0 transition-opacity duration-1000 ease-out hidden md:block">
+        <button class="flex items-center gap-2 md:gap-3 bg-black/70 hover:bg-black/80 backdrop-blur-sm text-white px-3 py-2 md:px-5 md:py-3 rounded-lg shadow-2xl transition-all duration-300 group">
+            <div class="w-8 h-8 md:w-12 md:h-12 bg-blue-600 rounded flex items-center justify-center group-hover:bg-blue-700 transition-colors">
+                <i class="fas fa-play text-white text-sm md:text-lg ml-1"></i>
             </div>
             <div class="text-left">
-                <h4 class="font-bold text-sm">Watch Introduction</h4>
+                <h4 class="font-bold text-xs md:text-sm">Watch Introduction</h4>
                 <p class="text-xs opacity-90">1:30 min</p>
             </div>
         </button>
     </div>
     
-    <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
-        <div class="text-white max-w-xl">
-            <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+        <div class="text-white max-w-xl py-12 md:py-0">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
                 Energy Efficient Lighting for a Clean Energy <span class="text-[#247646]">Future</span>
             </h1>
-            <p class="mt-6 text-lg">
+            <p class="mt-4 md:mt-6 text-base md:text-lg">
                 An EU co-funded initiative empowering Zambia's transition through education, innovation, and international collaboration.
             </p>
-            <a href="about.html" class="inline-flex items-center gap-2 mt-8 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
+            <a href="about.html" class="inline-flex items-center justify-center gap-2 mt-6 md:mt-8 bg-blue-600 hover:bg-blue-700 px-5 py-2.5 md:px-6 md:py-3 rounded-lg text-white font-semibold transition-colors duration-300 w-full sm:w-auto">
                 <i class="fas fa-book-open"></i>
                 Learn More
             </a>
@@ -871,7 +963,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </script>
 </body>
 </html>
-
 
 
 
