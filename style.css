@@ -405,6 +405,12 @@ section.relative.bg-cover.bg-center.h-\[85vh\] {
     }
 }
 
+    section.relative.bg-cover.bg-center.h-\[85vh\] {
+        margin-top: 0px !important;
+        height: 50vh !important;
+        background-position: center !important;
+    }
+
 /* ===== TABLET STYLES ===== */
 @media (min-width: 769px) and (max-width: 1024px) {
     .nav-links {
