@@ -21,12 +21,7 @@
     <link rel="stylesheet" href="stye.css">
 </head>
 <style>
-    *{
-        overflow-x: hidden;
-    }
-        body {
-    overflow-x: hidden;
-    }
+
             /* Base navigation styles */
             .nav-link {
                 position: relative;
@@ -732,7 +727,7 @@
 }</style>
 
 <body class="font-[Inter]">
-<header class="bg-white shadow-md fixed w-full z-40" style="overflow: visible;">
+<header class="bg-white shadow-md sticky top-0 w-full z-40" style="overflow: visible;">
 
             <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 <!-- Left Logo -->
@@ -983,10 +978,8 @@
             </div>
         </header>
 
-    
-    <!-- Your header content -->
 <!-- HERO SECTION - Responsive version -->
-<section class="relative bg-cover bg-center min-h-[60vh] md:h-[85vh] flex items-center" style="background-image:url('ELECT/assets/images/hero.jpg');">
+<section class="relative mt-0 bg-cover bg-center md:h-[80vh] items-center" style="background-image:url('ELECT/assets/images/hero.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
     
     <!-- Small Play Button - Show on scroll, hidden on mobile by default -->
@@ -1002,18 +995,35 @@
         </button>
     </div>
     
-    <div class= "relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
-        <div class="text-white max-w-xl">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-                Energy Efficient Lighting for a Clean Energy <span class="text-[#247646]">Future</span>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
+        <div class="text-white w-full md:w-3/5 lg:w-2/3 flex flex-col h-full max-h-[60vh]">
+            <h1 class="text-2xl sm:text-xl md:text-4xl lg:text-5xl font-bold leading-tight max-w-4xl">
+                Energy Efficient Lighting for a Clean Energy 
+                <span class="text-[#247646]">Future</span>
             </h1>
-            <p class="mt-4 md:mt-6 text-base md:text-lg">
-                An EU co-funded initiative empowering Zambia's transition through education, innovation, and international collaboration.
-            </p>
-            <a href="About.html" class="inline-flex items-center justify-center gap-2 mt-6 md:mt-8 bg-blue-600 hover:bg-blue-700 px-5 py-2.5 md:px-6 md:py-3 rounded-lg text-white font-semibold transition-colors duration-300 w-full sm:w-auto">
-                <i class="fas fa-book-open"></i>
-                Learn More
-            </a>
+
+            <div class="mt-4">
+                <p class=" text-base md:text-lg lg:text-xl max-w-3xl">
+                    An EU co-funded initiative empowering Zambia's transition through education, innovation, and international collaboration.
+                </p>
+
+                <a href="About.html"
+                   class="inline-flex items-center justify-center gap-2 mt-6 md:mt-8
+                          bg-blue-600 hover:bg-blue-700 px-5 py-2.5 md:px-6 md:py-3
+                          rounded-lg text-white font-semibold transition-colors duration-300
+                          w-full sm:w-auto">
+                    <i class="fas fa-book-open"></i>
+                    Learn More
+                </a>
+                <a href="About.html"
+                   class="inline-flex items-center justify-center gap-2 mt-6 md:mt-8
+                          bg-blue-600 hover:bg-blue-700 px-5 py-2.5 md:px-6 md:py-3
+                          rounded-lg text-white font-semibold transition-colors duration-300
+                          w-full sm:w-auto">
+                    <i class="fas fa-file"></i>
+                    Download Brochure
+                </a>
+            </div>
         </div>
     </div>
 </section>
@@ -1535,57 +1545,88 @@
     </div>
 </section>
 <!-- ===== FOOTER (EU compliant) ===== -->
-  <footer class="footer py-12">
-    <div class="container-custom">
-      <div class="grid md:grid-cols-4 gap-8">
-        <div>
-          <img src="ELECT/assets/images/ELECT-Logo.png" alt="ELECT" class="h-16 mb-4">
-          <p class="text-sm text-gray-300">Energy Efficient Lighting for Clean Energy Transitions in Zambia.</p>
-        </div>
-        <div>
-          <h4 class="text-white font-bold mb-4">Quick Links</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#About.html">About</a></li>
-            <li><a href="#Objectives.html">Objectives</a></li>
-            <li><a href="#Partners.html">Partners</a></li>
-            <li><a href="#News.html">News</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-white font-bold mb-4">Partners</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#About.html">AALTO UNIVERSITY</a></li>
-            <li><a href="#Objectives.html">HELLENIC OPEN UNIVERSITY</a></li>
-            <li><a href="#Partners.html">COPPERBELT UNIVERSITY</a></li>
-            <li><a href="#News.html">MULUNGUSHI UNIVERSITY</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-white font-bold mb-4">Contact</h4>
-          <ul class="space-y-2 text-sm">
-            <li><i class="fas fa-envelope mr-2"></i> info@elect-project.org</li>
-            <li><i class="fas fa-phone mr-2"></i> +260 21 1234567</li>
-            <li><i class="fas fa-map-marker-alt mr-2"></i> Lusaka, Zambia</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-white font-bold mb-4">Follow us</h4>
-          <div class="flex space-x-4">
-            <a href="#" class="text-2xl hover:text-white"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-2xl hover:text-white"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="text-2xl hover:text-white"><i class="fab fa-facebook"></i></a>
-          </div>
-          <div class="mt-6">
-            <img src="ELECT/assets/images/EU.png" alt="Co-funded by EU" class="h-12">
-          </div>
-        </div>
+<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
+      <!-- Brand Column -->
+      <div class="lg:col-span-1">
+        <img src="ELECT/assets/images/ELECT-Logo.png" alt="ELECT" class="h-16 w-auto mb-4">
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Energy Efficient Lighting for Clean Energy Transitions in Zambia.
+        </p>
       </div>
-      <div class="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-400">
-        <p>© 2026 ELECT Project – All rights reserved. Co‑funded by the European Union.</p>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#About.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">About</a></li>
+          <li><a href="#Objectives.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Objectives</a></li>
+          <li><a href="#Partners.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Partners</a></li>
+          <li><a href="#News.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">News</a></li>
+        </ul>
+      </div>
+
+      <!-- Partners -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Partners</h4>
+        <ul class="space-y-2">
+          <li><a href="#About.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Aalto University</a></li>
+          <li><a href="#Objectives.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Hellenic Open University</a></li>
+          <li><a href="#Partners.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Copperbelt University</a></li>
+          <li><a href="#News.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Mulungushi University</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Contact</h4>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
+            <a href="mailto:info@elect-project.org" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">info@elect-project.org</a>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-phone mt-1 mr-3 text-gray-400"></i>
+            <a href="tel:+260211234567" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">+260 21 1234567</a>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
+            <span class="text-sm text-gray-400">Lusaka, Zambia</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social & EU Funding -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Follow Us</h4>
+        <div class="flex space-x-4 mb-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Twitter">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="LinkedIn">
+            <i class="fab fa-linkedin text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Facebook">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+        </div>
+        <div class="mt-2">
+          <img src="ELECT/assets/images/EU.png" alt="Co-funded by the European Union" class="h-14 w-auto">
+        </div>
       </div>
     </div>
-  </footer>
 
+    <!-- Copyright Bar -->
+    <div class="border-t border-gray-800 pt-6 mt-4">
+      <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+        <p>© 2026 ELECT Project. All rights reserved.</p>
+        <p class="mt-2 md:mt-0">Co‑funded by the European Union</p>
+      </div>
+    </div>
+  </div>
+</footer>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Video Elements for Hero section
@@ -1840,10 +1881,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initObjectivesImageRotation();
 });
                 
-
-            </script>
-
-                    <script>
                 // Mobile menu functionality
                 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
                 const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -1998,7 +2035,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </script>
 </body>
 </html>
-
 
 
 
