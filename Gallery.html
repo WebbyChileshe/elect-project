@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
-    <title><?php echo $pageTitle ?? 'ELECT Project'; ?></title>
+    <title>ELECT Gallery</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -735,7 +735,7 @@
 
 
 
-            <header class="bg-white shadow-md w-full z-40" style="overflow: hidden;">
+<header class="bg-white shadow-md sticky top-0 w-full z-40" style="overflow: visible;">
 
             <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 <!-- Left Logo -->
@@ -923,7 +923,7 @@
 
                 <!-- Menu Header with ELECT Logo -->
                 <div class="mobile-menu-header">
-                    <a href="index.php" class="flex items-center gap-3">
+                    <a href="index.html" class="flex items-center gap-3">
                         <img
                             src="/ELECT/assets/images/ELECT-Logo.png"
                             alt="ELECT Logo"
@@ -958,7 +958,11 @@
 
                 <a href="Events.html" class="mobile-menu-item">
                     <i class="fas fa-newspaper"></i>
-                    <span>News & Events</span>
+                    <span>Events</span>
+                </a>
+                 <a href="News.html" class="mobile-menu-item">
+                    <i class="fas fa-newspaper"></i>
+                    <span>News</span>
                 </a>
 
                 <a href="Curriculum.html" class="mobile-menu-item">
@@ -1052,17 +1056,14 @@
             <!-- Gallery Item 1 -->
             <article class="gallery-item md:rounded overflow-hidden border border-gray-200" data-category="installations" data-title="LED Installation at UNZA">
                 <div class="relative w-full">
-                    <img src="../assets/images/news1.jpg" alt="LED Installation at UNZA" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
+                    <img src="ELECT/assets/images/news1.jpg" alt="LED Installation at UNZA" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
                 </div>
                 <div class="p-4 md:p-6">
                     <div class="flex items-center text-xs md:text-sm text-gray-500 mb-3">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         <span>March 15, 2024</span>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">LED Retrofit at Main Library</h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        Successful installation of energy-efficient LED lighting at University of Zambia's main library.
-                    </p>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3">LED Retrofit at Main Library</h4>
                 </div>
                 <!-- Fade line separator -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-4 md:hidden"></div>
@@ -1071,17 +1072,14 @@
             <!-- Gallery Item 2 -->
             <article class="gallery-item md:rounded overflow-hidden border border-gray-200" data-category="events" data-title="Project Launch Ceremony">
                 <div class="relative w-full">
-                    <img src="../assets/images/gallery-event-1.jpg" alt="Project Launch" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
+                    <img src="ELECT/assets/images/hero.jpg" alt="Project Launch" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
                 </div>
                 <div class="p-4 md:p-6">
                     <div class="flex items-center text-xs md:text-sm text-gray-500 mb-3">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         <span>March 10, 2024</span>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Official Project Launch Event</h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        Dignitaries and stakeholders gather for the official launch of the ELECT project.
-                    </p>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Official Project Launch Event</h4>
                 </div>
                 <!-- Fade line separator -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-4 md:hidden"></div>
@@ -1090,17 +1088,14 @@
             <!-- Gallery Item 3 -->
             <article class="gallery-item md:rounded overflow-hidden border border-gray-200" data-category="workshops" data-title="Technical Workshop">
                 <div class="relative w-full">
-                    <img src="../assets/images/news2.jpg" alt="Technical Workshop" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
+                    <img src="ELECT/assets/images/news2.jpg" alt="Technical Workshop" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
                 </div>
                 <div class="p-4 md:p-6">
                     <div class="flex items-center text-xs md:text-sm text-gray-500 mb-3">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         <span>March 5, 2024</span>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Hands-on Technical Workshop</h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        Participants learning about LED technology and installation techniques.
-                    </p>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Hands-on Technical Workshop</h4>
                 </div>
                 <!-- Fade line separator -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-4 md:hidden"></div>
@@ -1109,17 +1104,14 @@
             <!-- Gallery Item 4 -->
             <article class="gallery-item md:rounded overflow-hidden border border-gray-200" data-category="installations" data-title="Classroom Lighting">
                 <div class="relative w-full">
-                    <img src="../assets/images/news3.jpg" alt="Classroom Lighting" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
+                    <img src="ELECT/assets/images/news3.jpg" alt="Classroom Lighting" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
                 </div>
                 <div class="p-4 md:p-6">
                     <div class="flex items-center text-xs md:text-sm text-gray-500 mb-3">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         <span>February 28, 2024</span>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Classroom Lighting Upgrade</h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        Modern LED lighting installation in university classrooms for better energy efficiency.
-                    </p>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Classroom Lighting Upgrade</h4>
                 </div>
                 <!-- Fade line separator -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-4 md:hidden"></div>
@@ -1128,17 +1120,14 @@
             <!-- Gallery Item 5 -->
             <article class="gallery-item md:rounded overflow-hidden border border-gray-200" data-category="before-after" data-title="Lighting Comparison">
                 <div class="relative w-full">
-                    <img src="../assets/images/About.jpg" alt="Before and After Comparison" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
+                    <img src="ELECT/assets/images/About.jpg" alt="Before and After Comparison" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
                 </div>
                 <div class="p-4 md:p-6">
                     <div class="flex items-center text-xs md:text-sm text-gray-500 mb-3">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         <span>February 20, 2024</span>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Before/After Comparison</h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        Visual comparison showing the dramatic improvement in lighting quality after retrofit.
-                    </p>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Before/After Comparison</h4>
                 </div>
                 <!-- Fade line separator -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-4 md:hidden"></div>
@@ -1147,17 +1136,14 @@
             <!-- Gallery Item 6 -->
             <article class="gallery-item md:rounded overflow-hidden border border-gray-200" data-category="team" data-title="Project Team">
                 <div class="relative w-full">
-                    <img src="../assets/images/lightbulb.jpeg" alt="Project Team" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
+                    <img src="ELECT/assets/images/lightbulb.jpeg" alt="Project Team" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
                 </div>
                 <div class="p-4 md:p-6">
                     <div class="flex items-center text-xs md:text-sm text-gray-500 mb-3">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         <span>February 15, 2024</span>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">ELECT Project Team</h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        The dedicated team behind the Energy Efficient Lighting project.
-                    </p>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3">ELECT Project Team</h4>
                 </div>
                 <!-- Fade line separator -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-4 md:hidden"></div>
@@ -1166,17 +1152,14 @@
             <!-- Gallery Item 7 -->
             <article class="gallery-item md:rounded overflow-hidden border border-gray-200" data-category="workshops" data-title="Training Session">
                 <div class="relative w-full">
-                    <img src="../assets/images/news2.jpg" alt="Training Session" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
+                    <img src="ELECT/assets/images/news2.jpg" alt="Training Session" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
                 </div>
                 <div class="p-4 md:p-6">
                     <div class="flex items-center text-xs md:text-sm text-gray-500 mb-3">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         <span>February 10, 2024</span>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Practical Training Session</h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        Hands-on training for university technical staff on LED maintenance.
-                    </p>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Practical Training Session</h4>
                 </div>
                 <!-- Fade line separator -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-4 md:hidden"></div>
@@ -1185,17 +1168,14 @@
             <!-- Gallery Item 8 -->
             <article class="gallery-item md:rounded overflow-hidden border border-gray-200" data-category="events" data-title="Site Visit">
                 <div class="relative w-full">
-                    <img src="../assets/images/news1.jpg" alt="Site Visit" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
+                    <img src="ELECT/assets/images/news1.jpg" alt="Site Visit" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
                 </div>
                 <div class="p-4 md:p-6">
                     <div class="flex items-center text-xs md:text-sm text-gray-500 mb-3">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         <span>February 5, 2024</span>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">EU Delegation Site Visit</h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        European Union representatives visiting project implementation sites.
-                    </p>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3">EU Delegation Site Visit</h4>
                 </div>
                 <!-- Fade line separator -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-4 md:hidden"></div>
@@ -1204,17 +1184,14 @@
             <!-- Gallery Item 9 -->
             <article class="gallery-item md:rounded overflow-hidden border border-gray-200" data-category="installations" data-title="Laboratory Lighting">
                 <div class="relative w-full">
-                    <img src="../assets/images/news3.jpg" alt="Laboratory Lighting" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
+                    <img src="ELECT/assets/images/news3.jpg" alt="Laboratory Lighting" class="w-full h-48 md:h-48 object-cover gallery-image cursor-pointer">
                 </div>
                 <div class="p-4 md:p-6">
                     <div class="flex items-center text-xs md:text-sm text-gray-500 mb-3">
                         <i class="fas fa-calendar-alt mr-2"></i>
                         <span>January 30, 2024</span>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Science Laboratory Upgrade</h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        Specialized LED lighting installation in university science laboratories.
-                    </p>
+                    <h4 class="text-lg md:text-xl font-bold text-gray-900 mb-3">Science Laboratory Upgrade</h4>
                 </div>
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mt-4 md:hidden hidden"></div>
             </article>
@@ -1264,7 +1241,89 @@
     </div>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<!-- ===== FOOTER (EU compliant) ===== -->
+<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
+      <!-- Brand Column -->
+      <div class="lg:col-span-1">
+        <img src="ELECT/assets/images/ELECT-Logo.png" alt="ELECT" class="h-16 w-auto mb-4">
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Energy Efficient Lighting for Clean Energy Transitions in Zambia.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#About.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">About</a></li>
+          <li><a href="#Objectives.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Objectives</a></li>
+          <li><a href="#Partners.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Partners</a></li>
+          <li><a href="#News.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">News</a></li>
+        </ul>
+      </div>
+
+      <!-- Partners -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Partners</h4>
+        <ul class="space-y-2">
+          <li><a href="https://www.aalto.fi" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Aalto University</a></li>
+          <li><a href="https://www.eap.gr" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Hellenic Open University</a></li>
+          <li><a href="https://www.cbu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Copperbelt University</a></li>
+           <li><a href="https://www.mu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Mulungushi University</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Contact</h4>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
+            <a href="mailto:info@elect-project.org" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">info@elect-project.org</a>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-phone mt-1 mr-3 text-gray-400"></i>
+            <a href="tel:+260211234567" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">+260 21 1234567</a>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
+            <span class="text-sm text-gray-400">Lusaka, Zambia</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social & EU Funding -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Follow Us</h4>
+        <div class="flex space-x-4 mb-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Twitter">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="LinkedIn">
+            <i class="fab fa-linkedin text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Facebook">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+        </div>
+        <div class="mt-2">
+          <img src="ELECT/assets/images/EU.png" alt="Co-funded by the European Union" class="h-14 w-auto">
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="border-t border-gray-800 pt-6 mt-4">
+      <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+        <p>© 2026 ELECT Project. All rights reserved.</p>
+        <p class="mt-2 md:mt-0">Co‑funded by the European Union</p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <!-- JavaScript for Gallery Page -->
 <script>
@@ -1606,3 +1665,4 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.addEventListener('load', adjustHeaderPadding);
                 window.addEventListener('resize', adjustHeaderPadding);
             </script>
+
