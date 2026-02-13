@@ -1003,58 +1003,61 @@
         </div>
     </div>
 
-<section class="py-20 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-6 animate-fadeIn">
-    <h2 class="text-3xl text-[#247646] font-bold mb-12">Project Partners</h2>
+<!-- PARTNERS SECTION -->
+<section class="relative overflow-hidden">
+    <!-- Gradient Background -->
+    <div class="absolute inset-0"></div>
 
-    <div class="grid md:grid-cols-4 gap-8" id="partnersGrid"></div>
+    <div class="relative max-w-7xl mx-auto px-6 py-24">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
 
-<script>
-const partners = [
-  {
-    logo: "MU-logo.png",
-    name: "Mulungushi University",
-    desc: "Lead implementing institution in Zambia.",
-    url: "https://www.mu.ac.zm"
-  },
-  {
-    logo: "Copperbelt-University.jpeg",
-    name: "Copperbelt University",
-    desc: "Academic partner supporting training and research.",
-    url: "https://www.cbu.ac.zm"
-  },
-  {
-    logo: "aalto-university-logo-finland.jpg",
-    name: "Aalto University",
-    desc: "European expertise in energy systems and innovation.",
-    url: "https://www.aalto.fi"
-  },
-  {
-    logo: "Hellenic-logo.png",
-    name: "Hellenic Open University",
-    desc: "Distance learning and curriculum development.",
-    url: "https://www.eap.gr"
-  }
-];
+            <!-- LEFT CONTENT -->
+            <div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-700 leading-tight">
+                    Trusted and Partnered with well <br>
+                    recognized Universities<br>
+                    around<br>
+                    the world
+                </h2>
+            </div>
 
-const grid = document.getElementById("partnersGrid");
+            <!-- RIGHT LOGO CARDS -->
+            <div class="grid grid-cols-2 gap-8">
 
-partners.forEach(p => {
-  grid.innerHTML += `
-    <div class="bg-white p-6 rounded shadow hover:scale-105 transition duration-500">
-      <a href="${p.url}" target="_blank">
-        <img src="ELECT/assets/images/${p.logo}"
-             class="h-16 w-auto mx-auto mb-4 object-contain cursor-pointer"
-             alt="${p.name} logo">
-      </a>
-      <h4 class="font-semibold text-center">${p.name}</h4>
-      <p class="text-sm mt-2 text-center text-gray-600">${p.desc}</p>
+                <!-- Column 1 -->
+                <div class="space-y-8">
+                    <a href="https://www.aalto.fi" target="_blank"
+                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
+                        <img src="ELECT/assets/images/aalto-university-logo-finland.jpg" class="h-12">
+                    </a>
+
+                    <a href="https://www.mu.ac.zm" target="_blank"
+                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
+                        <img src="ELECT/assets/images/MU-logo.png" class="h-14">
+                    </a>
+
+                    <a href="https://elect-project-five.vercel.app" target="_blank"
+                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
+                        <img src="ELECT/assets/images/ELECT-Logo.png" class="h-10">
+                    </a>
+                </div>
+
+                <!-- Column 2 (slightly offset down) -->
+                <div class="space-y-8 pt-10">
+                    <a href="https://www.cbu.ac.zm" target="_blank"
+                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
+                        <img src="ELECT/assets/images/Copperbelt-University.jpeg" class="h-12">
+                    </a>
+
+                    <a href="https://www.eap.gr" target="_blank"
+                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
+                        <img src="ELECT/assets/images/Hellenic-logo.png" class="h-12">
+                    </a>
+                </div>
+
+            </div>
+        </div>
     </div>
-  `;
-});
-</script>
-
-  </div>
 </section>
 
 <!-- ===== FOOTER (EU compliant) ===== -->
@@ -1304,6 +1307,7 @@ partners.forEach(p => {
                 window.addEventListener('load', adjustHeaderPadding);
                 window.addEventListener('resize', adjustHeaderPadding);
             </script>
+
 
 
 
