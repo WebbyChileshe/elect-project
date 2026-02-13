@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
-    <title><?php echo $pageTitle ?? 'ELECT Project'; ?></title>
+    <title>ELECT Project</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,16 +16,54 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Global styles -->
-
     <link rel="stylesheet" href="stye.css">
 </head>
 <style>
-    *{
-        workflow-x: hidden;
-    }
-        body {
-    workflow-x: hidden;
-    }
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            html::-webkit-scrollbar,
+            body::-webkit-scrollbar,
+            .mobile-menu::-webkit-scrollbar {
+                display: none;
+            }
+            
+            /* Hide scrollbar for IE, Edge and Firefox */
+            html,
+            body,
+            .mobile-menu {
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+
+            /* Prevent horizontal overflow */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            html {
+                overflow-: hidden;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            /* Sticky Header Styles - CLEAN VERSION */
+            header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 40 !important;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                overflow: visible !important;
+            }
+
             /* Base navigation styles */
             .nav-link {
                 position: relative;
@@ -73,6 +111,7 @@
                 bottom: 0;
                 background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
                 animation: shimmer 3s infinite;
+                pointer-events: none;
             }
 
             @keyframes shimmer {
@@ -94,6 +133,7 @@
                 align-items: center;
                 gap: 36px;
                 position: relative;
+                flex-wrap: wrap;
             }
 
             .nav-link-with-arrow {
@@ -115,7 +155,7 @@
 
             .dropdown-menu {
                 position: absolute;
-                top: calc(100% + 15px); /* Position well below the orange banner */
+                top: calc(100% + 15px);
                 left: 50%;
                 transform: translateX(-50%) translateY(10px);
                 min-width: 220px;
@@ -183,15 +223,10 @@
                 color: #059669;
             }
 
-            /* Ensure header doesn't clip dropdowns */
-            header {
-                overflow: visible !important;
-            }
-
-            /* Responsive adjustments - HIDE MENUS ON SMALL SCREENS */
+            /* Responsive adjustments */
             @media (max-width: 768px) {
                 .orange-banner {
-                    display: none !important; /* Hide the entire orange banner on mobile */
+                    display: none !important;
                 }
                 
                 .navigation-container {
@@ -202,7 +237,6 @@
                     display: none !important;
                 }
                 
-                /* Adjust header padding for mobile */
                 header > div:first-child {
                     padding: 12px 16px;
                 }
@@ -310,6 +344,12 @@
                 transform: translateX(-100%);
                 transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 overflow-y: auto;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .mobile-menu::-webkit-scrollbar {
+                display: none;
             }
 
             .mobile-menu.active {
@@ -383,16 +423,19 @@
                 justify-content: center;
                 align-items: center;
                 gap: 30px;
+                flex-wrap: wrap;
             }
 
             .elect-logo-mobile {
                 height: 50px;
                 width: auto;
+                max-width: 100%;
             }
 
             .eu-logo-mobile {
                 height: 40px;
                 width: auto;
+                max-width: 100%;
             }
 
             .mobile-tagline {
@@ -419,6 +462,7 @@
                 transition: all 0.3s ease;
                 border: none;
                 cursor: pointer;
+                z-index: 1001;
             }
 
             .close-menu-btn:hover {
@@ -510,7 +554,6 @@
                     display: none;
                 }
                 
-                /* Show mobile menu button on mobile */
                 #mobileMenuBtn {
                     display: flex !important;
                 }
@@ -521,7 +564,6 @@
                     display: none;
                 }
                 
-                /* Hide mobile menu button on desktop */
                 #mobileMenuBtn {
                     display: none !important;
                 }
@@ -543,59 +585,6 @@
             .group:hover .group-hover\:translate-y-0 {
                 transform: translateY(0);
             }
-
-            /* About Section Video Animation */
-            /* #aboutVideoWrapper {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                transform: translateX(50px);
-                transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-                z-index: 10;
-                border-radius: inherit;
-                overflow: hidden;
-                pointer-events: none;
-            } */
-
-            /* #aboutVideoWrapper.active {
-                opacity: 1;
-                transform: translateX(0);
-                pointer-events: auto;
-            }
-
-            #aboutVideoWrapper video {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: inherit;
-            }
-
-            #aboutImage {
-                transition: opacity 0.8s ease-out;
-                position: relative;
-                z-index: 5;
-            }
-
-            #aboutImage.fade-out {
-                opacity: 0.3;
-            } */
-
-            /* Video controls overlay */
-            /* .video-controls-overlay {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                z-index: 20;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            } */
-/* 
-            #aboutVideoWrapper.active .video-controls-overlay {
-                opacity: 1;
-            } */
 
             .close-video-btn {
                 background: rgba(0, 0, 0, 0.7);
@@ -646,349 +635,361 @@
             }
 
             /* Grid dropdown styles */
-.grid-dropdown {
-    min-width: 500px !important;
-    padding: 0 !important;
-}
+            .grid-dropdown {
+                min-width: 500px !important;
+                padding: 0 !important;
+            }
 
-.grid-dropdown-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-}
+            .grid-dropdown-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0;
+            }
 
-.dropdown-column {
-    padding: 16px 0;
-}
+            .dropdown-column {
+                padding: 16px 0;
+            }
 
-.dropdown-column:first-child {
-    border-right: 1px solid #e5e7eb;
-}
+            .dropdown-column:first-child {
+                border-right: 1px solid #e5e7eb;
+            }
 
-.dropdown-column .dropdown-item {
-    padding: 16px 24px;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 16px;
-}
+            .dropdown-column .dropdown-item {
+                padding: 16px 24px;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 16px;
+            }
 
-.dropdown-column .dropdown-item i {
-    font-size: 20px;
-    width: 24px;
-    margin-top: 4px;
-    /* color: #16a34a; */
-}
+            .dropdown-column .dropdown-item i {
+                font-size: 20px;
+                width: 24px;
+                margin-top: 4px;
+            }
 
-.dropdown-title {
-    display: block;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 4px;
-    font-size: 15px;
-}
+            .dropdown-title {
+                display: block;
+                font-weight: 600;
+                color: #1f2937;
+                margin-bottom: 4px;
+                font-size: 15px;
+            }
 
-.dropdown-desc {
-    display: block;
-    font-size: 13px;
-    color: #6b7280;
-    line-height: 1.4;
-}
+            .dropdown-desc {
+                display: block;
+                font-size: 13px;
+                color: #6b7280;
+                line-height: 1.4;
+            }
 
-.dropdown-column .dropdown-item:hover .dropdown-title {
-    color: #059669;
-}
+            .dropdown-column .dropdown-item:hover .dropdown-title {
+                color: #059669;
+            }
 
-.dropdown-column .dropdown-item:hover .dropdown-desc {
-    color: #4b7280;
-}
+            .dropdown-column .dropdown-item:hover .dropdown-desc {
+                color: #4b7280;
+            }
 
-/* Adjust arrow for wider dropdown */
-.grid-dropdown::before {
-    left: 50%;
-    transform: translateX(-50%);
-}
+            /* Adjust arrow for wider dropdown */
+            .grid-dropdown::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
 
-/* Responsive adjustments for grid dropdown */
-@media (max-width: 1024px) {
-    .grid-dropdown {
-        min-width: 450px !important;
-    }
-}
+            /* Responsive adjustments for grid dropdown */
+            @media (max-width: 1024px) {
+                .grid-dropdown {
+                    min-width: 450px !important;
+                }
+            }
 
-@media (max-width: 768px) {
-    .grid-dropdown {
-        display: none !important;
-    }
-    
-    .grid-dropdown-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .dropdown-column:first-child {
-        border-right: none;
-        border-bottom: 1px solid #e5e7eb;
-    }
-}</style>
+            @media (max-width: 768px) {
+                .grid-dropdown {
+                    display: none !important;
+                }
+                
+                .grid-dropdown-container {
+                    grid-template-columns: 1fr;
+                }
+                
+                .dropdown-column:first-child {
+                    border-right: none;
+                    border-bottom: 1px solid #e5e7eb;
+                }
+            }
 
+            /* Container max-width adjustments */
+            .max-w-7xl {
+                max-width: 80rem;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+            }
 
-<body>
+            /* Ensure images don't cause overflow */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
 
+            /* Fix for breadcrumb */
+            .bg-gray-100 {
+                width: 100%;
+                overflow-x: hidden;
+            }
+</style>
 
+<header class="sticky top-0 z-40 w-full bg-white shadow-md" style="overflow: visible;">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Left Logo -->
+        <div class="flex items-center gap-4">
+            <a href="index.html">
+                <img
+                    src="/ELECT/assets/images/ELECT-Logo.png"
+                    class="h-14 md:h-20 w-auto"
+                    alt="ELECT Logo">
+            </a>
 
-<header class="bg-white shadow-md sticky top-0 w-full z-40" style="overflow: visible;">
+            <span
+                class="font-semibold text-green-700 leading-tight text-sm md:text-base hidden md:block">
+                Energy Efficient Lighting
+                <br>
+                for Clean Energy Transitions<br>
+                in Zambia
+            </span>
+        </div>
 
-            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <!-- Left Logo -->
-                <div class="flex items-center gap-4">
-                    <a href="index.html">
-                        <img
-                            src="/ELECT/assets/images/ELECT-Logo.png"
-                            class="h-14 md:h-20 w-auto"
-                            alt="ELECT Logo">
-                    </a>
+        <!-- Mobile Menu Button - Always visible on mobile -->
+        <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1 w-8">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </button>
 
-                    <span
-                        class="font-semibold text-green-700 leading-tight text-sm md:text-base hidden md:block">
-                        Energy Efficient Lighting
-                        <br>
-                        for Clean Energy Transitions<br>
-                        in Zambia
-                    </span>
-                </div>
-
-                <!-- Mobile Menu Button - Always visible on mobile -->
-                <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1 w-8">
-                    <div class="menu-line"></div>
-                    <div class="menu-line"></div>
-                    <div class="menu-line"></div>
-                </button>
-
-                <!-- Desktop Right Logo -->
-                <div class="hidden md:flex items-center gap-4">
-                    <img src="/ELECT/assets/images/EU.png" class="h-12" alt="EU Logo">
-                </div>
-            </div>
-
-            <!-- Orange Navigation Banner - HIDDEN ON MOBILE -->
-            <div class="orange-banner desktop-only" style="overflow: visible;">
-                <div class="navigation-container">
-                    <div class="nav-links">
-                        <!-- Home -->
-                        <a href="index.html" class="nav-link">
-                            <span>Home</span>
-                        </a>
-
-                        <!-- About dropdown -->
-                        <div class="dropdown-container">
-                            <a href="About.html" class="nav-link nav-link-with-arrow">
-                                <span>About</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="About.html#overview" class="dropdown-item">
-                                    <i class="fas fa-eye"></i>
-                                    <span>Project Overview</span>
-                                </a>
-                                <a href="About.html#background" class="dropdown-item">
-                                    <i class="fas fa-history"></i>
-                                    <span>Background</span>
-                                </a>
-                                <a href="About.html#target" class="dropdown-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>Our Audience</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Objectives dropdown -->
-                        <div class="dropdown-container">
-                            <a href="Objectives.html" class="nav-link nav-link-with-arrow">
-                                <span>Objectives</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="Objectives.html#main" class="dropdown-item">
-                                    <i class="fas fa-bullseye"></i>
-                                    <span>Main Objectives</span>
-                                </a>
-                                <a href="Objectives.html#outcomes" class="dropdown-item">
-                                    <i class="fas fa-chart-line"></i>
-                                    <span>Outcomes & Benefits</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Partners -->
-                        <a href="Partners.html" class="nav-link">
-                            <span>Partners</span>
-                        </a>
-
-                        <!-- Activities dropdown -->
-                        <div class="dropdown-container">
-                            <a href="Events.html" class="nav-link nav-link-with-arrow">
-                                <span>Activities</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="News.html#latest" class="dropdown-item">
-                                    <i class="fas fa-newspaper"></i>
-                                    <span>Latest News</span>
-                                </a>
-                                <a href="Events.html#upcoming" class="dropdown-item">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>Events</span>
-                                </a>
-                                <a href="Events.html#media" class="dropdown-item">
-                                    <i class="fas fa-images"></i>
-                                    <span>Gallery</span>
-                                </a>
-                            </div>
-                        </div>
-
-<!-- Curriculum dropdown with grid layout -->
-<div class="dropdown-container">
-    <a href="Curriculum.html" class="nav-link nav-link-with-arrow">
-        <span>Curriculum</span>
-        <i class="fas fa-chevron-down"></i>
-    </a>
-    <div class="dropdown-menu grid-dropdown">
-        <div class="grid-dropdown-container">
-            <!-- Left column -->
-            <div class="dropdown-column">
-                <a href="Curriculum.html#objectives" class="dropdown-item">
-                    <i class="fas fa-bullseye"></i>
-                    <div>
-                        <span class="dropdown-title">Objectives</span>
-                        <span class="dropdown-desc">Program goals & aims</span>
-                    </div>
-                </a>
-                <a href="Curriculum.html#learning-outcomes" class="dropdown-item">
-                    <i class="fas fa-graduation-cap"></i>
-                    <div>
-                        <span class="dropdown-title">Learning Outcomes</span>
-                        <span class="dropdown-desc">Skills & knowledge gained</span>
-                    </div>
-                </a>
-                <a href="Curriculum.html#target-group" class="dropdown-item">
-                    <i class="fas fa-users"></i>
-                    <div>
-                        <span class="dropdown-title">Target Group</span>
-                        <span class="dropdown-desc">Who should participate</span>
-                    </div>
-                </a>
-            </div>
-            
-            <!-- Right column -->
-            <div class="dropdown-column">
-                <a href="Curriculum.html#duration" class="dropdown-item">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <span class="dropdown-title">Duration</span>
-                        <span class="dropdown-desc">Program timeline</span>
-                    </div>
-                </a>
-                <a href="Curriculum.html#delivery-format" class="dropdown-item">
-                    <i class="fas fa-laptop"></i>
-                    <div>
-                        <span class="dropdown-title">Delivery Format</span>
-                        <span class="dropdown-desc">How it's delivered</span>
-                    </div>
-                </a>
-                <a href="Curriculum.html#application-process" class="dropdown-item">
-                    <i class="fas fa-file-signature"></i>
-                    <div>
-                        <span class="dropdown-title">Application Process</span>
-                        <span class="dropdown-desc">How to apply</span>
-                    </div>
-                </a>
-            </div>
+        <!-- Desktop Right Logo -->
+        <div class="hidden md:flex items-center gap-4">
+            <img src="/ELECT/assets/images/EU.png" class="h-12" alt="EU Logo">
         </div>
     </div>
-</div>
 
-                        <!-- Removed Login Button -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile Menu Overlay -->
-            <div id="menuOverlay" class="menu-overlay"></div>
-
-            <!-- Enhanced Mobile Menu -->
-            <div id="mobileMenu" class="mobile-menu">
-                <!-- Close Button -->
-                <button class="close-menu-btn" id="closeMenuBtn">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-
-                <!-- Menu Header with ELECT Logo -->
-                <div class="mobile-menu-header">
-                    <a href="index.html" class="flex items-center gap-3">
-                        <img
-                            src="/ELECT/assets/images/ELECT-Logo.png"
-                            alt="ELECT Logo"
-                            class="h-12 w-auto">
-                        <div class="text-left">
-                            <h2 class="font-bold text-lg text-green-700">ELECT Project</h2>
-                            <p class="text-sm text-gray-600">Energy Efficient Lighting</p>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Menu Items -->
-                <a href="index.html" class="mobile-menu-item">
-                    <i class="fas fa-home"></i>
+    <!-- Orange Navigation Banner -->
+    <div class="orange-banner desktop-only w-full" style="overflow: visible;">
+        <div class="navigation-container">
+            <div class="nav-links">
+                <!-- Home -->
+                <a href="index.html" class="nav-link">
                     <span>Home</span>
                 </a>
 
-                <a href="About.html" class="mobile-menu-item">
-                    <i class="fas fa-info-circle"></i>
-                    <span>About</span>
-                </a>
+                <!-- About dropdown -->
+                <div class="dropdown-container">
+                    <a href="About.html" class="nav-link nav-link-with-arrow">
+                        <span>About</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="About.html#overview" class="dropdown-item">
+                            <i class="fas fa-eye"></i>
+                            <span>Project Overview</span>
+                        </a>
+                        <a href="About.html#background" class="dropdown-item">
+                            <i class="fas fa-history"></i>
+                            <span>Background</span>
+                        </a>
+                        <a href="About.html#target" class="dropdown-item">
+                            <i class="fas fa-users"></i>
+                            <span>Our Audience</span>
+                        </a>
+                    </div>
+                </div>
 
-                <a href="Objectives.html" class="mobile-menu-item">
-                    <i class="fas fa-bullseye"></i>
-                    <span>Objectives</span>
-                </a>
+                <!-- Objectives dropdown -->
+                <div class="dropdown-container">
+                    <a href="Objectives.html" class="nav-link nav-link-with-arrow">
+                        <span>Objectives</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="Objectives.html#main" class="dropdown-item">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Main Objectives</span>
+                        </a>
+                        <a href="Objectives.html#outcomes" class="dropdown-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Outcomes & Benefits</span>
+                        </a>
+                    </div>
+                </div>
 
-                <a href="Partners.html" class="mobile-menu-item">
-                    <i class="fas fa-handshake"></i>
+                <!-- Partners -->
+                <a href="Partners.html" class="nav-link">
                     <span>Partners</span>
                 </a>
 
-                <a href="Events.html" class="mobile-menu-item">
-                    <i class="fas fa-newspaper"></i>
-                    <span>Events</span>
-                </a>
-                 <a href="News.html" class="mobile-menu-item">
-                    <i class="fas fa-newspaper"></i>
-                    <span>News</span>
-                </a>
+                <!-- Activities dropdown -->
+                <div class="dropdown-container">
+                    <a href="Events.html" class="nav-link nav-link-with-arrow">
+                        <span>Activities</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="News.html#latest" class="dropdown-item">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Latest News</span>
+                        </a>
+                        <a href="Events.html#upcoming" class="dropdown-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Events</span>
+                        </a>
+                        <a href="Events.html#media" class="dropdown-item">
+                            <i class="fas fa-images"></i>
+                            <span>Gallery</span>
+                        </a>
+                    </div>
+                </div>
 
-                <a href="Curriculum.html" class="mobile-menu-item">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Curriculum</span>
-                </a>
-
-                <a href="Gallery.html" class="mobile-menu-item">
-                    <i class="fas fa-images"></i>
-                    <span>Gallery</span>
-                </a>
-
-                <a href="Contacts.html" class="mobile-menu-item">
-                    <i class="fas fa-address-book"></i>
-                    <span>Contact</span>
-                </a>
-
-                <!-- Logos Section at Bottom -->
-                <div class="mobile-logos">
-                    <!-- ELECT & EU Logos -->
-                    <div class="logos-row">
-                        <img src="/ELECT/assets/images/EU.png" alt="EU Logo" class="eu-logo-mobile">
+                <!-- Curriculum dropdown with grid layout -->
+                <div class="dropdown-container">
+                    <a href="Curriculum.html" class="nav-link nav-link-with-arrow">
+                        <span>Curriculum</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu grid-dropdown">
+                        <div class="grid-dropdown-container">
+                            <!-- Left column -->
+                            <div class="dropdown-column">
+                                <a href="Curriculum.html#objectives" class="dropdown-item">
+                                    <i class="fas fa-bullseye"></i>
+                                    <div>
+                                        <span class="dropdown-title">Objectives</span>
+                                        <span class="dropdown-desc">Program goals & aims</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#learning-outcomes" class="dropdown-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <div>
+                                        <span class="dropdown-title">Learning Outcomes</span>
+                                        <span class="dropdown-desc">Skills & knowledge gained</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#target-group" class="dropdown-item">
+                                    <i class="fas fa-users"></i>
+                                    <div>
+                                        <span class="dropdown-title">Target Group</span>
+                                        <span class="dropdown-desc">Who should participate</span>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Right column -->
+                            <div class="dropdown-column">
+                                <a href="Curriculum.html#duration" class="dropdown-item">
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <span class="dropdown-title">Duration</span>
+                                        <span class="dropdown-desc">Program timeline</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#delivery-format" class="dropdown-item">
+                                    <i class="fas fa-laptop"></i>
+                                    <div>
+                                        <span class="dropdown-title">Delivery Format</span>
+                                        <span class="dropdown-desc">How it's delivered</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#application-process" class="dropdown-item">
+                                    <i class="fas fa-file-signature"></i>
+                                    <div>
+                                        <span class="dropdown-title">Application Process</span>
+                                        <span class="dropdown-desc">How to apply</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="menuOverlay" class="menu-overlay"></div>
+
+    <!-- Enhanced Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <!-- Close Button -->
+        <button class="close-menu-btn" id="closeMenuBtn">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+
+        <!-- Menu Header with ELECT Logo -->
+        <div class="mobile-menu-header">
+            <a href="index.html" class="flex items-center gap-3">
+                <img
+                    src="/ELECT/assets/images/ELECT-Logo.png"
+                    alt="ELECT Logo"
+                    class="h-12 w-auto">
+                <div class="text-left">
+                    <h2 class="font-bold text-lg text-green-700">ELECT Project</h2>
+                    <p class="text-sm text-gray-600">Energy Efficient Lighting</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Menu Items -->
+        <a href="index.html" class="mobile-menu-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+
+        <a href="About.html" class="mobile-menu-item">
+            <i class="fas fa-info-circle"></i>
+            <span>About</span>
+        </a>
+
+        <a href="Objectives.html" class="mobile-menu-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Objectives</span>
+        </a>
+
+        <a href="Partners.html" class="mobile-menu-item">
+            <i class="fas fa-handshake"></i>
+            <span>Partners</span>
+        </a>
+
+        <a href="Events.html" class="mobile-menu-item">
+            <i class="fas fa-newspaper"></i>
+            <span>Events</span>
+        </a>
+         <a href="News.html" class="mobile-menu-item">
+            <i class="fas fa-newspaper"></i>
+            <span>News</span>
+        </a>
+
+        <a href="Curriculum.html" class="mobile-menu-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Curriculum</span>
+        </a>
+
+        <a href="Gallery.html" class="mobile-menu-item">
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+        </a>
+
+        <a href="Contacts.html" class="mobile-menu-item">
+            <i class="fas fa-address-book"></i>
+            <span>Contact</span>
+        </a>
+
+        <!-- Logos Section at Bottom -->
+        <div class="mobile-logos">
+            <!-- ELECT & EU Logos -->
+            <div class="logos-row">
+                <img src="/ELECT/assets/images/EU.png" alt="EU Logo" class="eu-logo-mobile">
+            </div>
+        </div>
+    </div>
+</header>
 
 <!-- EVENTS PAGE HERO -->
 <section class="relative bg-cover bg-center h-[40vh] md:h-[50vh]" style="background-image:url('ELECT/assets/images/news-hero.png');">
@@ -1922,6 +1923,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.addEventListener('load', adjustHeaderPadding);
                 window.addEventListener('resize', adjustHeaderPadding);
             </script>
+
 
 
 
