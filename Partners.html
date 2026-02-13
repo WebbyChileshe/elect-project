@@ -1007,30 +1007,53 @@
   <div class="max-w-7xl mx-auto px-6 animate-fadeIn">
     <h2 class="text-3xl text-[#247646] font-bold mb-12">Project Partners</h2>
 
-    <div class="grid md:grid-cols-4 gap-8">
-      <?php
-$partners = [
-  ["MU-logo.png","Mulungushi University","Lead implementing institution in Zambia.","https://www.mu.ac.zm"],
-  ["Copperbelt-University.jpeg","Copperbelt University","Academic partner supporting training and research.","https://www.cbu.ac.zm"],
-  ["aalto-university-logo-finland.jpg","Aalto University","European expertise in energy systems and innovation.","https://www.aalto.fi"],
-  ["Hellenic-logo.png","Hellenic Open University","Distance learning and curriculum development.","https://www.eap.gr"]
+    <div class="grid md:grid-cols-4 gap-8" id="partnersGrid"></div>
+
+<script>
+const partners = [
+  {
+    logo: "MU-Logo.png",
+    name: "Mulungushi University",
+    desc: "Lead implementing institution in Zambia.",
+    url: "https://www.mu.ac.zm"
+  },
+  {
+    logo: "Copperbelt-University.jpeg",
+    name: "Copperbelt University",
+    desc: "Academic partner supporting training and research.",
+    url: "https://www.cbu.ac.zm"
+  },
+  {
+    logo: "aalto-university-logo-finland.jpg",
+    name: "Aalto University",
+    desc: "European expertise in energy systems and innovation.",
+    url: "https://www.aalto.fi"
+  },
+  {
+    logo: "Hellenic-logo.png",
+    name: "Hellenic Open University",
+    desc: "Distance learning and curriculum development.",
+    url: "https://www.eap.gr"
+  }
 ];
 
-      foreach ($partners as $p):
-      ?>
-      <div class="bg-white p-6 rounded shadow hover:scale-105 transition duration-500">
-          <a href="#" class="partner-logo" data-url="<?= $p[3] ?>">
-        <img src="ELECT/assets/images/<?= $p[0] ?>"
-     class="h-16 w-auto mx-auto mb-4 object-contain cursor-pointer"
-     alt="<?= $p[1] ?> logo">
-          </a>
+const grid = document.getElementById("partnersGrid");
 
-<h4 class="font-semibold text-center"><?= $p[1] ?></h4>
-<p class="text-sm mt-2 text-center text-gray-600"><?= $p[2] ?></p>
-
-      </div>
-      <?php endforeach; ?>
+partners.forEach(p => {
+  grid.innerHTML += `
+    <div class="bg-white p-6 rounded shadow hover:scale-105 transition duration-500">
+      <a href="${p.url}" target="_blank">
+        <img src="ELECT/assets/images/${p.logo}"
+             class="h-16 w-auto mx-auto mb-4 object-contain cursor-pointer"
+             alt="${p.name} logo">
+      </a>
+      <h4 class="font-semibold text-center">${p.name}</h4>
+      <p class="text-sm mt-2 text-center text-gray-600">${p.desc}</p>
     </div>
+  `;
+});
+</script>
+
   </div>
 </section>
 
@@ -1281,6 +1304,7 @@ $partners = [
                 window.addEventListener('load', adjustHeaderPadding);
                 window.addEventListener('resize', adjustHeaderPadding);
             </script>
+
 
 
 
