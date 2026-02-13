@@ -1,7 +1,987 @@
-<?php include '../includes/header.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    
+    <title>ELECT Project</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Global styles -->
+
+    <link rel="stylesheet" href="stye.css">
+</head>
+<style>
+
+            /* Base navigation styles */
+            .nav-link {
+                position: relative;
+                padding-bottom: 12px;
+                font-weight: 600;
+                transition: color 0.3s ease;
+                color: #1f2937;
+                white-space: nowrap;
+            }
+
+            .nav-link::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 3px;
+                background-color: #16a34a;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-link:hover::after,
+            .nav-link.active::after {
+                transform: scaleX(1);
+            }
+
+            /* Orange banner - fixed to allow dropdowns outside */
+            .orange-banner {
+                background: linear-gradient(135deg, #fdbf30 0%, #ff9900 100%);
+                padding: 12px 0;
+                width: 100%;
+                position: relative;
+                z-index: 40;
+                overflow: visible !important;
+            }
+
+            .orange-banner::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+                animation: shimmer 3s infinite;
+            }
+
+            @keyframes shimmer {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(100%); }
+            }
+
+            .navigation-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 24px;
+                position: relative;
+                z-index: 10;
+            }
+
+            .nav-links {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 36px;
+                position: relative;
+            }
+
+            .nav-link-with-arrow {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .nav-link-with-arrow i {
+                font-size: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            /* Enhanced dropdown styles - fixed to display outside */
+            .dropdown-container {
+                position: relative;
+                z-index: 50;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: calc(100% + 15px); /* Position well below the orange banner */
+                left: 50%;
+                transform: translateX(-50%) translateY(10px);
+                min-width: 220px;
+                background-color: white;
+                border-radius: 3px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.08);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+                border: 1px solid #e5e7eb;
+                overflow: hidden;
+            }
+
+            .dropdown-container:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown-container:hover .nav-link-with-arrow i {
+                transform: rotate(180deg);
+            }
+
+            /* Dropdown arrow */
+            .dropdown-menu::before {
+                content: '';
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid white;
+                z-index: 1001;
+            }
+
+            .dropdown-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px 20px;
+                color: #4b5563;
+                font-weight: 500;
+                font-size: 15px;
+                transition: all 0.2s ease;
+                border-left: 3px solid transparent;
+            }
+
+            .dropdown-item:hover {
+                color: #059669;
+                padding-left: 24px;
+            }
+
+            .dropdown-item i {
+                font-size: 14px;
+                width: 18px;
+                text-align: center;
+                color: #6b7280;
+            }
+
+            .dropdown-item:hover i {
+                color: #059669;
+            }
+
+            /* Ensure header doesn't clip dropdowns */
+            header {
+                overflow: visible !important;
+            }
+
+            /* Responsive adjustments - HIDE MENUS ON SMALL SCREENS */
+            @media (max-width: 768px) {
+                .orange-banner {
+                    display: none !important; /* Hide the entire orange banner on mobile */
+                }
+                
+                .navigation-container {
+                    display: none !important;
+                }
+                
+                .nav-links {
+                    display: none !important;
+                }
+                
+                /* Adjust header padding for mobile */
+                header > div:first-child {
+                    padding: 12px 16px;
+                }
+            }
+
+            @media (min-width: 769px) and (max-width: 1024px) {
+                .nav-links {
+                    gap: 20px;
+                }
+                
+                .nav-link {
+                    font-size: 14px;
+                    padding-bottom: 8px;
+                }
+                
+                .dropdown-menu {
+                    min-width: 200px;
+                }
+            }
+
+            /* Keep existing animations */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.9s ease-out forwards;
+            }
+
+            /* Video Overlay Styles */
+            #videoOverlay {
+                transition: opacity 0.7s ease-out;
+            }
+
+            #videoContainer {
+                transition: all 1s ease-out;
+            }
+
+            /* Small Play Button Styles */
+            #smallPlayButton {
+                transition: opacity 1s ease-out;
+            }
+
+            /* News Slider Styles */
+            .slider-item {
+                transition: opacity 0.7s ease-in-out;
+            }
+
+            .line-clamp-2 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            /* Hide buttons from news slider preview */
+            .slider-next,
+            .slider-prev {
+                display: none !important;
+            }
+
+            /* BBC News inspired styles */
+            #newsSection .bg-red-600 {
+                background-color: #247646;
+            }
+
+            #newsSection .border-red-600 {
+                border-color: #247646;
+            }
+
+            #newsSection a:hover {
+                text-decoration: underline;
+            }
+
+            /* Slider dot active state */
+            .slider-dot.bg-white {
+                background-color: white !important;
+            }
+
+            /* Ensure dots are not clickable */
+            .slider-dot {
+                cursor: default !important;
+                pointer-events: none !important;
+            }
+
+            /* Mobile menu styles */
+            .mobile-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 320px;
+                height: 100vh;
+                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+                z-index: 1000;
+                flex-direction: column;
+                padding: 10px;
+                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                overflow-y: auto;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+                transform: translateX(0);
+            }
+
+            .menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(54, 105, 20, 0.5);
+                z-index: 999;
+            }
+
+            .menu-overlay.active {
+                display: block;
+            }
+
+            /* Menu header with ELECT logo */
+            .mobile-menu-header {
+                padding: 15px 0;
+                border-bottom: 2px solid #e5e7eb;
+                margin-bottom: 20px;
+            }
+
+            /* Menu items */
+            .mobile-menu-item {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                padding: 10px 20px;
+                color: #374151;
+                font-weight: 600;
+                font-size: 15px;
+                border-radius: 6px;
+                margin-bottom: 8px;
+            }
+
+            .mobile-menu-item:hover {
+                color: #16a34a;
+            }
+
+            .mobile-menu-item i {
+                width: 24px;
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .mobile-menu-item.active {
+                background-color: #16a34a;
+                color: white;
+            }
+
+            /* Logos section at bottom */
+            .mobile-logos {
+                margin-top: auto;
+                padding: 25px 0;
+                border-top: 2px solid #e5e7eb;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .logos-row {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .elect-logo-mobile {
+                height: 50px;
+                width: auto;
+            }
+
+            .eu-logo-mobile {
+                height: 40px;
+                width: auto;
+            }
+
+            .mobile-tagline {
+                text-align: center;
+                color: #374151;
+                font-size: 14px;
+                line-height: 1.4;
+                max-width: 280px;
+            }
+
+            /* Close button */
+            .close-menu-btn {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #f3f4f6;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #374151;
+                transition: all 0.3s ease;
+                border: none;
+                cursor: pointer;
+            }
+
+            .close-menu-btn:hover {
+                background-color: #e5e7eb;
+                transform: rotate(90deg);
+            }
+
+            /* News page styles */
+            .filter-btn.active {
+                background-color: #247646 !important;
+                color: white !important;
+            }
+
+            .new-item {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .new-item:hover {
+                transform: translateY(-5px);
+            }
+
+            @keyframes spin {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .animate-spin {
+                animation: spin 1s linear infinite;
+            }
+
+            .bg-red-600 {
+                background-color: #dc2626;
+            }
+            .bg-blue-600 {
+                background-color: #2563eb;
+            }
+            .bg-green-600 {
+                background-color: #16a34a;
+            }
+            .bg-purple-600 {
+                background-color: #9333ea;
+            }
+            .bg-yellow-600 {
+                background-color: #ca8a04;
+            }
+
+            /* Mobile menu button */
+            #mobileMenuBtn {
+                flex-direction: column;
+                justify-content: space-between;
+                width: 32px;
+                height: 24px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+            }
+
+            .menu-line {
+                width: 100%;
+                height: 3px;
+                background-color: #374151;
+                border-radius: 2px;
+                transition: all 0.3s ease;
+            }
+
+            #mobileMenuBtn.active .menu-line:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
+            #mobileMenuBtn.active .menu-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            #mobileMenuBtn.active .menu-line:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+
+            @media (max-width: 768px) {
+                .mobile-only {
+                    display: block;
+                }
+
+                .desktop-only {
+                    display: none;
+                }
+                
+                /* Show mobile menu button on mobile */
+                #mobileMenuBtn {
+                    display: flex !important;
+                }
+            }
+
+            @media (min-width: 769px) {
+                .mobile-only {
+                    display: none;
+                }
+                
+                /* Hide mobile menu button on desktop */
+                #mobileMenuBtn {
+                    display: none !important;
+                }
+            }
+
+            .slider-dot {
+                display: none;
+            }
+
+            /* Dropdown mobile compatibility */
+            .group:hover .group-hover\:opacity-100 {
+                opacity: 1;
+            }
+
+            .group:hover .group-hover\:visible {
+                visibility: visible;
+            }
+
+            .group:hover .group-hover\:translate-y-0 {
+                transform: translateY(0);
+            }
+
+            /* About Section Video Animation */
+            /* #aboutVideoWrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transform: translateX(50px);
+                transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 10;
+                border-radius: inherit;
+                overflow: hidden;
+                pointer-events: none;
+            } */
+
+            /* #aboutVideoWrapper.active {
+                opacity: 1;
+                transform: translateX(0);
+                pointer-events: auto;
+            }
+
+            #aboutVideoWrapper video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: inherit;
+            }
+
+            #aboutImage {
+                transition: opacity 0.8s ease-out;
+                position: relative;
+                z-index: 5;
+            }
+
+            #aboutImage.fade-out {
+                opacity: 0.3;
+            } */
+
+            /* Video controls overlay */
+            /* .video-controls-overlay {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index: 20;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            } */
+/* 
+            #aboutVideoWrapper.active .video-controls-overlay {
+                opacity: 1;
+            } */
+
+            .close-video-btn {
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background 0.3s ease;
+                font-size: 18px;
+            }
+
+            .close-video-btn:hover {
+                background: rgba(0, 0, 0, 0.9);
+            }
+
+            /* Floating card z-index adjustment */
+            #floatingCard {
+                z-index: 15;
+            }
+
+            /* Objectives image rotation */
+            .objectives-image {
+                position: relative;
+                width: 100%;
+                height: 192px;
+                overflow: hidden;
+            }
+
+            .objectives-image > div {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                opacity: 0;
+                transition: opacity 1s ease-in-out;
+            }
+
+            .objectives-image > div.active {
+                opacity: 1;
+            }
+
+            /* Grid dropdown styles */
+.grid-dropdown {
+    min-width: 500px !important;
+    padding: 0 !important;
+}
+
+.grid-dropdown-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.dropdown-column {
+    padding: 16px 0;
+}
+
+.dropdown-column:first-child {
+    border-right: 1px solid #e5e7eb;
+}
+
+.dropdown-column .dropdown-item {
+    padding: 16px 24px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.dropdown-column .dropdown-item i {
+    font-size: 20px;
+    width: 24px;
+    margin-top: 4px;
+    /* color: #16a34a; */
+}
+
+.dropdown-title {
+    display: block;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+    font-size: 15px;
+}
+
+.dropdown-desc {
+    display: block;
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+.dropdown-column .dropdown-item:hover .dropdown-title {
+    color: #059669;
+}
+
+.dropdown-column .dropdown-item:hover .dropdown-desc {
+    color: #4b7280;
+}
+
+/* Adjust arrow for wider dropdown */
+.grid-dropdown::before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Responsive adjustments for grid dropdown */
+@media (max-width: 1024px) {
+    .grid-dropdown {
+        min-width: 450px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-dropdown {
+        display: none !important;
+    }
+    
+    .grid-dropdown-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .dropdown-column:first-child {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+    }
+}</style>
+
+    <header class="bg-white shadow-md sticky top-0 w-full z-40" style="overflow: visible;">
+
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+                <!-- Left Logo -->
+                <div class="flex items-center gap-4">
+                    <a href="index.html">
+                        <img
+                            src="/ELECT/assets/images/ELECT-Logo.png"
+                            class="h-14 md:h-20 w-auto"
+                            alt="ELECT Logo">
+                    </a>
+
+                    <span
+                        class="font-semibold text-green-700 leading-tight text-sm md:text-base hidden md:block">
+                        Energy Efficient Lighting
+                        <br>
+                        for Clean Energy Transitions<br>
+                        in Zambia
+                    </span>
+                </div>
+
+                <!-- Mobile Menu Button - Always visible on mobile -->
+                <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1 w-8">
+                    <div class="menu-line"></div>
+                    <div class="menu-line"></div>
+                    <div class="menu-line"></div>
+                </button>
+
+                <!-- Desktop Right Logo -->
+                <div class="hidden md:flex items-center gap-4">
+                    <img src="/ELECT/assets/images/EU.png" class="h-12" alt="EU Logo">
+                </div>
+            </div>
+
+            <!-- Orange Navigation Banner - HIDDEN ON MOBILE -->
+            <div class="orange-banner desktop-only" style="overflow: visible;">
+                <div class="navigation-container">
+                    <div class="nav-links">
+                        <!-- Home -->
+                        <a href="index.html" class="nav-link">
+                            <span>Home</span>
+                        </a>
+
+                        <!-- About dropdown -->
+                        <div class="dropdown-container">
+                            <a href="About.html" class="nav-link nav-link-with-arrow">
+                                <span>About</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="About.html#overview" class="dropdown-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span>Project Overview</span>
+                                </a>
+                                <a href="About.html#background" class="dropdown-item">
+                                    <i class="fas fa-history"></i>
+                                    <span>Background</span>
+                                </a>
+                                <a href="About.html#target" class="dropdown-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>Our Audience</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Objectives dropdown -->
+                        <div class="dropdown-container">
+                            <a href="Objectives.html" class="nav-link nav-link-with-arrow">
+                                <span>Objectives</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="Objectives.html#main" class="dropdown-item">
+                                    <i class="fas fa-bullseye"></i>
+                                    <span>Main Objectives</span>
+                                </a>
+                                <a href="Objectives.html#outcomes" class="dropdown-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Outcomes & Benefits</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Partners -->
+                        <a href="Partners.html" class="nav-link">
+                            <span>Partners</span>
+                        </a>
+
+                        <!-- Activities dropdown -->
+                        <div class="dropdown-container">
+                            <a href="Events.html" class="nav-link nav-link-with-arrow">
+                                <span>Activities</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="News.html#latest" class="dropdown-item">
+                                    <i class="fas fa-newspaper"></i>
+                                    <span>Latest News</span>
+                                </a>
+                                <a href="Events.html#upcoming" class="dropdown-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Events</span>
+                                </a>
+                                <a href="Events.html#media" class="dropdown-item">
+                                    <i class="fas fa-images"></i>
+                                    <span>Gallery</span>
+                                </a>
+                            </div>
+                        </div>
+
+<!-- Curriculum dropdown with grid layout -->
+<div class="dropdown-container">
+    <a href="Curriculum.html" class="nav-link nav-link-with-arrow">
+        <span>Curriculum</span>
+        <i class="fas fa-chevron-down"></i>
+    </a>
+    <div class="dropdown-menu grid-dropdown">
+        <div class="grid-dropdown-container">
+            <!-- Left column -->
+            <div class="dropdown-column">
+                <a href="Curriculum.html#objectives" class="dropdown-item">
+                    <i class="fas fa-bullseye"></i>
+                    <div>
+                        <span class="dropdown-title">Objectives</span>
+                        <span class="dropdown-desc">Program goals & aims</span>
+                    </div>
+                </a>
+                <a href="Curriculum.html#learning-outcomes" class="dropdown-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div>
+                        <span class="dropdown-title">Learning Outcomes</span>
+                        <span class="dropdown-desc">Skills & knowledge gained</span>
+                    </div>
+                </a>
+                <a href="Curriculum.html#target-group" class="dropdown-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <span class="dropdown-title">Target Group</span>
+                        <span class="dropdown-desc">Who should participate</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Right column -->
+            <div class="dropdown-column">
+                <a href="Curriculum.html#duration" class="dropdown-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <span class="dropdown-title">Duration</span>
+                        <span class="dropdown-desc">Program timeline</span>
+                    </div>
+                </a>
+                <a href="Curriculum.html#delivery-format" class="dropdown-item">
+                    <i class="fas fa-laptop"></i>
+                    <div>
+                        <span class="dropdown-title">Delivery Format</span>
+                        <span class="dropdown-desc">How it's delivered</span>
+                    </div>
+                </a>
+                <a href="Curriculum.html#application-process" class="dropdown-item">
+                    <i class="fas fa-file-signature"></i>
+                    <div>
+                        <span class="dropdown-title">Application Process</span>
+                        <span class="dropdown-desc">How to apply</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+                        <!-- Removed Login Button -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div id="menuOverlay" class="menu-overlay"></div>
+
+            <!-- Enhanced Mobile Menu -->
+            <div id="mobileMenu" class="mobile-menu">
+                <!-- Close Button -->
+                <button class="close-menu-btn" id="closeMenuBtn">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <!-- Menu Header with ELECT Logo -->
+                <div class="mobile-menu-header">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <img
+                            src="/ELECT/assets/images/ELECT-Logo.png"
+                            alt="ELECT Logo"
+                            class="h-12 w-auto">
+                        <div class="text-left">
+                            <h2 class="font-bold text-lg text-green-700">ELECT Project</h2>
+                            <p class="text-sm text-gray-600">Energy Efficient Lighting</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Menu Items -->
+                <a href="index.html" class="mobile-menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+
+                <a href="About.html" class="mobile-menu-item">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+
+                <a href="Objectives.html" class="mobile-menu-item">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Objectives</span>
+                </a>
+
+                <a href="Partners.html" class="mobile-menu-item">
+                    <i class="fas fa-handshake"></i>
+                    <span>Partners</span>
+                </a>
+
+                <a href="Events.html" class="mobile-menu-item">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Events</span>
+                </a>
+                 <a href="News.html" class="mobile-menu-item">
+                    <i class="fas fa-newspaper"></i>
+                    <span>News</span>
+                </a>
+
+                <a href="Curriculum.html" class="mobile-menu-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Curriculum</span>
+                </a>
+
+                <a href="Gallery.html" class="mobile-menu-item">
+                    <i class="fas fa-images"></i>
+                    <span>Gallery</span>
+                </a>
+
+                <a href="Contacts.html" class="mobile-menu-item">
+                    <i class="fas fa-address-book"></i>
+                    <span>Contact</span>
+                </a>
+
+                <!-- Logos Section at Bottom -->
+                <div class="mobile-logos">
+                    <!-- ELECT & EU Logos -->
+                    <div class="logos-row">
+                        <img src="/ELECT/assets/images/EU.png" alt="EU Logo" class="eu-logo-mobile">
+                    </div>
+                </div>
+            </div>
+        </header>
 
     <!-- Hero Section -->
-<section class="relative bg-cover bg-center h-[50vh]" style="background-image:url('../assets/images/news-hero.png');">
+<section class="relative bg-cover bg-center h-[50vh]" style="background-image:url('ELECT/assets/images/news-hero.png');">
     <div class="absolute inset-0 bg-black bg-opacity-60"></div> 
         <!-- Content -->
         <div class="relative z-10 max-w-7xl pt-32 mx-auto px-6">
@@ -41,9 +1021,9 @@
         <div class="group">
             <!-- Image Container with Multiple Images -->
             <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
-                <div class="objective-1-image active" style="background-image: url('../assets/images/lightbulb.jpg');"></div>
-                <div class="objective-1-image" style="background-image: url('../assets/images/lightbulb.jpeg');"></div>
-                <div class="objective-1-image" style="background-image: url('../assets/images/About.jpg');"></div>
+                <div class="objective-1-image active" style="background-image: url('ELECT/assets/images/lightbulb.jpg');"></div>
+                <div class="objective-1-image" style="background-image: url('ELECT/assets/images/lightbulb.jpeg');"></div>
+                <div class="objective-1-image" style="background-image: url('ELECT/assets/images/About.jpg');"></div>
             </div>
             
             <h3 class="font-bold text-xl text-gray-800 mb-4">Awareness & Cooperation</h3>
@@ -56,9 +1036,9 @@
         <div class="group">
             <!-- Image Container with Multiple Images -->
             <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
-                <div class="objective-2-image active" style="background-image: url('../assets/images/pedagogical.jpg');"></div>
-                <div class="objective-2-image" style="background-image: url('../assets/images/pedagogical.png');"></div>
-                <div class="objective-2-image" style="background-image: url('../assets/images/news1.jpg');"></div>
+                <div class="objective-2-image active" style="background-image: url('ELECT/assets/images/pedagogical.jpg');"></div>
+                <div class="objective-2-image" style="background-image: url('ELECT/assets/images/pedagogical.png');"></div>
+                <div class="objective-2-image" style="background-image: url('ELECT/assets/images/news1.jpg');"></div>
             </div>
             
             <h3 class="font-bold text-xl text-gray-800 mb-4">Pedagogical Excellence</h3>
@@ -71,9 +1051,9 @@
         <div class="group">
             <!-- Image Container with Multiple Images -->
             <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
-                <div class="objective-3-image active" style="background-image: url('../assets/images/news2.jpg');"></div>
-                <div class="objective-3-image" style="background-image: url('../assets/images/news3.jpg');"></div>
-                <div class="objective-3-image" style="background-image: url('../assets/images/hero.jpg');"></div>
+                <div class="objective-3-image active" style="background-image: url('ELECT/assets/images/news2.jpg');"></div>
+                <div class="objective-3-image" style="background-image: url('ELECT/assets/images/news3.jpg');"></div>
+                <div class="objective-3-image" style="background-image: url('ELECT/assets/images/hero.jpg');"></div>
             </div>
             
             <h3 class="font-bold text-xl text-gray-800 mb-4">Curriculum Development</h3>
@@ -85,7 +1065,175 @@
     </div>
   </div>
 </section>
-<?php include '../includes/footer.php'; ?>
+
+    <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-7xl">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Contact Us</h1>
+            <div class="w-20 h-1 bg-[#247646] mx-auto"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+            <!-- Contact Information -->
+            <div class="bg-white rounded shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Project Coordination</h2>
+                
+                <!-- Project Coordinator Card -->
+                <div class="border-l-4 border-[#fdbf30] p-6 rounded-r-lg mb-8">
+                    <div class="flex items-start gap-4">
+                        <div>
+                            <p class="text-sm text-blue-800 font-semibold uppercase tracking-wider mb-1">Project Coordinator</p>
+                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Prof. John Mwansa</h3>
+                            <p class="text-lg text-gray-700 mb-2">Copperbelt University</p>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-envelope mr-2 text-blue-600"></i>
+                                <a href="mailto:john.mwansa@elect-project.org" class="text-blue-700 hover:text-blue-900 hover:underline font-medium">
+                                    john.mwansa@elect-project.org
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Contact Info -->
+                <div class="border-l-4 border-[#fdbf30] p-6 space-y-4">
+                    <h3 class="font-semibold text-gray-900 text-lg mb-3">Other Contacts</h3>
+                    
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-building text-blue-600 mt-1"></i>
+                        <div>
+                            <p class="font-medium text-gray-900">Institutional Address</p>
+                            <p class="text-gray-600">Copperbelt University<br>School of Engineering<br>Kitwe, Zambia</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-phone-alt text-blue-600 mt-1"></i>
+                        <div>
+                            <p class="font-medium text-gray-900">Project Office</p>
+                            <a href="tel:+260212123456" class="text-gray-600 hover:text-blue-700">+260 212 123456</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form & EU Info -->
+            <div class="bg-white rounded shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+                
+                <form class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                        <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-[#fdbf30] hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===== FOOTER (EU compliant) ===== -->
+<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
+      <!-- Brand Column -->
+      <div class="lg:col-span-1">
+        <img src="ELECT/assets/images/ELECT-Logo.png" alt="ELECT" class="h-16 w-auto mb-4">
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Energy Efficient Lighting for Clean Energy Transitions in Zambia.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#About.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">About</a></li>
+          <li><a href="#Objectives.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Objectives</a></li>
+          <li><a href="#Partners.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Partners</a></li>
+          <li><a href="#News.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">News</a></li>
+        </ul>
+      </div>
+
+      <!-- Partners -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Partners</h4>
+        <ul class="space-y-2">
+          <li><a href="https://www.aalto.fi" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Aalto University</a></li>
+          <li><a href="https://www.eap.gr" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Hellenic Open University</a></li>
+          <li><a href="https://www.cbu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Copperbelt University</a></li>
+           <li><a href="https://www.mu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Mulungushi University</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Contact</h4>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
+            <a href="mailto:info@elect-project.org" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">info@elect-project.org</a>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-phone mt-1 mr-3 text-gray-400"></i>
+            <a href="tel:+260211234567" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">+260 21 1234567</a>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
+            <span class="text-sm text-gray-400">Lusaka, Zambia</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social & EU Funding -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Follow Us</h4>
+        <div class="flex space-x-4 mb-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Twitter">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="LinkedIn">
+            <i class="fab fa-linkedin text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Facebook">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+        </div>
+        <div class="mt-2">
+          <img src="ELECT/assets/images/EU.png" alt="Co-funded by the European Union" class="h-14 w-auto">
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="border-t border-gray-800 pt-6 mt-4">
+      <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+        <p>© 2026 ELECT Project. All rights reserved.</p>
+        <p class="mt-2 md:mt-0">Co‑funded by the European Union</p>
+      </div>
+    </div>
+  </div>
+</footer>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
       // Objectives Elements for Image Rotation
@@ -119,4 +1267,158 @@ document.addEventListener('DOMContentLoaded', function() {
         rotateObjectiveImages();
     }
 })
+     <script>
+                // Mobile menu functionality
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                const closeMenuBtn = document.getElementById('closeMenuBtn');
+                const mobileMenu = document.getElementById('mobileMenu');
+                const menuOverlay = document.getElementById('menuOverlay');
+
+                // Open mobile menu
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                    menuOverlay.classList.add('active');
+                    mobileMenuBtn.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                // Close mobile menu
+                function closeMobileMenu() {
+                    mobileMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                closeMenuBtn.addEventListener('click', closeMobileMenu);
+                menuOverlay.addEventListener('click', closeMobileMenu);
+
+                // Close menu when clicking on a menu link
+                const mobileLinks = mobileMenu.querySelectorAll('.mobile-menu-item');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+
+                // Close menu with Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+                });
+
+                // Highlight current page in navigation
+                const currentPage = window.location.pathname;
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    const linkPath = link.getAttribute('href');
+                    if (currentPage.includes(linkPath)) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Highlight current page in mobile menu
+                mobileLinks.forEach(link => {
+                    const linkPath = link.getAttribute('href');
+                    if (currentPage.includes(linkPath)) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Dropdown positioning for edge cases
+                function positionDropdowns() {
+                    const dropdowns = document.querySelectorAll('.dropdown-menu');
+                    dropdowns.forEach(dropdown => {
+                        const rect = dropdown.getBoundingClientRect();
+                        const parent = dropdown.parentElement;
+                        const parentRect = parent.getBoundingClientRect();
+                        
+                        // Reset styles first
+                        dropdown.style.left = '50%';
+                        dropdown.style.right = 'auto';
+                        dropdown.style.transform = 'translateX(-50%) translateY(10px)';
+                        
+                        // Check if dropdown goes off right edge
+                        if (rect.right > window.innerWidth) {
+                            dropdown.style.left = 'auto';
+                            dropdown.style.right = '0';
+                            dropdown.style.transform = 'translateX(0) translateY(10px)';
+                            
+                            // Adjust arrow position
+                            dropdown.style.setProperty('--arrow-left', 'calc(100% - 40px)');
+                        } 
+                        // Check if dropdown goes off left edge
+                        else if (rect.left < 0) {
+                            dropdown.style.left = '0';
+                            dropdown.style.right = 'auto';
+                            dropdown.style.transform = 'translateX(0) translateY(10px)';
+                            
+                            // Adjust arrow position
+                            dropdown.style.setProperty('--arrow-left', '40px');
+                        }
+                    });
+                }
+
+                // Initialize dropdown positioning only on desktop
+                function initDesktopFeatures() {
+                    if (window.innerWidth >= 769) {
+                        positionDropdowns();
+                        
+                        // Close dropdowns when clicking outside
+                        document.addEventListener('click', function(event) {
+                            const dropdowns = document.querySelectorAll('.dropdown-container');
+                            let clickedInside = false;
+                            
+                            dropdowns.forEach(dropdown => {
+                                if (dropdown.contains(event.target)) {
+                                    clickedInside = true;
+                                }
+                            });
+                            
+                            if (!clickedInside) {
+                                const openDropdowns = document.querySelectorAll('.dropdown-menu');
+                                openDropdowns.forEach(menu => {
+                                    menu.style.opacity = '0';
+                                    menu.style.visibility = 'hidden';
+                                });
+                            }
+                        });
+                    }
+                }
+
+                // Run on load and resize
+                window.addEventListener('load', initDesktopFeatures);
+                window.addEventListener('resize', initDesktopFeatures);
+
+                // Smooth scroll for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        if (targetId === '#') return;
+                        
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+
+                // Adjust padding based on screen size
+                function adjustHeaderPadding() {
+                    const header = document.querySelector('header > div:first-child');
+                    if (window.innerWidth <= 768) {
+                        header.style.padding = '12px 16px';
+                    } else {
+                        header.style.padding = '16px 24px';
+                    }
+                }
+
+                window.addEventListener('load', adjustHeaderPadding);
+                window.addEventListener('resize', adjustHeaderPadding);
+            </script>
 </script>
+
