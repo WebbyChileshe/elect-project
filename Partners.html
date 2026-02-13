@@ -755,7 +755,7 @@
 
                 <!-- Desktop Right Logo -->
                 <div class="hidden md:flex items-center gap-4">
-                    <img src="/ELECT/assets/images/EU.png" class="h-12" alt="EU Logo">
+                    <img src="ELECT/assets/images/EU.png" class="h-12" alt="EU Logo">
                 </div>
             </div>
 
@@ -1009,18 +1009,25 @@
 
     <div class="grid md:grid-cols-4 gap-8">
       <?php
-      $partners = [
-        ["MU-Logo.png","Mulungushi University","Lead implementing institution in Zambia."],
-        ["Copperbelt-University.jpeg","Copperbelt University","Academic partner supporting training and research."],
-        ["aalto-university-logo-finland.jpg","Aalto University","European expertise in energy systems and innovation."],
-        ["Hellenic-logo.png","Hellenic Open University","Distance learning and curriculum development."]
-      ];
+$partners = [
+  ["MU-Logo.png","Mulungushi University","Lead implementing institution in Zambia.","https://www.mu.ac.zm"],
+  ["Copperbelt-University.jpeg","Copperbelt University","Academic partner supporting training and research.","https://www.cbu.ac.zm"],
+  ["aalto-university-logo-finland.jpg","Aalto University","European expertise in energy systems and innovation.","https://www.aalto.fi"],
+  ["Hellenic-logo.png","Hellenic Open University","Distance learning and curriculum development.","https://www.eap.gr"]
+];
+
       foreach ($partners as $p):
       ?>
       <div class="bg-white p-6 rounded shadow hover:scale-105 transition duration-500">
-        <img src="ELECT/assets/images/<?= $p[0] ?>" class="h-16 mx-auto mb-4">
-        <h4 class="font-semibold"><?= $p[1] ?></h4>
-        <p class="text-sm mt-2"><?= $p[2] ?></p>
+          <a href="#" class="partner-logo" data-url="<?= $p[3] ?>">
+        <img src="ELECT/assets/images/<?= $p[0] ?>"
+     class="h-16 w-auto mx-auto mb-4 object-contain cursor-pointer"
+     alt="<?= $p[1] ?> logo">
+          </a>
+
+<h4 class="font-semibold text-center"><?= $p[1] ?></h4>
+<p class="text-sm mt-2 text-center text-gray-600"><?= $p[2] ?></p>
+
       </div>
       <?php endforeach; ?>
     </div>
@@ -1112,6 +1119,16 @@
 </footer>
 
      <script>
+
+           document.querySelectorAll('.partner-logo').forEach(logo => {
+    logo.addEventListener('click', function (e) {
+      e.preventDefault();
+      const url = this.dataset.url;
+      if (url) {
+        window.open(url, '_blank');
+      }
+    });
+  });
                 // Mobile menu functionality
                 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
                 const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -1264,4 +1281,5 @@
                 window.addEventListener('load', adjustHeaderPadding);
                 window.addEventListener('resize', adjustHeaderPadding);
             </script>
+
 
