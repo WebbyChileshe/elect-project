@@ -21,6 +21,31 @@
 </head>
 <style>
 
+                /* Hide scrollbar for Chrome, Safari and Opera */
+            html::-webkit-scrollbar,
+            body::-webkit-scrollbar,
+            .mobile-menu::-webkit-scrollbar {
+                display: none;
+            }
+            
+            /* Hide scrollbar for IE, Edge and Firefox */
+            html,
+            body,
+            .mobile-menu {
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+
+            /* Prevent horizontal overflow */
+            html, body {
+                max-width: 100%;
+                overflow-x: hidden;
+                position: relative;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
             /* Base navigation styles */
             .nav-link {
                 position: relative;
@@ -1525,3 +1550,4 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', adjustHeaderPadding);
 });
 </script>
+
