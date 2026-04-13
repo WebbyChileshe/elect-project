@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="stye.css">
 </head>
 <style>
+    html {
+    scroll-behavior: smooth;
+}
             /* Hide scrollbar for Chrome, Safari and Opera */
             html::-webkit-scrollbar,
             body::-webkit-scrollbar,
@@ -739,50 +742,6 @@
                 overflow-x: hidden;
             }
 
-            /* html {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-}
-
-.panel {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-} */
-
-            .panel {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: white;
-                background-color: #f9fafb;
-                min-height: 100vh;
-                top: 0;
-                position: sticky;
-            }
-            .panel1 {
-                z-index: 1;
-                /* overflow-y: auto; */
-            }
-            .panel2 {
-                z-index: 2;
-            }
-            .panel3 {
-                z-index: 3;
-            }
-            .panel4 {
-                z-index: 4;
-            }
-            .panel5 {
-                z-index: 5;
-            }
-            .panel6 {
-                z-index: 6;
-            }
-            .panel7 {
-                z-index: 7;
-            }
-
             /* Desktop header hide/show on scroll only */
 @media (min-width: 769px) {
     header {
@@ -813,7 +772,28 @@
         top: 0 !important;
     }
 }
-            
+
+/* Smooth transitions for video elements */
+#videoPoster {
+  transition: opacity 0.3s ease;
+}
+
+#videoPoster.hidden {
+  display: none;
+}
+
+#videoPlayer.hidden {
+  display: none;
+}
+
+/* Custom video controls styling (optional) */
+video::-webkit-media-controls-panel {
+  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+video::-webkit-media-controls-play-button {
+  color: #247646;
+}
 </style>
 
 <header class="sticky top-0 z-40 w-full bg-white shadow-md" style="overflow: visible;">
@@ -1069,7 +1049,7 @@
 </header>
 
 <!-- HERO SECTION - Responsive version -->
-<section class="relative mt-0 bg-cover bg-center items-center panel panel1" style="background-image:url('ELECT/assets/images/hero.jpg');">
+<section class="relative mt-0 bg-cover bg-center h-[83vh] md:h-[80vh] items-end" style="background-image:url('ELECT/assets/images/hero.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
     
     <!-- Small Play Button - Show on scroll, hidden on mobile by default -->
@@ -1085,8 +1065,10 @@
         </button>
     </div>
     
-    <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-end pb-8 md:pb-12">
         <div class="text-white max-w-xl">
+            <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm font-semibold mb-3">
+               OUR GOAL</span>
             <h1 class="text-3xl md:text-5xl font-bold leading-tight">
                 Energy Efficient Lighting for a Clean Energy <span class="text-[#247646]">Future</span>
             </h1>
@@ -1107,108 +1089,109 @@
     </div>
 </section>
 
-<!-- VIDEO OVERLAY -->
-<div id="videoOverlay" class="fixed inset-0 bg-black/90 z-50 hidden opacity-0 transition-all duration-700 ease-out hidden">
-    <div class="absolute inset-0 flex items-center justify-center p-4">
-        <div class="relative w-full max-w-4xl mx-auto">
-            <!-- Video Container with Fade-in Animation -->
-            <div id="videoContainer" class="opacity-0 transform translate-x-20 transition-all duration-1000 ease-out">
-                <div class="relative bg-black/70 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden">
-                    <!-- Video Header -->
-                    <div class="bg-gradient-to-r from-blue-900/80 to-blue-700/80 p-6">
-                        <h2 class="text-2xl md:text-3xl font-bold text-white text-center">
-                            ELECT Project Overview
-                        </h2>
-                        <p class="text-white/80 text-center mt-2">
-                            Introduction to our mission and vision for energy-efficient lighting
-                        </p>
-                    </div>
-                    
-                    <!-- Video Player -->
-                    <div class="p-4 md:p-6">
-                        <video id="mainVideo" class="w-full h-auto rounded-lg shadow-lg" controls preload="metadata" poster="ELECT/assets/images/video-thumbnail.jpg">
-                            <source src="ELECT/assets/videos/overview.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    
-                    <!-- Action Buttons -->
-                    <div class="p-4 md:p-6 bg-black/50">
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button id="closeVideoBtn" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2">
-                                <i class="fas fa-times"></i>
-                                Close Video
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Close Button (X) -->
-            <button id="closeOverlayBtn" class="absolute top-4 right-4 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors duration-300 flex items-center justify-center">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
 <!-- ABOUT SECTION -->
-<section class="bg-white py-20 panel panel2" id="aboutSection">
-  <div class="max-w-7xl mx-auto px-6 mb-6">
-    <h2 class="text-3xl md:text-4xl text-center font-bold text-[#247646] mb-3">About the ELECT Project</h2>
+<section class="bg-white py-20" id="aboutSection">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl text-center font-bold text-[#247646] mb-12">About the ELECT Project</h2>
 
     <!-- TOP CONTENT ROW -->
-    <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class="grid md:grid-cols-2 gap-12 items-start">
       <!-- LEFT TEXT -->
       <div class="animate-fadeIn">
-
-        <p class="mt-6 text-gray-600 leading-relaxed max-w-md">
+        <p class="text-gray-600 leading-relaxed text-lg">
           ELECT is a curriculum development project aimed to improve the accessibility
           and quality of higher education in the field of energy efficient lighting at Universities in Zambia.
           The project is being implemented at two Universities in Zambia in cooperation with two European Universities.
         </p>
 
-        <p class="mt-4 text-gray-600 leading-relaxed max-w-md">
-          The main activities of the project include the mordenization of bachelor's and diploma curricula,
+        <p class="mt-6 text-gray-600 leading-relaxed text-lg">
+          The main activities of the project include the modernization of bachelor's and diploma curricula,
           the introduction of innovative teaching and learning methods, the establishment of teaching and research infrastructure, and teacher training.
         </p>
         
         <!-- READ MORE BUTTON -->
-        <a href="About.html" class="inline-flex items-center gap-2 mt-6 px-5 py-3 bg-[#247646] hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-300">
-            Read More on ELECT About
+        <a href="About.html" class="inline-flex items-center gap-2 mt-8 px-6 py-3 bg-[#247646] hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
+          <span>Read More About ELECT</span>
+          <i class="fas fa-arrow-right text-sm"></i>
         </a>
       </div>
 
-      <!-- RIGHT IMAGE + VIDEO + FLOATING CARD -->
-      <div class="relative animate-fadeIn delay-200">
-          <!-- Image Container -->
-          <div class="relative">
-              <!-- Main Image -->
-              <img id="aboutImage" src="ELECT/assets/images/About.jpg"
-                  alt="ELECT Project Activity"
-                  class="rounded shadow w-full object-cover">
+      <!-- RIGHT VIDEO SECTION -->
+      <div class="animate-fadeIn delay-200">
+        <!-- Video Card Container -->
+        <div class="rounded overflow-hidden shadow border border-gray-100">
+          
+          <!-- Video Thumbnail / Player Area -->
+          <div class="relative aspect-video bg-gray-900" id="videoContainer">
+            <!-- Poster Image (visible initially) -->
+            <div id="videoPoster" class="absolute inset-0 cursor-pointer group" onclick="playAboutVideo()">
+              <img src="ELECT/assets/images/About.jpg"
+                   alt="ELECT Project Overview"
+                   class="w-full h-full object-cover">
               
-              <!-- Video Wrapper (hidden by default) -->
-              <div id="aboutVideoWrapper" class="absolute inset-0">
-                  <video id="aboutVideo" controls class="w-full h-full">
-                      <source src="ELECT/assets/Video/overview.mp4" type="video/mp4">
-                      Your browser does not support the video tag.
-                  </video>
-                  
-                  <!-- Close Video Button -->
-                  <div class="video-controls-overlay">
-                      <button id="closeAboutVideoBtn" class="close-video-btn" title="Close Video">
-                          <i class="fas fa-times"></i>
-                      </button>
-                  </div>
+              <!-- Gradient Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+              
+              <!-- Play Button Overlay -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-10 h-10 bg-[#247646] rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
+                  <i class="fas fa-play text-white text-2xl ml-1"></i>
+                </div>
               </div>
+              
+              <!-- Video Duration Badge -->
+              <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full">
+                <i class="far fa-clock mr-1"></i> 1:07
+              </div>
+            </div>
+            
+            <!-- Video Player (hidden initially) -->
+            <div id="videoPlayer" class="absolute inset-0 hidden">
+              <video id="aboutVideo" controls class="w-full h-full" playsinline>
+                <source src="ELECT/assets/Video/overview.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
+          
+          <!-- Video Footer / Info Bar -->
+          <div class="bg-white p-4 flex items-center justify-between border-t border-gray-100">
+            <div>
+              <h4 class="font-semibold text-gray-800">ELECT Project Overview</h4>
+              <p class="text-sm text-gray-500 mt-0.5">Learn about our mission and impact</p>
+            </div>
+            <button onclick="playAboutVideo()" id="playVideoBtn" class="text-[#247646] hover:text-green-700 text-sm font-medium flex items-center gap-1">
+              <i class="fas fa-play-circle"></i>
+              <span>Watch Now</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Key Highlights / Bullet Points -->
+        <div class="mt-6 flex flex-wrap gap-3">
+          <span class="inline-flex items-center gap-1.5 text-sm text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
+            <i class="fas fa-check-circle text-[#247646] text-xs"></i>
+            Curriculum Modernization
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-sm text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
+            <i class="fas fa-check-circle text-[#247646] text-xs"></i>
+            Teacher Training
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-sm text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
+            <i class="fas fa-check-circle text-[#247646] text-xs"></i>
+            Research Infrastructure
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-sm text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
+            <i class="fas fa-check-circle text-[#247646] text-xs"></i>
+            International Collaboration
+          </span>
+        </div>
       </div>
     </div>
-</section>   
-
+  </div>
+</section>
 <!-- OBJECTIVES SECTION -->
-<section class="py-20 panel panel3" id="objectivesSection">
+<section class="py-20">
   <div class="max-w-7xl mx-auto mt-6 px-6">
     <!-- Section Header -->
     <div class="text-center mb-16">
@@ -1272,7 +1255,7 @@
 </section>
 
 <!-- PARTNERS SECTION -->
-<section class="relative overflow-hidden panel panel4" id="partnersSection">
+<section class="relative overflow-hidden">
     <!-- Gradient Background -->
     <div class="absolute inset-0"></div>
 
@@ -1329,7 +1312,7 @@
 </section>
 
 <!-- NEWS SECTION -->
-<section id="newsSection" class="py-20 bg-white panel panel5">
+<section id="newsSection" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-6">
         <!-- Section Header -->
         <div class="border-b-4 border-red-600 pb-4 mb-8">
@@ -1608,7 +1591,7 @@
     </div>
 </section>
 
-    <section class="py-16 bg-gray-50 panel panel6" id="contactSection">
+    <section class="py-16 bg-gray-50">
     <div class="container mx-auto px-4 max-w-7xl">
         <!-- Section Header -->
         <div class="text-center mb-12">
@@ -1694,7 +1677,7 @@
     </div>
 </section>
 <!-- ===== FOOTER (EU compliant) ===== -->
-<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6 panel panel7">
+<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6">
   <div class="container mx-auto px-4 max-w-7xl">
     <!-- Main Footer Content -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
@@ -1778,6 +1761,30 @@
 </footer>
 
 <script>
+// Define playAboutVideo globally so onclick can access it
+function playAboutVideo() {
+  const poster = document.getElementById('videoPoster');
+  const player = document.getElementById('videoPlayer');
+  const video = document.getElementById('aboutVideo');
+  const playBtn = document.getElementById('playVideoBtn');
+  
+  if (!poster || !player || !video) return;
+  
+  // Hide poster, show player
+  poster.classList.add('hidden');
+  player.classList.remove('hidden');
+  
+  // Play the video
+  video.play().catch(e => console.log("Play prevented:", e));
+  
+  // Update button state
+  if (playBtn) {
+    playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
+    playBtn.style.opacity = '0.7';
+    playBtn.style.pointerEvents = 'none';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Video Elements for Hero section
     const smallPlayButton = document.getElementById('smallPlayButton');
@@ -1812,186 +1819,112 @@ document.addEventListener('DOMContentLoaded', function() {
     let objectivesInterval;
     let objectiveCurrentImages = [0, 0, 0];
     
+    // ===== ABOUT VIDEO EVENT LISTENERS =====
+    if (aboutVideo) {
+        // Handle video ended event
+        aboutVideo.addEventListener('ended', function() {
+            const playBtn = document.getElementById('playVideoBtn');
+            if (playBtn) {
+                playBtn.innerHTML = '<i class="fas fa-redo-alt"></i><span>Replay</span>';
+                playBtn.style.opacity = '1';
+                playBtn.style.pointerEvents = 'auto';
+                playBtn.onclick = function() {
+                    aboutVideo.currentTime = 0;
+                    aboutVideo.play();
+                    playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
+                    playBtn.style.opacity = '0.7';
+                    playBtn.style.pointerEvents = 'none';
+                };
+            }
+        });
+        
+        // Handle pause event
+        aboutVideo.addEventListener('pause', function() {
+            const playBtn = document.getElementById('playVideoBtn');
+            if (playBtn && !aboutVideo.ended) {
+                playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Resume</span>';
+                playBtn.style.opacity = '1';
+                playBtn.style.pointerEvents = 'auto';
+                playBtn.onclick = function() {
+                    aboutVideo.play();
+                    playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
+                    playBtn.style.opacity = '0.7';
+                    playBtn.style.pointerEvents = 'none';
+                };
+            }
+        });
+        
+        // Handle play event
+        aboutVideo.addEventListener('play', function() {
+            const playBtn = document.getElementById('playVideoBtn');
+            if (playBtn) {
+                playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
+                playBtn.style.opacity = '0.7';
+                playBtn.style.pointerEvents = 'none';
+            }
+        });
+    }
+    
     // Play button on scroll from hero section
     function showPlayButton() {
-        smallPlayButton.classList.remove('opacity-0');
-        smallPlayButton.classList.add('opacity-100');
+        if (smallPlayButton) {
+            smallPlayButton.classList.remove('opacity-0');
+            smallPlayButton.classList.add('opacity-100');
+        }
     }
     
     function hidePlayButton() {
-        smallPlayButton.classList.remove('opacity-100');
-        smallPlayButton.classList.add('opacity-0');
-    }
-    
-    // Show video overlay with animation (hero section)
-    function showVideoOverlay() {
-        videoOverlay.classList.remove('hidden');
-        
-        // Reset video to beginning
-        mainVideo.currentTime = 0;
-        
-        setTimeout(() => {
-            videoOverlay.classList.remove('opacity-0');
-            videoOverlay.classList.add('opacity-100');
-            
-            setTimeout(() => {
-                videoContainer.classList.remove('opacity-0');
-                videoContainer.classList.remove('translate-x-20');
-                videoContainer.classList.add('opacity-100');
-                videoContainer.classList.add('translate-x-0');
-            }, 300);
-            
-            document.body.style.overflow = 'hidden';
-        }, 10);
-    }
-    
-    // Hide video overlay (hero section)
-    function hideVideoOverlay() {
-        mainVideo.pause();
-        
-        videoContainer.classList.remove('opacity-100');
-        videoContainer.classList.remove('translate-x-0');
-        videoContainer.classList.add('opacity-0');
-        videoContainer.classList.add('translate-x-20');
-        
-        videoOverlay.classList.remove('opacity-100');
-        videoOverlay.classList.add('opacity-0');
-        
-        setTimeout(() => {
-            videoOverlay.classList.add('hidden');
-            document.body.style.overflow = '';
-        }, 700);
-    }
-    
-    // SHOW VIDEO IN ABOUT SECTION
-    function showVideoInAboutSection() {
-        if (aboutVideoTriggered) return;
-        aboutVideoTriggered = true;
-        
-        // Fade out the image slightly
-        aboutImage.classList.add('fade-out');
-        
-        // Show and animate the video wrapper
-        setTimeout(() => {
-            aboutVideoWrapper.classList.add('active');
-            
-            // Start playing the video
-            setTimeout(() => {
-                aboutVideo.play().catch(e => {
-                    console.log("Autoplay prevented:", e);
-                });
-            }, 500);
-        }, 300);
-    }
-    
-    // HIDE VIDEO IN ABOUT SECTION
-    function hideVideoInAboutSection() {
-        // Pause the video
-        aboutVideo.pause();
-        
-        // Hide the video wrapper
-        aboutVideoWrapper.classList.remove('active');
-        
-        // Restore the image fully
-        aboutImage.classList.remove('fade-out');
-        
-        // Reset flag so video can be triggered again
-        setTimeout(() => {
-            aboutVideoTriggered = false;
-        }, 1000);
+        if (smallPlayButton) {
+            smallPlayButton.classList.remove('opacity-100');
+            smallPlayButton.classList.add('opacity-0');
+        }
     }
     
     // OBJECTIVES IMAGE ROTATION
     function rotateObjectiveImages() {
         objectiveImages.forEach((images, objectiveIndex) => {
-            if (images.length > 0) {
+            if (images && images.length > 0) {
                 // Hide all images for this objective
                 images.forEach(img => {
-                    img.classList.remove('active');
+                    if (img) img.classList.remove('active');
                 });
                 
                 // Show current image
                 objectiveCurrentImages[objectiveIndex] = 
                     (objectiveCurrentImages[objectiveIndex] + 1) % images.length;
-                images[objectiveCurrentImages[objectiveIndex]].classList.add('active');
+                if (images[objectiveCurrentImages[objectiveIndex]]) {
+                    images[objectiveCurrentImages[objectiveIndex]].classList.add('active');
+                }
             }
         });
     }
     
     function initObjectivesImageRotation() {
-        // Start rotation every 5 seconds
-        objectivesInterval = setInterval(rotateObjectiveImages, 5000);
-        
-        // Initial rotation
-        rotateObjectiveImages();
+        if (objectiveImages.some(arr => arr.length > 0)) {
+            objectivesInterval = setInterval(rotateObjectiveImages, 5000);
+            rotateObjectiveImages();
+        }
     }
     
     // Scroll detection
     window.addEventListener('scroll', function() {
         const heroSection = document.querySelector('.relative.bg-cover');
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-        const viewportHeight = window.innerHeight;
-        
-        // Show play button when user starts scrolling down from hero section
-        if (heroBottom < viewportHeight * 0.9) {
-            showPlayButton();
-        } else {
-            hidePlayButton();
-        }
-        
-        // Check if About section is in view for video animation
-        const aboutSectionRect = aboutSection.getBoundingClientRect();
-        if (aboutSectionRect.top < viewportHeight * 0.7 && 
-            aboutSectionRect.bottom > 0 && 
-            !aboutVideoTriggered) {
-            showVideoInAboutSection();
-        }
-    });
-    
-    // Event Listeners for Hero Section Video
-    smallPlayButton.addEventListener('click', showVideoOverlay);
-    closeVideoBtn.addEventListener('click', hideVideoOverlay);
-    closeOverlayBtn.addEventListener('click', hideVideoOverlay);
-    
-    // Event Listeners for About Section Video
-    closeAboutVideoBtn.addEventListener('click', hideVideoInAboutSection);
-    
-    // Close overlay when clicking on background (hero section)
-    videoOverlay.addEventListener('click', function(event) {
-        if (event.target === videoOverlay) {
-            hideVideoOverlay();
-        }
-    });
-    
-    // Close with Escape key (both videos)
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            if (!videoOverlay.classList.contains('hidden')) {
-                hideVideoOverlay();
-            }
-            if (aboutVideoWrapper.classList.contains('active')) {
-                hideVideoInAboutSection();
+        if (heroSection) {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            const viewportHeight = window.innerHeight;
+            
+            if (heroBottom < viewportHeight * 0.9) {
+                showPlayButton();
+            } else {
+                hidePlayButton();
             }
         }
-    });
-    
-    // Video ended events
-    mainVideo.addEventListener('ended', function() {
-        setTimeout(() => {
-            hideVideoOverlay();
-        }, 2000);
-    });
-    
-    aboutVideo.addEventListener('ended', function() {
-        // Loop the video in About section
-        setTimeout(() => {
-            aboutVideo.currentTime = 0;
-            aboutVideo.play();
-        }, 1000);
     });
     
     // News Slider Functions
     function showSlide(index) {
+        if (!sliderItems.length) return;
+        
         sliderItems.forEach(item => {
             item.classList.remove('opacity-100');
             item.classList.add('opacity-0');
@@ -2004,210 +1937,148 @@ document.addEventListener('DOMContentLoaded', function() {
             dot.classList.remove('bg-white');
             dot.classList.add('bg-white/50');
         });
-        sliderDots[index].classList.remove('bg-white/50');
-        sliderDots[index].classList.add('bg-white');
+        if (sliderDots[index]) {
+            sliderDots[index].classList.remove('bg-white/50');
+            sliderDots[index].classList.add('bg-white');
+        }
         
         currentSlide = index;
     }
     
     function nextSlide() {
+        if (!sliderItems.length) return;
         let nextIndex = (currentSlide + 1) % sliderItems.length;
         showSlide(nextIndex);
     }
     
     function startSlider() {
-        slideInterval = setInterval(nextSlide, 10000);
+        if (sliderItems.length > 0) {
+            slideInterval = setInterval(nextSlide, 10000);
+        }
     }
     
-    // Initialize
-    showSlide(0);
-    startSlider();
+    // Initialize slider
+    if (sliderItems.length > 0) {
+        showSlide(0);
+        startSlider();
+    }
     
     // Initialize play button opacity
-    smallPlayButton.classList.remove('opacity-0');
-    smallPlayButton.classList.add('opacity-0');
+    if (smallPlayButton) {
+        smallPlayButton.classList.remove('opacity-100');
+        smallPlayButton.classList.add('opacity-0');
+    }
     
     // Initialize objectives image rotation
     initObjectivesImageRotation();
 });
                 
-                // Mobile menu functionality
-                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-                const closeMenuBtn = document.getElementById('closeMenuBtn');
-                const mobileMenu = document.getElementById('mobileMenu');
-                const menuOverlay = document.getElementById('menuOverlay');
+// ===== MOBILE MENU FUNCTIONALITY (runs immediately) =====
+(function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
 
-                // Open mobile menu
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.add('active');
-                    menuOverlay.classList.add('active');
-                    mobileMenuBtn.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
+    if (!mobileMenuBtn || !mobileMenu) return;
 
-                // Close mobile menu
-                function closeMobileMenu() {
-                    mobileMenu.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    mobileMenuBtn.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        if (menuOverlay) menuOverlay.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 
-                closeMenuBtn.addEventListener('click', closeMobileMenu);
-                menuOverlay.addEventListener('click', closeMobileMenu);
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+        if (menuOverlay) menuOverlay.classList.add('active');
+        mobileMenuBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
 
-                // Close menu when clicking on a menu link
-                const mobileLinks = mobileMenu.querySelectorAll('.mobile-menu-item');
-                mobileLinks.forEach(link => {
-                    link.addEventListener('click', closeMobileMenu);
-                });
+    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
 
-                // Close menu with Escape key
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                        closeMobileMenu();
-                    }
-                });
+    const mobileLinks = mobileMenu.querySelectorAll('.mobile-menu-item');
+    mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
 
-                // Highlight current page in navigation
-                const currentPage = window.location.pathname;
-                const navLinks = document.querySelectorAll('.nav-link');
-                
-                navLinks.forEach(link => {
-                    const linkPath = link.getAttribute('href');
-                    if (currentPage.includes(linkPath)) {
-                        link.classList.add('active');
-                    }
-                });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+})();
 
-                // Highlight current page in mobile menu
-                mobileLinks.forEach(link => {
-                    const linkPath = link.getAttribute('href');
-                    if (currentPage.includes(linkPath)) {
-                        link.classList.add('active');
-                    }
-                });
+// ===== HIGHLIGHT CURRENT PAGE =====
+(function() {
+    const currentPage = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileLinks = document.querySelectorAll('.mobile-menu-item');
+    
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath && currentPage.includes(linkPath.split('#')[0])) {
+            link.classList.add('active');
+        }
+    });
+    
+    mobileLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath && currentPage.includes(linkPath.split('#')[0])) {
+            link.classList.add('active');
+        }
+    });
+})();
 
-                // Dropdown positioning for edge cases
-                function positionDropdowns() {
-                    const dropdowns = document.querySelectorAll('.dropdown-menu');
-                    dropdowns.forEach(dropdown => {
-                        const rect = dropdown.getBoundingClientRect();
-                        const parent = dropdown.parentElement;
-                        const parentRect = parent.getBoundingClientRect();
-                        
-                        // Reset styles first
-                        dropdown.style.left = '50%';
-                        dropdown.style.right = 'auto';
-                        dropdown.style.transform = 'translateX(-50%) translateY(10px)';
-                        
-                        // Check if dropdown goes off right edge
-                        if (rect.right > window.innerWidth) {
-                            dropdown.style.left = 'auto';
-                            dropdown.style.right = '0';
-                            dropdown.style.transform = 'translateX(0) translateY(10px)';
-                            
-                            // Adjust arrow position
-                            dropdown.style.setProperty('--arrow-left', 'calc(100% - 40px)');
-                        } 
-                        // Check if dropdown goes off left edge
-                        else if (rect.left < 0) {
-                            dropdown.style.left = '0';
-                            dropdown.style.right = 'auto';
-                            dropdown.style.transform = 'translateX(0) translateY(10px)';
-                            
-                            // Adjust arrow position
-                            dropdown.style.setProperty('--arrow-left', '40px');
-                        }
-                    });
-                }
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            e.preventDefault();
+            window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
 
-                // Initialize dropdown positioning only on desktop
-                function initDesktopFeatures() {
-                    if (window.innerWidth >= 769) {
-                        positionDropdowns();
-                        
-                        // Close dropdowns when clicking outside
-                        document.addEventListener('click', function(event) {
-                            const dropdowns = document.querySelectorAll('.dropdown-container');
-                            let clickedInside = false;
-                            
-                            dropdowns.forEach(dropdown => {
-                                if (dropdown.contains(event.target)) {
-                                    clickedInside = true;
-                                }
-                            });
-                            
-                            if (!clickedInside) {
-                                const openDropdowns = document.querySelectorAll('.dropdown-menu');
-                                openDropdowns.forEach(menu => {
-                                    menu.style.opacity = '0';
-                                    menu.style.visibility = 'hidden';
-                                });
-                            }
-                        });
-                    }
-                }
-
-                // Run on load and resize
-                window.addEventListener('load', initDesktopFeatures);
-                window.addEventListener('resize', initDesktopFeatures);
-
-                // Smooth scroll for anchor links
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const targetId = this.getAttribute('href');
-                        if (targetId === '#') return;
-                        
-                        const targetElement = document.querySelector(targetId);
-                        if (targetElement) {
-                            window.scrollTo({
-                                top: targetElement.offsetTop - 100,
-                                behavior: 'smooth'
-                            });
-                        }
-                    });
-                });
-
-                // Adjust padding based on screen size
-                function adjustHeaderPadding() {
-                    const header = document.querySelector('header > div:first-child');
-                    if (window.innerWidth <= 768) {
-                        header.style.padding = '12px 16px';
-                    } else {
-                        header.style.padding = '16px 24px';
-                    }
-                }
-
-                window.addEventListener('load', adjustHeaderPadding);
-                window.addEventListener('resize', adjustHeaderPadding);
-
-                // Desktop header hide on scroll down, show on scroll up
+// ===== DESKTOP HEADER HIDE ON SCROLL =====
 if (window.innerWidth >= 769) {
     let lastScroll = 0;
     const header = document.querySelector('header');
     
-    // Set body padding to prevent content jump
-    document.body.style.paddingTop = header.offsetHeight + 'px';
-    
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
+    if (header) {
+        document.body.style.paddingTop = header.offsetHeight + 'px';
         
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            // Scrolling down - hide header
-            header.classList.add('hide');
-        } else if (currentScroll < lastScroll) {
-            // Scrolling up - show header
-            header.classList.remove('hide');
-        }
-        
-        lastScroll = currentScroll;
-    });
-}
-            </script>
-
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
             
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.classList.add('hide');
+            } else if (currentScroll < lastScroll) {
+                header.classList.remove('hide');
+            }
+            
+            lastScroll = currentScroll;
+        });
+    }
+}
+
+// ===== ADJUST HEADER PADDING ON RESIZE =====
+function adjustHeaderPadding() {
+    const headerDiv = document.querySelector('header > div:first-child');
+    if (headerDiv) {
+        headerDiv.style.padding = window.innerWidth <= 768 ? '12px 16px' : '16px 24px';
+    }
+}
+window.addEventListener('load', adjustHeaderPadding);
+window.addEventListener('resize', adjustHeaderPadding);
+</script>
 </body>
 </html>
 
