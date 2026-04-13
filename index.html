@@ -794,6 +794,8 @@ video::-webkit-media-controls-panel {
 video::-webkit-media-controls-play-button {
   color: #247646;
 }
+
+
 </style>
 
 <header class="sticky top-0 z-40 w-full bg-white shadow-md" style="overflow: visible;">
@@ -1052,19 +1054,6 @@ video::-webkit-media-controls-play-button {
 <section class="relative mt-0 bg-cover bg-center h-[83vh] md:h-[80vh] items-end" style="background-image:url('ELECT/assets/images/hero.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
     
-    <!-- Small Play Button - Show on scroll, hidden on mobile by default -->
-    <div id="smallPlayButton" class="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-20 opacity-0 transition-opacity duration-1000 ease-out hidden md:block">
-        <button class="flex items-center gap-2 md:gap-3 bg-black/70 hover:bg-black/80 backdrop-blur-sm text-white px-3 py-2 md:px-5 md:py-3 rounded-lg shadow-2xl transition-all duration-300 group">
-            <div class="w-8 h-8 md:w-12 md:h-12 bg-blue-600 rounded flex items-center justify-center group-hover:bg-blue-700 transition-colors">
-                <i class="fas fa-play text-white text-sm md:text-lg ml-1"></i>
-            </div>
-            <div class="text-left">
-                <h4 class="font-bold text-xs md:text-sm">Watch Introduction</h4>
-                <p class="text-xs opacity-90">1:30 min</p>
-            </div>
-        </button>
-    </div>
-    
     <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-end pb-8 md:pb-12">
         <div class="text-white max-w-xl">
             <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm font-semibold mb-3">
@@ -1076,13 +1065,13 @@ video::-webkit-media-controls-play-button {
                 An EU co-funded initiative empowering Zambia's transition through education, innovation, and international collaboration.
             </p>
             <div class="flex flex-wrap gap-4 mt-8">
-                <!-- <a href="About.html" class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
-                    <i class="fas fa-book-open"></i>
-                    Learn More
-                </a> -->
                 <a href="ELECT/assets/documents/ELECT-Brochure.pdf" download class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
                     <i class="fas fa-file"></i>
-                   Download our Brochure
+                   Download Brochure
+                </a>
+                <a href="About.html" class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
+                    <i class="fas fa-phone"></i>
+                    Call Us
                 </a>
             </div>
         </div>
@@ -1181,13 +1170,11 @@ video::-webkit-media-controls-play-button {
                 International Collaboration
             </span>
             </div>
-
-            <!-- READ MORE BUTTON - Centered -->
-            <div class="mt-6 flex justify-center">
-            <a href="About.html" class="inline-flex items-center px-6 py-3 bg-[#247646] hover:bg-green-700 text-white font-semibold rounded transition-all duration-300 shadow-md hover:shadow-lg">
-                <span>Read More About ELECT</span>
-                <i class="fas fa-arrow-right text-sm"></i>
-            </a>
+            <div class="mt-6 w-full">
+                <a href="About.html" class="inline-flex justify-center items-center gap-2 w-full px-6 py-3 bg-[#247646] hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
+                    <span>Read More About ELECT</span>
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </a>
             </div>
       </div>
     </div>
@@ -1489,13 +1476,6 @@ video::-webkit-media-controls-play-button {
                             <span class="text-xs text-gray-500">1 week ago</span>
                         </article>
                     </div>    
-                  <!-- View All Button -->
-                  <div class="text-center mt-12">
-                      <a href="News.html" class="inline-flex text-center w-full items-center gap-2 bg-[#247646] text-white px-6 py-3 rounded font-semibold transition-colors duration-300 hover:bg-[#1d5f38]">
-                          <i class="fas fa-newspaper"></i>
-                          View All News Stories
-                      </a>
-                  </div>
                 </div>
             </div>
             
@@ -1589,10 +1569,405 @@ video::-webkit-media-controls-play-button {
                         </a>
                     </div>
                 </div>
+                <!-- View All Button -->
+                <div class="text-center mt-12">
+                    <a href="News.html" class="inline-flex justify-center items-center gap-2 w-full bg-[#247646] text-white px-6 py-3 rounded font-semibold transition-colors duration-300 hover:bg-[#1d5f38]">
+                        <i class="fas fa-newspaper"></i>
+                        View All News Stories
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+
+<!-- BOARD OF DIRECTORS SECTION -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Board of Directors</h2>
+            <div class="w-24 h-1 bg-[#247646] mx-auto mb-6"></div>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Meet the distinguished leaders guiding the ELECT Project toward a sustainable energy future.
+            </p>
+        </div>
+
+        <!-- Carousel Container -->
+        <div class="relative board-carousel-container">
+            <!-- Carousel Track -->
+            <div class="board-carousel-track" data-omni-track>
+                <!-- Board Member 1 -->
+                <div class="board-slide" data-omni-slide>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Dr. Sarah Mwanza" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="font-bold text-xl text-gray-800 mb-1">Dr. Sarah Mwanza</h3>
+                            <p class="text-[#247646] font-semibold text-sm mb-2">Chairperson</p>
+                            <p class="text-gray-500 text-sm mb-4">Energy Regulatory Board</p>
+                            <div class="flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Board Member 2 -->
+                <div class="board-slide" data-omni-slide>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Prof. James Banda" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="font-bold text-xl text-gray-800 mb-1">Prof. James Banda</h3>
+                            <p class="text-[#247646] font-semibold text-sm mb-2">Vice Chairperson</p>
+                            <p class="text-gray-500 text-sm mb-4">University of Zambia</p>
+                            <div class="flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Board Member 3 -->
+                <div class="board-slide" data-omni-slide>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Dr. Elena Kowalski" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="font-bold text-xl text-gray-800 mb-1">Dr. Elena Kowalski</h3>
+                            <p class="text-[#247646] font-semibold text-sm mb-2">EU Representative</p>
+                            <p class="text-gray-500 text-sm mb-4">European Commission</p>
+                            <div class="flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Board Member 4 -->
+                <div class="board-slide" data-omni-slide>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Mr. Thomas Mulenga" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="font-bold text-xl text-gray-800 mb-1">Mr. Thomas Mulenga</h3>
+                            <p class="text-[#247646] font-semibold text-sm mb-2">Industry Expert</p>
+                            <p class="text-gray-500 text-sm mb-4">Zambia Electricity Supply</p>
+                            <div class="flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Board Member 5 -->
+                <div class="board-slide" data-omni-slide>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Prof. Anna Schmidt" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="font-bold text-xl text-gray-800 mb-1">Prof. Anna Schmidt</h3>
+                            <p class="text-[#247646] font-semibold text-sm mb-2">Academic Advisor</p>
+                            <p class="text-gray-500 text-sm mb-4">Aalto University</p>
+                            <div class="flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="board-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#247646] hover:text-white transition-all duration-300 z-10">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="board-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#247646] hover:text-white transition-all duration-300 z-10">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Dot Indicators -->
+            <div class="flex justify-center space-x-2 mt-8">
+                <button class="board-dot w-2.5 h-2.5 rounded-full bg-[#247646] transition-all duration-300" data-index="0"></button>
+                <button class="board-dot w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="1"></button>
+                <button class="board-dot w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="2"></button>
+                <button class="board-dot w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="3"></button>
+                <button class="board-dot w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="4"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Board Carousel - Omni Peek-a-Boo Pattern - Single Image on All Devices */
+.board-carousel-container {
+    --track-width: 100%;
+    --fraction: 0.85;
+    --slide-width: calc(var(--track-width) * var(--fraction));
+    --peek-areas-width: calc(var(--track-width) * (1 - var(--fraction)));
+    --peek-width: calc(var(--peek-areas-width) / 2);
+    --gap: 20px;
+}
+
+/* All devices show 1 slide with peek - consistent experience */
+@media (min-width: 1024px) {
+    .board-carousel-container {
+        --fraction: 0.75;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .board-carousel-container {
+        --fraction: 0.8;
+    }
+}
+
+@media (max-width: 767px) {
+    .board-carousel-container {
+        --fraction: 0.85;
+    }
+}
+
+[data-omni-track] {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+[data-omni-track]::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+[data-omni-track]::before,
+[data-omni-track]::after {
+    content: "";
+    flex: none;
+    width: var(--peek-width);
+}
+
+.board-slide {
+    flex: none;
+    width: var(--slide-width);
+    scroll-snap-align: center;
+}
+
+.board-slide:not(:last-child) {
+    margin-right: var(--gap);
+}
+
+/* Active dot indicator */
+.board-dot.active {
+    background-color: #247646 !important;
+    width: 24px !important;
+    border-radius: 9999px !important;
+}
+
+/* Navigation arrows hover effect */
+.board-prev:hover,
+.board-next:hover {
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* Smooth image hover */
+.board-slide img {
+    transition: transform 0.5s ease;
+}
+
+.board-slide:hover img {
+    transform: scale(1.05);
+}
+</style>
+
+<script>
+// Board of Directors Carousel - Omni Pattern
+(function() {
+    const track = document.querySelector('[data-omni-track]');
+    const prevBtn = document.querySelector('.board-prev');
+    const nextBtn = document.querySelector('.board-next');
+    const dots = document.querySelectorAll('.board-dot');
+    const slides = document.querySelectorAll('.board-slide');
+    
+    if (!track || !slides.length) return;
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoAdvanceInterval;
+    
+    // Get slide width including gap
+    function getSlideScrollWidth() {
+        const slide = slides[0];
+        const slideWidth = slide.offsetWidth;
+        const gap = parseInt(getComputedStyle(slide).marginRight) || 0;
+        return slideWidth + gap;
+    }
+    
+    // Update active dot
+    function updateDots(index) {
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('active');
+                dot.classList.remove('bg-gray-300');
+                dot.classList.add('bg-[#247646]');
+            } else {
+                dot.classList.remove('active', 'bg-[#247646]');
+                dot.classList.add('bg-gray-300');
+            }
+        });
+    }
+    
+    // Scroll to specific slide
+    function scrollToSlide(index) {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        
+        const slideWidth = getSlideScrollWidth();
+        const scrollPosition = index * slideWidth;
+        
+        track.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+        });
+        
+        currentIndex = index;
+        updateDots(currentIndex);
+    }
+    
+    // Detect current slide based on scroll position
+    function detectCurrentSlide() {
+        const slideWidth = getSlideScrollWidth();
+        const scrollLeft = track.scrollLeft;
+        const newIndex = Math.round(scrollLeft / slideWidth);
+        
+        if (newIndex !== currentIndex && newIndex >= 0 && newIndex < totalSlides) {
+            currentIndex = newIndex;
+            updateDots(currentIndex);
+        }
+    }
+    
+    // Next slide
+    function nextSlide() {
+        scrollToSlide(currentIndex + 1);
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        scrollToSlide(currentIndex - 1);
+    }
+    
+    // Start auto-advance
+    function startAutoAdvance() {
+        stopAutoAdvance();
+        autoAdvanceInterval = setInterval(nextSlide, 5000);
+    }
+    
+    // Stop auto-advance
+    function stopAutoAdvance() {
+        if (autoAdvanceInterval) {
+            clearInterval(autoAdvanceInterval);
+        }
+    }
+    
+    // Event listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoAdvance();
+            startAutoAdvance();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoAdvance();
+            startAutoAdvance();
+        });
+    }
+    
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            scrollToSlide(index);
+            stopAutoAdvance();
+            startAutoAdvance();
+        });
+    });
+    
+    // Update dots on scroll
+    track.addEventListener('scroll', () => {
+        detectCurrentSlide();
+    });
+    
+    // Pause auto-advance on hover
+    track.addEventListener('mouseenter', stopAutoAdvance);
+    track.addEventListener('mouseleave', startAutoAdvance);
+    
+    // Touch events - pause on touch
+    track.addEventListener('touchstart', stopAutoAdvance);
+    track.addEventListener('touchend', () => {
+        setTimeout(startAutoAdvance, 1000);
+    });
+    
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Re-center current slide after resize
+            scrollToSlide(currentIndex);
+        }, 100);
+    });
+    
+    // Initialize
+    updateDots(0);
+    startAutoAdvance();
+    
+    // Ensure proper initial position
+    setTimeout(() => {
+        scrollToSlide(0);
+    }, 100);
+})();
+</script>
+
 
     <section class="py-16 bg-gray-50">
     <div class="container mx-auto px-4 max-w-7xl">
