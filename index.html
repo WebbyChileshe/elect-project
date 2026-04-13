@@ -738,6 +738,41 @@
                 width: 100%;
                 overflow-x: hidden;
             }
+
+            .panel {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 30px;
+                height: 100vh;
+                top: 0;
+                position: sticky;
+            }
+            .panel1 {
+                background-color: #247646;
+                z-index: 1;
+            }
+            .panel2 {
+                background-color: #247646;
+                z-index: 2;
+            }
+            .panel3 {
+                background-color: #247646;
+                z-index: 3;
+            }
+            .panel4 {
+                background-color: #247646;
+                z-index: 4;
+            }
+            .panel5 {
+                background-color: #247646;
+                z-index: 5;
+            }
+            .panel6 {
+                background-color: #247646;
+                z-index: 6;
+            }
 </style>
 
 <header class="sticky top-0 z-40 w-full bg-white shadow-md" style="overflow: visible;">
@@ -1077,7 +1112,7 @@
 </div>
 
 <!-- ABOUT SECTION -->
-<section class="bg-white py-20" id="aboutSection">
+<section class="bg-white py-20 panel panel1" id="aboutSection">
   <div class="max-w-7xl mx-auto px-6 mb-6">
     <h2 class="text-3xl md:text-4xl text-center font-bold text-[#247646] mb-3">About the ELECT Project</h2>
 
@@ -1132,7 +1167,7 @@
 </section>   
 
 <!-- OBJECTIVES SECTION -->
-<section class="py-20">
+<section class="py-20 panel panel2" id="objectivesSection">
   <div class="max-w-7xl mx-auto mt-6 px-6">
     <!-- Section Header -->
     <div class="text-center mb-16">
@@ -1196,7 +1231,7 @@
 </section>
 
 <!-- PARTNERS SECTION -->
-<section class="relative overflow-hidden">
+<section class="relative overflow-hidden panel panel3" id="partnersSection">
     <!-- Gradient Background -->
     <div class="absolute inset-0"></div>
 
@@ -1253,7 +1288,7 @@
 </section>
 
 <!-- NEWS SECTION -->
-<section id="newsSection" class="py-20 bg-white">
+<section id="newsSection" class="py-20 bg-white panel panel4">
     <div class="max-w-7xl mx-auto px-6">
         <!-- Section Header -->
         <div class="border-b-4 border-red-600 pb-4 mb-8">
@@ -1532,7 +1567,7 @@
     </div>
 </section>
 
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-gray-50 panel panel5" id="contactSection">
     <div class="container mx-auto px-4 max-w-7xl">
         <!-- Section Header -->
         <div class="text-center mb-12">
@@ -1618,7 +1653,7 @@
     </div>
 </section>
 <!-- ===== FOOTER (EU compliant) ===== -->
-<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6">
+<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6 panel panel6">
   <div class="container mx-auto px-4 max-w-7xl">
     <!-- Main Footer Content -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
