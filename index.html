@@ -739,38 +739,80 @@
                 overflow-x: hidden;
             }
 
+            /* html {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.panel {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+} */
+
             .panel {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 color: white;
-                font-size: 30px;
-                height: 100vh;
+                background-color: #f9fafb;
+                min-height: 100vh;
                 top: 0;
                 position: sticky;
             }
-            .panel0 {
-                z-index: 1;
-                overflow-y: auto;
-            }
             .panel1 {
-                z-index: 2;
+                z-index: 1;
+                /* overflow-y: auto; */
             }
             .panel2 {
-                z-index: 3;
+                z-index: 2;
             }
             .panel3 {
-                z-index: 4;
+                z-index: 3;
             }
             .panel4 {
-                z-index: 5;
+                z-index: 4;
             }
             .panel5 {
-                z-index: 6;
+                z-index: 5;
             }
             .panel6 {
+                z-index: 6;
+            }
+            .panel7 {
                 z-index: 7;
             }
+
+            /* Desktop header hide/show on scroll only */
+@media (min-width: 769px) {
+    header {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transform: translateY(0);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    header.hide {
+        transform: translateY(-100%);
+    }
+    
+    body {
+        padding-top: 0;
+    }
+}
+
+/* Mobile - original sticky behavior */
+@media (max-width: 768px) {
+    header {
+        position: sticky !important;
+        top: 0 !important;
+    }
+}
             
 </style>
 
@@ -1027,7 +1069,7 @@
 </header>
 
 <!-- HERO SECTION - Responsive version -->
-<section class="relative mt-0 bg-cover bg-center items-center panel panel0" style="background-image:url('ELECT/assets/images/hero.jpg');">
+<section class="relative mt-0 bg-cover bg-center items-center panel panel1" style="background-image:url('ELECT/assets/images/hero.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
     
     <!-- Small Play Button - Show on scroll, hidden on mobile by default -->
@@ -1111,7 +1153,7 @@
 </div>
 
 <!-- ABOUT SECTION -->
-<section class="bg-white py-20 panel panel1" id="aboutSection">
+<section class="bg-white py-20 panel panel2" id="aboutSection">
   <div class="max-w-7xl mx-auto px-6 mb-6">
     <h2 class="text-3xl md:text-4xl text-center font-bold text-[#247646] mb-3">About the ELECT Project</h2>
 
@@ -1166,7 +1208,7 @@
 </section>   
 
 <!-- OBJECTIVES SECTION -->
-<section class="py-20 panel panel2" id="objectivesSection">
+<section class="py-20 panel panel3" id="objectivesSection">
   <div class="max-w-7xl mx-auto mt-6 px-6">
     <!-- Section Header -->
     <div class="text-center mb-16">
@@ -1230,7 +1272,7 @@
 </section>
 
 <!-- PARTNERS SECTION -->
-<section class="relative overflow-hidden panel panel3" id="partnersSection">
+<section class="relative overflow-hidden panel panel4" id="partnersSection">
     <!-- Gradient Background -->
     <div class="absolute inset-0"></div>
 
@@ -1287,7 +1329,7 @@
 </section>
 
 <!-- NEWS SECTION -->
-<section id="newsSection" class="py-20 bg-white panel panel4">
+<section id="newsSection" class="py-20 bg-white panel panel5">
     <div class="max-w-7xl mx-auto px-6">
         <!-- Section Header -->
         <div class="border-b-4 border-red-600 pb-4 mb-8">
@@ -1566,7 +1608,7 @@
     </div>
 </section>
 
-    <section class="py-16 bg-gray-50 panel panel5" id="contactSection">
+    <section class="py-16 bg-gray-50 panel panel6" id="contactSection">
     <div class="container mx-auto px-4 max-w-7xl">
         <!-- Section Header -->
         <div class="text-center mb-12">
@@ -1652,7 +1694,7 @@
     </div>
 </section>
 <!-- ===== FOOTER (EU compliant) ===== -->
-<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6 panel panel6">
+<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6 panel panel7">
   <div class="container mx-auto px-4 max-w-7xl">
     <!-- Main Footer Content -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
@@ -2140,7 +2182,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 window.addEventListener('load', adjustHeaderPadding);
                 window.addEventListener('resize', adjustHeaderPadding);
+
+                // Desktop header hide on scroll down, show on scroll up
+if (window.innerWidth >= 769) {
+    let lastScroll = 0;
+    const header = document.querySelector('header');
+    
+    // Set body padding to prevent content jump
+    document.body.style.paddingTop = header.offsetHeight + 'px';
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            // Scrolling down - hide header
+            header.classList.add('hide');
+        } else if (currentScroll < lastScroll) {
+            // Scrolling up - show header
+            header.classList.remove('hide');
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
             </script>
+
+            
 </body>
 </html>
 
