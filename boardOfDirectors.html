@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Our Leadership | ELECT Project</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+
+        }
+        
+        /* Custom square image styling - large boxed images */
+        .team-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .team-card {
+            background: linear-gradient(135deg, #b1b2b2 0%, #eff0f3 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(79, 70, 229, 0.4);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .team-card:hover .team-image {
+            transform: scale(1.02);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+    </style>
+    <style>
+    html {
+    scroll-behavior: smooth;
+}
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            html::-webkit-scrollbar,
+            body::-webkit-scrollbar,
+            .mobile-menu::-webkit-scrollbar {
+                display: none;
+            }
+            
+            /* Hide scrollbar for IE, Edge and Firefox */
+            html,
+            body,
+            .mobile-menu {
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+
+            /* Prevent horizontal overflow */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            html {
+                overflow-: hidden;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            /* Sticky Header Styles - CLEAN VERSION */
+            header {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 40 !important;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                overflow: visible !important;
+            }
+
+            /* Base navigation styles - REMOVED UNDERLINE, ADDED TEXT COLOR CHANGE */
+            .nav-link {
+                position: relative;
+                padding-bottom: 12px;
+                font-weight: 600;
+                transition: color 0.3s ease;
+                color: #1f2937;
+                white-space: nowrap;
+            }
+
+            /* Removed the ::after pseudo-element that created the green underline */
+            /* Text color changes on hover and active instead */
+            .nav-link:hover,
+            .nav-link.active {
+                color: #16a34a; /* Green color on hover/active */
+            }
+
+            /* Orange banner - reduced height (padding changed from 10px to 4px) */
+            .orange-banner {
+                background: linear-gradient(135deg, #fdbf30 0%, #ff9900 100%);
+                padding: 4px 0;  /* Reduced from 10px to 4px */
+                width: 100%;
+                position: relative;
+                z-index: 40;
+                overflow: visible !important;
+            }
+
+            .orange-banner::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+                animation: shimmer 3s infinite;
+                pointer-events: none;
+            }
+
+            @keyframes shimmer {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(100%); }
+            }
+
+            .navigation-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 24px;
+                position: relative;
+                z-index: 10;
+            }
+
+            .nav-links {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 36px;
+                position: relative;
+                flex-wrap: wrap;
+            }
+
+            .nav-link-with-arrow {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .nav-link-with-arrow i {
+                font-size: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            /* Enhanced dropdown styles - fixed to display outside */
+            .dropdown-container {
+                position: relative;
+                z-index: 50;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: calc(100% + 15px);
+                left: 50%;
+                transform: translateX(-50%) translateY(10px);
+                min-width: 220px;
+                background-color: white;
+                border-radius: 3px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.08);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+                border: 1px solid #e5e7eb;
+                overflow: hidden;
+            }
+
+            .dropdown-container:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown-container:hover .nav-link-with-arrow i {
+                transform: rotate(180deg);
+            }
+
+            /* Dropdown arrow */
+            .dropdown-menu::before {
+                content: '';
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid white;
+                z-index: 1001;
+            }
+
+            .dropdown-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px 20px;
+                color: #4b5563;
+                font-weight: 500;
+                font-size: 15px;
+                transition: all 0.2s ease;
+                border-left: 3px solid transparent;
+            }
+
+            .dropdown-item:hover {
+                color: #059669;
+                padding-left: 24px;
+            }
+
+            .dropdown-item i {
+                font-size: 14px;
+                width: 18px;
+                text-align: center;
+                color: #6b7280;
+            }
+
+            .dropdown-item:hover i {
+                color: #059669;
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .orange-banner {
+                    display: none !important;
+                }
+                
+                .navigation-container {
+                    display: none !important;
+                }
+                
+                .nav-links {
+                    display: none !important;
+                }
+                
+                header > div:first-child {
+                    padding: 12px 16px;
+                }
+            }
+
+            @media (min-width: 769px) and (max-width: 1024px) {
+                .nav-links {
+                    gap: 20px;
+                }
+                
+                .nav-link {
+                    font-size: 14px;
+                    padding-bottom: 8px;
+                }
+                
+                .dropdown-menu {
+                    min-width: 200px;
+                }
+            }
+
+            /* Keep existing animations */
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .animate-fadeIn {
+                animation: fadeIn 0.9s ease-out forwards;
+            }
+
+            /* Video Overlay Styles */
+            #videoOverlay {
+                transition: opacity 0.7s ease-out;
+            }
+
+            #videoContainer {
+                transition: all 1s ease-out;
+            }
+
+            /* Small Play Button Styles */
+            #smallPlayButton {
+                transition: opacity 1s ease-out;
+            }
+
+            /* News Slider Styles */
+            .slider-item {
+                transition: opacity 0.7s ease-in-out;
+            }
+
+            .line-clamp-2 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            /* Hide buttons from news slider preview */
+            .slider-next,
+            .slider-prev {
+                display: none !important;
+            }
+
+            /* BBC News inspired styles */
+            #newsSection .bg-red-600 {
+                background-color: #247646;
+            }
+
+            #newsSection a:hover {
+                text-decoration: underline;
+            }
+
+            /* Slider dot active state */
+            .slider-dot.bg-white {
+                background-color: white !important;
+            }
+
+            /* Ensure dots are not clickable */
+            .slider-dot {
+                cursor: default !important;
+                pointer-events: none !important;
+            }
+
+            /* Mobile menu styles */
+            .mobile-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 320px;
+                height: 100vh;
+                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+                z-index: 1000;
+                flex-direction: column;
+                padding: 10px;
+                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                overflow-y: auto;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .mobile-menu::-webkit-scrollbar {
+                display: none;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+                transform: translateX(0);
+            }
+
+            .menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(54, 105, 20, 0.5);
+                z-index: 999;
+            }
+
+            .menu-overlay.active {
+                display: block;
+            }
+
+            /* Menu header with ELECT logo */
+            .mobile-menu-header {
+                padding: 15px 0;
+                border-bottom: 2px solid #e5e7eb;
+                margin-bottom: 20px;
+            }
+
+            /* Menu items */
+            .mobile-menu-item {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                padding: 10px 20px;
+                color: #374151;
+                font-weight: 600;
+                font-size: 15px;
+                border-radius: 6px;
+                margin-bottom: 8px;
+            }
+
+            /* .mobile-menu-item:hover {
+                color: #16a34a;
+            } */
+
+            .mobile-menu-item i {
+                width: 24px;
+                text-align: center;
+                font-size: 20px;
+            }
+
+            /* .mobile-menu-item.active {
+                background-color: #16a34a;
+                color: white;
+            } */
+
+            /* Logos section at bottom */
+            .mobile-logos {
+                margin-top: auto;
+                padding: 25px 0;
+                border-top: 2px solid #e5e7eb;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .logos-row {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+
+            .elect-logo-mobile {
+                height: 50px;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .eu-logo-mobile {
+                height: 40px;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .mobile-tagline {
+                text-align: center;
+                color: #374151;
+                font-size: 14px;
+                line-height: 1.4;
+                max-width: 280px;
+            }
+
+            /* Close button */
+            .close-menu-btn {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #f3f4f6;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #374151;
+                transition: all 0.3s ease;
+                border: none;
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            .close-menu-btn:hover {
+                background-color: #e5e7eb;
+                transform: rotate(90deg);
+            }
+
+            /* News page styles */
+            .filter-btn.active {
+                background-color: #247646 !important;
+                color: white !important;
+            }
+
+            .new-item {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .new-item:hover {
+                transform: translateY(-5px);
+            }
+
+            @keyframes spin {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .animate-spin {
+                animation: spin 1s linear infinite;
+            }
+
+            .bg-red-600 {
+                background-color: #dc2626;
+            }
+            .bg-blue-600 {
+                background-color: #2563eb;
+            }
+            .bg-green-600 {
+                background-color: #16a34a;
+            }
+            .bg-purple-600 {
+                background-color: #9333ea;
+            }
+            .bg-yellow-600 {
+                background-color: #ca8a04;
+            }
+
+            /* Mobile menu button */
+            #mobileMenuBtn {
+                flex-direction: column;
+                justify-content: space-between;
+                width: 32px;
+                height: 24px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+            }
+
+            .menu-line {
+                width: 100%;
+                height: 3px;
+                background-color: #374151;
+                border-radius: 2px;
+                transition: all 0.3s ease;
+            }
+
+            #mobileMenuBtn.active .menu-line:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
+            #mobileMenuBtn.active .menu-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            #mobileMenuBtn.active .menu-line:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+
+            @media (max-width: 768px) {
+                .mobile-only {
+                    display: block;
+                }
+
+                .desktop-only {
+                    display: none;
+                }
+                
+                #mobileMenuBtn {
+                    display: flex !important;
+                }
+            }
+
+            @media (min-width: 769px) {
+                .mobile-only {
+                    display: none;
+                }
+                
+                #mobileMenuBtn {
+                    display: none !important;
+                }
+            }
+
+            .slider-dot {
+                display: none;
+            }
+
+            /* Dropdown mobile compatibility */
+            .group:hover .group-hover\:opacity-100 {
+                opacity: 1;
+            }
+
+            .group:hover .group-hover\:visible {
+                visibility: visible;
+            }
+
+            .group:hover .group-hover\:translate-y-0 {
+                transform: translateY(0);
+            }
+
+            .close-video-btn {
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background 0.3s ease;
+                font-size: 18px;
+            }
+
+            .close-video-btn:hover {
+                background: rgba(0, 0, 0, 0.9);
+            }
+
+            /* Floating card z-index adjustment */
+            #floatingCard {
+                z-index: 15;
+            }
+
+            /* Objectives image rotation */
+            .objectives-image {
+                position: relative;
+                width: 100%;
+                height: 192px;
+                overflow: hidden;
+            }
+
+            .objectives-image > div {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                opacity: 0;
+                transition: opacity 1s ease-in-out;
+            }
+
+            .objectives-image > div.active {
+                opacity: 1;
+            }
+
+            /* Grid dropdown styles */
+            .grid-dropdown {
+                min-width: 500px !important;
+                padding: 0 !important;
+            }
+
+            .grid-dropdown-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0;
+            }
+
+            .dropdown-column {
+                padding: 16px 0;
+            }
+
+            .dropdown-column:first-child {
+                border-right: 1px solid #e5e7eb;
+            }
+
+            .dropdown-column .dropdown-item {
+                padding: 16px 24px;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .dropdown-column .dropdown-item i {
+                font-size: 20px;
+                width: 24px;
+                margin-top: 4px;
+            }
+
+            .dropdown-title {
+                display: block;
+                font-weight: 600;
+                color: #1f2937;
+                margin-bottom: 4px;
+                font-size: 15px;
+            }
+
+            .dropdown-desc {
+                display: block;
+                font-size: 13px;
+                color: #6b7280;
+                line-height: 1.4;
+            }
+
+            .dropdown-column .dropdown-item:hover .dropdown-title {
+                color: #059669;
+            }
+
+            .dropdown-column .dropdown-item:hover .dropdown-desc {
+                color: #4b7280;
+            }
+
+            /* Adjust arrow for wider dropdown */
+            .grid-dropdown::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /* Responsive adjustments for grid dropdown */
+            @media (max-width: 1024px) {
+                .grid-dropdown {
+                    min-width: 450px !important;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .grid-dropdown {
+                    display: none !important;
+                }
+                
+                .grid-dropdown-container {
+                    grid-template-columns: 1fr;
+                }
+                
+                .dropdown-column:first-child {
+                    border-right: none;
+                    border-bottom: 1px solid #e5e7eb;
+                }
+            }
+
+            /* Container max-width adjustments */
+            .max-w-7xl {
+                max-width: 80rem;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+            }
+
+            /* Ensure images don't cause overflow */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Fix for breadcrumb */
+            .bg-gray-100 {
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            /* Desktop header hide/show on scroll only */
+@media (min-width: 769px) {
+    header {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transform: translateY(0);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    header.hide {
+        transform: translateY(-100%);
+    }
+    
+    body {
+        padding-top: 0;
+    }
+}
+
+/* Mobile - original sticky behavior */
+@media (max-width: 768px) {
+    header {
+        position: sticky !important;
+        top: 0 !important;
+    }
+}
+
+/* Smooth transitions for video elements */
+#videoPoster {
+  transition: opacity 0.3s ease;
+}
+
+#videoPoster.hidden {
+  display: none;
+}
+
+#videoPlayer.hidden {
+  display: none;
+}
+
+/* Custom video controls styling (optional) */
+video::-webkit-media-controls-panel {
+  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+video::-webkit-media-controls-play-button {
+  color: #247646;
+}
+
+
+</style>
+</head>
+<body>
+<header class="sticky top-0 z-40 w-full bg-white shadow-md" style="overflow: visible;">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Left Logo -->
+        <div class="flex items-center gap-4">
+            <a href="index.html">
+                <img
+                    src="ELECT/assets/images/ELECT-Logo.png"
+                    class="h-10 w-auto"
+                    alt="ELECT Logo">
+            </a>
+        </div>
+
+        <!-- Mobile Menu Button - Always visible on mobile -->
+        <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1 w-8">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </button>
+
+        <!-- Desktop Right Logo -->
+        <div class="hidden md:flex items-center gap-4">
+            <img src="ELECT/assets/images/EU.png" class="h-10 w-auto" alt="EU Logo">
+        </div>
+    </div>
+
+    <!-- Orange Navigation Banner - reduced height due to padding: 4px -->
+    <div class="orange-banner desktop-only w-full" style="overflow: visible;">
+        <div class="navigation-container">
+            <div class="nav-links">
+                <!-- Home -->
+                <a href="index.html" class="nav-link">
+                    <span>Home</span>
+                </a>
+
+                <!-- About dropdown -->
+                <div class="dropdown-container">
+                    <a href="About.html" class="nav-link nav-link-with-arrow">
+                        <span>About</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="About.html#overview" class="dropdown-item">
+                            <i class="fas fa-eye"></i>
+                            <span>Project Overview</span>
+                        </a>
+                        <a href="About.html#background" class="dropdown-item">
+                            <i class="fas fa-history"></i>
+                            <span>Background</span>
+                        </a>
+                        <a href="About.html#target" class="dropdown-item">
+                            <i class="fas fa-users"></i>
+                            <span>Our Audience</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Objectives dropdown -->
+                <div class="dropdown-container">
+                    <a href="Objectives.html" class="nav-link nav-link-with-arrow">
+                        <span>Objectives</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="Objectives.html#main" class="dropdown-item">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Main Objectives</span>
+                        </a>
+                        <a href="Objectives.html#outcomes" class="dropdown-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Outcomes & Benefits</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Partners -->
+                <a href="Partners.html" class="nav-link">
+                    <span>Partners</span>
+                </a>
+
+                <!-- Activities dropdown -->
+                <div class="dropdown-container">
+                    <a href="Events.html" class="nav-link nav-link-with-arrow">
+                        <span>Activities</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="News.html#latest" class="dropdown-item">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Latest News</span>
+                        </a>
+                        <a href="Events.html#upcoming" class="dropdown-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Events</span>
+                        </a>
+                        <a href="Gallery.html#media" class="dropdown-item">
+                            <i class="fas fa-images"></i>
+                            <span>Gallery</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Curriculum dropdown with grid layout -->
+                <div class="dropdown-container">
+                    <a href="Curriculum.html" class="nav-link nav-link-with-arrow">
+                        <span>Curriculum</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu grid-dropdown">
+                        <div class="grid-dropdown-container">
+                            <!-- Left column -->
+                            <div class="dropdown-column">
+                                <a href="Curriculum.html#objectives" class="dropdown-item">
+                                    <i class="fas fa-bullseye"></i>
+                                    <div>
+                                        <span class="dropdown-title">Objectives</span>
+                                        <span class="dropdown-desc">Program goals & aims</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#learning-outcomes" class="dropdown-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <div>
+                                        <span class="dropdown-title">Learning Outcomes</span>
+                                        <span class="dropdown-desc">Skills & knowledge gained</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#target-group" class="dropdown-item">
+                                    <i class="fas fa-users"></i>
+                                    <div>
+                                        <span class="dropdown-title">Target Group</span>
+                                        <span class="dropdown-desc">Who should participate</span>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Right column -->
+                            <div class="dropdown-column">
+                                <a href="Curriculum.html#duration" class="dropdown-item">
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <span class="dropdown-title">Duration</span>
+                                        <span class="dropdown-desc">Program timeline</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#delivery-format" class="dropdown-item">
+                                    <i class="fas fa-laptop"></i>
+                                    <div>
+                                        <span class="dropdown-title">Delivery Format</span>
+                                        <span class="dropdown-desc">How it's delivered</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#application-process" class="dropdown-item">
+                                    <i class="fas fa-file-signature"></i>
+                                    <div>
+                                        <span class="dropdown-title">Application Process</span>
+                                        <span class="dropdown-desc">How to apply</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="menuOverlay" class="menu-overlay"></div>
+
+    <!-- Enhanced Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <!-- Close Button -->
+        <button class="close-menu-btn" id="closeMenuBtn">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+
+        <!-- Menu Header with ELECT Logo -->
+        <div class="mobile-menu-header">
+            <a href="index.html" class="flex items-center gap-3">
+                <img
+                    src="/ELECT/assets/images/ELECT-Logo.png"
+                    alt="ELECT Logo"
+                    class="h-12 w-auto">
+                <div class="text-left">
+                    <h2 class="font-bold text-lg text-green-700">ELECT Project</h2>
+                    <p class="text-sm text-gray-600">Energy Efficient Lighting</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Menu Items -->
+        <a href="index.html" class="mobile-menu-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+
+        <a href="About.html" class="mobile-menu-item">
+            <i class="fas fa-info-circle"></i>
+            <span>About</span>
+        </a>
+
+        <a href="Objectives.html" class="mobile-menu-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Objectives</span>
+        </a>
+
+        <a href="Partners.html" class="mobile-menu-item">
+            <i class="fas fa-handshake"></i>
+            <span>Partners</span>
+        </a>
+
+        <a href="Events.html" class="mobile-menu-item">
+            <i class="fas fa-newspaper"></i>
+            <span>Events</span>
+        </a>
+         <a href="News.html" class="mobile-menu-item">
+            <i class="fas fa-newspaper"></i>
+            <span>News</span>
+        </a>
+
+        <a href="Curriculum.html" class="mobile-menu-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Curriculum</span>
+        </a>
+
+        <a href="Gallery.html" class="mobile-menu-item">
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+        </a>
+
+        <a href="Contacts.html" class="mobile-menu-item">
+            <i class="fas fa-address-book"></i>
+            <span>Contact</span>
+        </a>
+
+        <!-- Logos Section at Bottom -->
+        <div class="mobile-logos">
+            <!-- ELECT & EU Logos -->
+            <div class="logos-row">
+                <img src="/ELECT/assets/images/EU.png" alt="EU Logo" class="eu-logo-mobile">
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    // Mobile menu functionality (preserved as is)
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+    function openMenu() {
+        mobileMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+        mobileMenuBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', openMenu);
+    }
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', closeMenu);
+    }
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+</script>
+<section class="relative bg-cover bg-center h-[50vh]" style="background-image:url('ELECT/assets/images/news-hero.png');">
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div> 
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl pt-32 mx-auto px-6">
+            <div class="text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Board Of Directors</h1>
+                <p class="text-xl max-w-3xl">
+                    The distinguished leaders guiding the ELECT Project toward a sustainable energy future
+                </p>
+            </div>
+        </div>
+    </section>
+        <!-- BREADCRUMB -->
+    <div class="bg-gray-100 py-4">
+        <div class="max-w-7xl mx-auto px-6">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="../index.php" class="text-blue-600 hover:text-blue-800">Home</a>
+                <span class="text-gray-500">/</span>
+                <span class="text-gray-600">Board Of Directors</span>
+            </nav>
+        </div>
+    </div>
+    <!-- Leadership Section with LARGE BOXED/SQUARE IMAGES -->
+    <div class="py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="mx-auto max-w-2xl text-center mb-16">
+                <h2 class="text-2xl font-semibold tracking-tight text-[#247646] sm:text-5xl">
+                    Board Of Directors
+                </h2>
+                <p class="mt-6 text-lg text-gray-500 max-w-2xl mx-auto">
+                    We're a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.
+                </p>
+            </div>
+
+            <!-- Team Grid - Large Boxed/Square Images -->
+            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                
+                <!-- Team Member 1 - Large Square Image -->
+                <div class="team-card rounded overflow-hidden bg-gray-800/50 backdrop-blur-sm transition-all duration-300">
+                    <div class="relative overflow-hidden bg-gray-700">
+                        <img src="ELECT/assets/images/dr.-halubanza.jpg" 
+                             alt="Dr.Brian Halubanza"
+                             class="team-image w-full aspect-square object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Dr.Brian Halubanza</h3>
+                        <p class="text-[#247646] font-semibold mb-3">Co-Founder / CEO</p>
+                        <div class="flex justify-center gap-3 mt-4">
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card rounded overflow-hidden bg-gray-50 backdrop-blur-sm transition-all duration-300">
+                    <div class="relative overflow-hidden bg-gray-700">
+                        <img src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=800&q=80" 
+                             alt="Michael Foster" 
+                             class="team-image w-full aspect-square object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Michael Foster</h3>
+                        <p class="text-[#247646] font-semibold mb-3">Co-Founder / CTO</p>
+                        <div class="flex justify-center gap-3 mt-4">
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card rounded overflow-hidden bg-gray-800/50 backdrop-blur-sm transition-all duration-300">
+                    <div class="relative overflow-hidden bg-gray-700">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=800&q=80" 
+                             alt="Dries Vincent" 
+                             class="team-image w-full aspect-square object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Dries Vincent</h3>
+                        <p class="text-[#247646] font-semibold mb-3">Business Relations</p>
+                        <div class="flex justify-center gap-3 mt-4">
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card rounded overflow-hidden bg-gray-800/50 backdrop-blur-sm transition-all duration-300">
+                    <div class="relative overflow-hidden bg-gray-700">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=800&q=80" 
+                             alt="Lindsay Walton" 
+                             class="team-image w-full aspect-square object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Lindsay Walton</h3>
+                        <p class="text-[#247646] font-semibold mb-3">Front-end Developer</p>
+                        <div class="flex justify-center gap-3 mt-4">
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="team-card rounded overflow-hidden bg-gray-800/50 backdrop-blur-sm transition-all duration-300">
+                    <div class="relative overflow-hidden bg-gray-700">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=800&q=80" 
+                             alt="Courtney Henry" 
+                             class="team-image w-full aspect-square object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Courtney Henry</h3>
+                        <p class="text-[#247646] font-semibold mb-3">Designer</p>
+                        <div class="flex justify-center gap-3 mt-4">
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="team-card rounded overflow-hidden bg-gray-800/50 backdrop-blur-sm transition-all duration-300">
+                    <div class="relative overflow-hidden bg-gray-700">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=800&q=80" 
+                             alt="Tom Cook" 
+                             class="team-image w-full aspect-square object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-1">Tom Cook</h3>
+                        <p class="text-[#247646] font-semibold mb-3">Director of Product</p>
+                        <div class="flex justify-center gap-3 mt-4">
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-[#247646] transition"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER (EU compliant) ===== -->
+<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
+      <!-- Brand Column -->
+      <div class="lg:col-span-1">
+        <img src="ELECT/assets/images/ELECT-Logo.png" alt="ELECT" class="h-16 w-auto mb-4">
+        <p class="text-sm text-gray-500 leading-relaxed">
+          Energy Efficient Lighting for Clean Energy Transitions in Zambia.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="About.html" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">About</a></li>
+          <li><a href="Objectives.html" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">Objectives</a></li>
+          <li><a href="Partners.html" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">Partners</a></li>
+          <li><a href="News.html" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">News</a></li>
+        </ul>
+      </div>
+
+      <!-- Partners -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Partners</h4>
+        <ul class="space-y-2">
+          <li><a href="https://www.aalto.fi" target="_blank" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">Aalto University</a></li>
+          <li><a href="https://www.eap.gr" target="_blank" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">Hellenic Open University</a></li>
+          <li><a href="https://www.cbu.ac.zm" target="_blank" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">Copperbelt University</a></li>
+           <li><a href="https://www.mu.ac.zm" target="_blank" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">Mulungushi University</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Contact</h4>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <i class="fas fa-envelope mt-1 mr-3 text-gray-500"></i>
+            <a href="mailto:info@elect-project.org" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">info@elect-project.org</a>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-phone mt-1 mr-3 text-gray-500"></i>
+            <a href="tel:+260211234567" class="text-sm text-gray-500 hover:text-white transition-colors duration-200">+260 21 1234567</a>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-500"></i>
+            <span class="text-sm text-gray-500">Lusaka, Zambia</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social & EU Funding -->
+      <div>
+        <h4 class="text-white font-semibold mb-4 text-lg">Follow Us</h4>
+        <div class="flex space-x-4 mb-6">
+          <a href="#" class="text-gray-500 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Twitter">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="LinkedIn">
+            <i class="fab fa-linkedin text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Facebook">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+        </div>
+        <div class="mt-2">
+          <img src="ELECT/assets/images/EU.png" alt="Co-funded by the European Union" class="h-14 w-auto">
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="border-t border-gray-800 pt-6 mt-4">
+      <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+        <p>© 2026 ELECT Project. All rights reserved.</p>
+        <p class="mt-2 md:mt-0">Co‑funded by the European Union</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+// Define playAboutVideo globally so onclick can access it
+function playAboutVideo() {
+  const poster = document.getElementById('videoPoster');
+  const player = document.getElementById('videoPlayer');
+  const video = document.getElementById('aboutVideo');
+  const playBtn = document.getElementById('playVideoBtn');
+  
+  if (!poster || !player || !video) return;
+  
+  // Hide poster, show player
+  poster.classList.add('hidden');
+  player.classList.remove('hidden');
+  
+  // Play the video
+  video.play().catch(e => console.log("Play prevented:", e));
+  
+  // Update button state
+  if (playBtn) {
+    playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
+    playBtn.style.opacity = '0.7';
+    playBtn.style.pointerEvents = 'none';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Video Elements for Hero section
+    const smallPlayButton = document.getElementById('smallPlayButton');
+    const videoOverlay = document.getElementById('videoOverlay');
+    const videoContainer = document.getElementById('videoContainer');
+    const mainVideo = document.getElementById('mainVideo');
+    const closeVideoBtn = document.getElementById('closeVideoBtn');
+    const closeOverlayBtn = document.getElementById('closeOverlayBtn');
+    
+    // About Section Video Elements
+    const aboutSection = document.getElementById('aboutSection');
+    const aboutVideoWrapper = document.getElementById('aboutVideoWrapper');
+    const aboutVideo = document.getElementById('aboutVideo');
+    const aboutImage = document.getElementById('aboutImage');
+    const closeAboutVideoBtn = document.getElementById('closeAboutVideoBtn');
+    const floatingCard = document.getElementById('floatingCard');
+    
+    // Objectives Elements for Image Rotation
+    const objectiveImages = [
+        document.querySelectorAll('.objective-1-image'),
+        document.querySelectorAll('.objective-2-image'),
+        document.querySelectorAll('.objective-3-image')
+    ];
+    
+    // News Slider Elements
+    const sliderItems = document.querySelectorAll('.slider-item');
+    const sliderDots = document.querySelectorAll('.slider-dot');
+    
+    let currentSlide = 0;
+    let slideInterval;
+    let aboutVideoTriggered = false;
+    let objectivesInterval;
+    let objectiveCurrentImages = [0, 0, 0];
+    
+    // ===== ABOUT VIDEO EVENT LISTENERS =====
+    if (aboutVideo) {
+        // Handle video ended event
+        aboutVideo.addEventListener('ended', function() {
+            const playBtn = document.getElementById('playVideoBtn');
+            if (playBtn) {
+                playBtn.innerHTML = '<i class="fas fa-redo-alt"></i><span>Replay</span>';
+                playBtn.style.opacity = '1';
+                playBtn.style.pointerEvents = 'auto';
+                playBtn.onclick = function() {
+                    aboutVideo.currentTime = 0;
+                    aboutVideo.play();
+                    playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
+                    playBtn.style.opacity = '0.7';
+                    playBtn.style.pointerEvents = 'none';
+                };
+            }
+        });
+        
+        // Handle pause event
+        aboutVideo.addEventListener('pause', function() {
+            const playBtn = document.getElementById('playVideoBtn');
+            if (playBtn && !aboutVideo.ended) {
+                playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Resume</span>';
+                playBtn.style.opacity = '1';
+                playBtn.style.pointerEvents = 'auto';
+                playBtn.onclick = function() {
+                    aboutVideo.play();
+                    playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
+                    playBtn.style.opacity = '0.7';
+                    playBtn.style.pointerEvents = 'none';
+                };
+            }
+        });
+        
+        // Handle play event
+        aboutVideo.addEventListener('play', function() {
+            const playBtn = document.getElementById('playVideoBtn');
+            if (playBtn) {
+                playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
+                playBtn.style.opacity = '0.7';
+                playBtn.style.pointerEvents = 'none';
+            }
+        });
+    }
+    
+    // Play button on scroll from hero section
+    function showPlayButton() {
+        if (smallPlayButton) {
+            smallPlayButton.classList.remove('opacity-0');
+            smallPlayButton.classList.add('opacity-100');
+        }
+    }
+    
+    function hidePlayButton() {
+        if (smallPlayButton) {
+            smallPlayButton.classList.remove('opacity-100');
+            smallPlayButton.classList.add('opacity-0');
+        }
+    }
+    
+    // OBJECTIVES IMAGE ROTATION
+    function rotateObjectiveImages() {
+        objectiveImages.forEach((images, objectiveIndex) => {
+            if (images && images.length > 0) {
+                // Hide all images for this objective
+                images.forEach(img => {
+                    if (img) img.classList.remove('active');
+                });
+                
+                // Show current image
+                objectiveCurrentImages[objectiveIndex] = 
+                    (objectiveCurrentImages[objectiveIndex] + 1) % images.length;
+                if (images[objectiveCurrentImages[objectiveIndex]]) {
+                    images[objectiveCurrentImages[objectiveIndex]].classList.add('active');
+                }
+            }
+        });
+    }
+    
+    function initObjectivesImageRotation() {
+        if (objectiveImages.some(arr => arr.length > 0)) {
+            objectivesInterval = setInterval(rotateObjectiveImages, 5000);
+            rotateObjectiveImages();
+        }
+    }
+    
+    // Scroll detection
+    window.addEventListener('scroll', function() {
+        const heroSection = document.querySelector('.relative.bg-cover');
+        if (heroSection) {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            const viewportHeight = window.innerHeight;
+            
+            if (heroBottom < viewportHeight * 0.9) {
+                showPlayButton();
+            } else {
+                hidePlayButton();
+            }
+        }
+    });
+    
+    // News Slider Functions
+    function showSlide(index) {
+        if (!sliderItems.length) return;
+        
+        sliderItems.forEach(item => {
+            item.classList.remove('opacity-100');
+            item.classList.add('opacity-0');
+        });
+        
+        sliderItems[index].classList.remove('opacity-0');
+        sliderItems[index].classList.add('opacity-100');
+        
+        sliderDots.forEach(dot => {
+            dot.classList.remove('bg-white');
+            dot.classList.add('bg-white/50');
+        });
+        if (sliderDots[index]) {
+            sliderDots[index].classList.remove('bg-white/50');
+            sliderDots[index].classList.add('bg-white');
+        }
+        
+        currentSlide = index;
+    }
+    
+    function nextSlide() {
+        if (!sliderItems.length) return;
+        let nextIndex = (currentSlide + 1) % sliderItems.length;
+        showSlide(nextIndex);
+    }
+    
+    function startSlider() {
+        if (sliderItems.length > 0) {
+            slideInterval = setInterval(nextSlide, 10000);
+        }
+    }
+    
+    // Initialize slider
+    if (sliderItems.length > 0) {
+        showSlide(0);
+        startSlider();
+    }
+    
+    // Initialize play button opacity
+    if (smallPlayButton) {
+        smallPlayButton.classList.remove('opacity-100');
+        smallPlayButton.classList.add('opacity-0');
+    }
+    
+    // Initialize objectives image rotation
+    initObjectivesImageRotation();
+});
+                
+// ===== MOBILE MENU FUNCTIONALITY (runs immediately) =====
+(function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    if (!mobileMenuBtn || !mobileMenu) return;
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        if (menuOverlay) menuOverlay.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+        if (menuOverlay) menuOverlay.classList.add('active');
+        mobileMenuBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
+
+    const mobileLinks = mobileMenu.querySelectorAll('.mobile-menu-item');
+    mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+})();
+
+// ===== HIGHLIGHT CURRENT PAGE =====
+(function() {
+    const currentPage = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileLinks = document.querySelectorAll('.mobile-menu-item');
+    
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath && currentPage.includes(linkPath.split('#')[0])) {
+            link.classList.add('active');
+        }
+    });
+    
+    mobileLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath && currentPage.includes(linkPath.split('#')[0])) {
+            link.classList.add('active');
+        }
+    });
+})();
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            e.preventDefault();
+            window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// ===== DESKTOP HEADER HIDE ON SCROLL =====
+if (window.innerWidth >= 769) {
+    let lastScroll = 0;
+    const header = document.querySelector('header');
+    
+    if (header) {
+        document.body.style.paddingTop = header.offsetHeight + 'px';
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.classList.add('hide');
+            } else if (currentScroll < lastScroll) {
+                header.classList.remove('hide');
+            }
+            
+            lastScroll = currentScroll;
+        });
+    }
+}
+
+// ===== ADJUST HEADER PADDING ON RESIZE =====
+function adjustHeaderPadding() {
+    const headerDiv = document.querySelector('header > div:first-child');
+    if (headerDiv) {
+        headerDiv.style.padding = window.innerWidth <= 768 ? '12px 16px' : '16px 24px';
+    }
+}
+window.addEventListener('load', adjustHeaderPadding);
+window.addEventListener('resize', adjustHeaderPadding);
+</script>
+</body>
+</html>
