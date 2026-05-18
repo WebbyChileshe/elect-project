@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +67,7 @@
                 overflow: visible !important;
             }
 
-            /* Base navigation styles */
+            /* Base navigation styles - REMOVED UNDERLINE, ADDED TEXT COLOR CHANGE */
             .nav-link {
                 position: relative;
                 padding-bottom: 12px;
@@ -78,28 +77,17 @@
                 white-space: nowrap;
             }
 
-            .nav-link::after {
-                content: "";
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                height: 3px;
-                background-color: #16a34a;
-                transform: scaleX(0);
-                transform-origin: left;
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Removed the ::after pseudo-element that created the green underline */
+            /* Text color changes on hover and active instead */
+            .nav-link:hover,
+            .nav-link.active {
+                color: #16a34a; /* Green color on hover/active */
             }
 
-            .nav-link:hover::after,
-            .nav-link.active::after {
-                transform: scaleX(1);
-            }
-
-            /* Orange banner - fixed to allow dropdowns outside */
+            /* Orange banner - reduced height (padding changed from 10px to 4px) */
             .orange-banner {
                 background: linear-gradient(135deg, #fdbf30 0%, #ff9900 100%);
-                padding: 12px 0;
+                padding: 4px 0;  /* Reduced from 10px to 4px */
                 width: 100%;
                 position: relative;
                 z-index: 40;
@@ -313,10 +301,6 @@
                 background-color: #247646;
             }
 
-            #newsSection .border-red-600 {
-                border-color: #247646;
-            }
-
             #newsSection a:hover {
                 text-decoration: underline;
             }
@@ -396,9 +380,9 @@
                 margin-bottom: 8px;
             }
 
-            .mobile-menu-item:hover {
+            /* .mobile-menu-item:hover {
                 color: #16a34a;
-            }
+            } */
 
             .mobile-menu-item i {
                 width: 24px;
@@ -406,10 +390,10 @@
                 font-size: 20px;
             }
 
-            .mobile-menu-item.active {
+            /* .mobile-menu-item.active {
                 background-color: #16a34a;
                 color: white;
-            }
+            } */
 
             /* Logos section at bottom */
             .mobile-logos {
@@ -798,366 +782,285 @@ video::-webkit-media-controls-play-button {
 
 </style>
 
-<header class="header-sticky header-absolute" data-bs-theme="light">
-    <nav class="navbar navbar-expand-xl px-lg-5">
-        <div class="container-fluid">
-            <!-- Left Logo - Reduced Size -->
-            <a class="navbar-brand me-5" href="index.html">
-                <img class="light-mode-item navbar-brand-item" src="/ELECT/assets/images/ELECT-Logo.png" alt="ELECT Logo" style="height: 40px; width: auto;">
-                <img class="dark-mode-item navbar-brand-item" src="/ELECT/assets/images/ELECT-Logo.png" alt="ELECT Logo" style="height: 40px; width: auto;">
+<header class="sticky top-0 z-40 w-full bg-white shadow-md" style="overflow: visible;">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Left Logo -->
+        <div class="flex items-center gap-4">
+            <a href="index.html">
+                <img
+                    src="ELECT/assets/images/ELECT-Logo.png"
+                    class="h-10 w-auto"
+                    alt="ELECT Logo">
             </a>
-
-            <!-- Desktop Navigation - Centered between logos -->
-            <div class="navbar-collapse collapse" id="navbarCollapse">
-                <ul class="navbar-nav navbar-nav-scroll dropdown-hover mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    
-                    <!-- About Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="About.html" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-                            About
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="About.html#overview">Project Overview</a></li>
-                            <li><a class="dropdown-item" href="About.html#background">Background</a></li>
-                            <li><a class="dropdown-item" href="About.html#target">Our Audience</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Objectives Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="Objectives.html" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-                            Objectives
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="Objectives.html#main">Main Objectives</a></li>
-                            <li><a class="dropdown-item" href="Objectives.html#outcomes">Outcomes & Benefits</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="Partners.html">Partners</a>
-                    </li>
-
-                    <!-- Activities Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="Events.html" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-                            Activities
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="News.html#latest">Latest News</a></li>
-                            <li><a class="dropdown-item" href="Events.html#upcoming">Events</a></li>
-                            <li><a class="dropdown-item" href="Gallery.html#media">Gallery</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Curriculum Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="Curriculum.html" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-                            Curriculum
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-size-lg p-3">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <li><a class="dropdown-item" href="Curriculum.html#objectives">Objectives</a></li>
-                                    <li><a class="dropdown-item" href="Curriculum.html#learning-outcomes">Learning Outcomes</a></li>
-                                    <li><a class="dropdown-item" href="Curriculum.html#target-group">Target Group</a></li>
-                                </div>
-                                <div class="col-md-6">
-                                    <li><a class="dropdown-item" href="Curriculum.html#duration">Duration</a></li>
-                                    <li><a class="dropdown-item" href="Curriculum.html#delivery-format">Delivery Format</a></li>
-                                    <li><a class="dropdown-item" href="Curriculum.html#application-process">Application Process</a></li>
-                                </div>
-                            </div>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Right Logo (EU) -->
-            <div class="ms-auto d-none d-xl-block">
-                <img src="/ELECT/assets/images/EU.png" alt="EU Logo" style="height: 40px; width: auto;">
-            </div>
-
-            <!-- Mobile Menu Toggle Button -->
-            <ul class="nav align-items-center dropdown-hover ms-sm-2">
-                <li class="nav-item">
-                    <button class="navbar-toggler ms-3 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-animation">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </button>
-                </li>
-            </ul>
         </div>
-    </nav>
 
-    <!-- Mobile Menu Logos (appears at bottom of sidebar) - Add this via CSS/JS or include in mobile menu -->
-    <style>
-        /* Mobile menu footer logos - appears when sidebar is open */
-        @media (max-width: 1199.98px) {
-            .navbar-collapse {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 85%;
-                max-width: 350px;
-                height: 100vh;
-                background: var(--bs-body-bg);
-                box-shadow: -2px 0 20px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                z-index: 1050;
-                padding: 1rem;
-                overflow-y: auto;
-                display: flex !important;
-                flex-direction: column;
-            }
-            
-            .navbar-collapse.show {
-                right: 0;
-            }
-            
-            .navbar-collapse .navbar-nav {
-                flex: 1;
-                margin-top: 2rem;
-            }
-            
-            /* Mobile menu footer with EU logo */
-            .mobile-menu-footer {
-                margin-top: auto;
-                padding: 1.5rem 0 1rem;
-                border-top: 1px solid var(--bs-border-color);
-                text-align: center;
-            }
-            
-            .mobile-menu-footer img {
-                height: 50px;
-                width: auto;
-            }
-            
-            /* Close button for mobile menu */
-            .navbar-collapse::before {
-                content: '✕';
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-                font-size: 1.5rem;
-                cursor: pointer;
-                color: var(--bs-body-color);
-                z-index: 1060;
-            }
-        }
-        
-        /* Desktop hover dropdown */
-        @media (min-width: 1200px) {
-            .dropdown:hover > .dropdown-menu {
-                display: block;
-                margin-top: 0;
-            }
-            .dropdown-menu {
-                display: none;
-            }
-        }
-        
-        /* Navbar styling */
-        .navbar-brand-item {
-            height: 40px;
-            width: auto;
-        }
-        
-        .nav-link {
-            color: var(--bs-body-color) !important;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        .nav-link:hover {
-            color: var(--bs-primary) !important;
-        }
-        
-        .navbar-toggler {
-            border: none;
-            padding: 0.5rem;
-        }
-        
-        .navbar-toggler:focus {
-            box-shadow: none;
-        }
-        
-        .navbar-toggler-animation {
-            display: inline-block;
-            position: relative;
-            width: 22px;
-            height: 22px;
-        }
-        
-        .navbar-toggler-animation span {
-            display: block;
-            position: absolute;
-            height: 2px;
-            width: 100%;
-            background: var(--bs-body-color);
-            border-radius: 30px;
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .navbar-toggler-animation span:first-child {
-            top: 10%;
-        }
-        
-        .navbar-toggler-animation span:nth-child(2) {
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .navbar-toggler-animation span:nth-child(3) {
-            bottom: 10%;
-        }
-        
-        .navbar-toggler[aria-expanded="true"] .navbar-toggler-animation span:first-child {
-            top: 49%;
-            transform: rotate(45deg) translateY(-50%);
-            width: 100%;
-        }
-        
-        .navbar-toggler[aria-expanded="true"] .navbar-toggler-animation span:nth-child(2) {
-            visibility: hidden;
-        }
-        
-        .navbar-toggler[aria-expanded="true"] .navbar-toggler-animation span:nth-child(3) {
-            bottom: 42%;
-            transform: rotate(-45deg) translateY(-50%);
-            width: 100%;
-        }
-        
-        /* Dropdown menu styling */
-        .dropdown-menu {
-            border-radius: 12px;
-            border: 1px solid var(--bs-border-color);
-            padding: 0.5rem;
-            min-width: 220px;
-        }
-        
-        .dropdown-item {
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        
-        .dropdown-item:hover {
-            background-color: rgba(var(--bs-primary-rgb), 0.1);
-            transform: translateX(4px);
-        }
-        
-        .dropdown-menu-size-lg {
-            min-width: 500px;
-        }
-        
-        @media (max-width: 991px) {
-            .dropdown-menu-size-lg {
-                min-width: 100%;
-            }
-        }
-        
-        /* Header absolute/sticky */
-        .header-absolute {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background: transparent;
-        }
-        
-        .header-sticky {
-            position: sticky;
-            top: 0;
-            z-index: 1040;
-        }
-        
-        .header-sticky-on {
-            position: fixed;
-            background: var(--bs-body-bg);
-            border-bottom: 1px solid var(--bs-border-color);
-            animation: fadeInDown 0.5s;
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translate3d(0, -100%, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
-        }
-        
-        /* Dark mode adjustments */
-        [data-bs-theme="dark"] .navbar-toggler-animation span {
-            background: #fff;
-        }
-    </style>
+        <!-- Mobile Menu Button - Always visible on mobile -->
+        <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1 w-8">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+        </button>
+
+        <!-- Desktop Right Logo -->
+        <div class="hidden md:flex items-center gap-4">
+            <img src="ELECT/assets/images/EU.png" class="h-10 w-auto" alt="EU Logo">
+        </div>
+    </div>
+
+    <!-- Orange Navigation Banner - reduced height due to padding: 4px -->
+    <div class="orange-banner desktop-only w-full" style="overflow: visible;">
+        <div class="navigation-container">
+            <div class="nav-links">
+                <!-- Home -->
+                <a href="index.html" class="nav-link">
+                    <span>Home</span>
+                </a>
+
+                <!-- About dropdown -->
+                <div class="dropdown-container">
+                    <a href="About.html" class="nav-link nav-link-with-arrow">
+                        <span>About</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="About.html#overview" class="dropdown-item">
+                            <i class="fas fa-eye"></i>
+                            <span>Project Overview</span>
+                        </a>
+                        <a href="About.html#background" class="dropdown-item">
+                            <i class="fas fa-history"></i>
+                            <span>Background</span>
+                        </a>
+                        <a href="About.html#target" class="dropdown-item">
+                            <i class="fas fa-users"></i>
+                            <span>Our Audience</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Objectives dropdown -->
+                <div class="dropdown-container">
+                    <a href="Objectives.html" class="nav-link nav-link-with-arrow">
+                        <span>Objectives</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="Objectives.html#main" class="dropdown-item">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Main Objectives</span>
+                        </a>
+                        <a href="Objectives.html#outcomes" class="dropdown-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Outcomes & Benefits</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Partners -->
+                <a href="Partners.html" class="nav-link">
+                    <span>Partners</span>
+                </a>
+
+                <!-- Activities dropdown -->
+                <div class="dropdown-container">
+                    <a href="Events.html" class="nav-link nav-link-with-arrow">
+                        <span>Activities</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="News.html#latest" class="dropdown-item">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Latest News</span>
+                        </a>
+                        <a href="Events.html#upcoming" class="dropdown-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Events</span>
+                        </a>
+                        <a href="Gallery.html#media" class="dropdown-item">
+                            <i class="fas fa-images"></i>
+                            <span>Gallery</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Curriculum dropdown with grid layout -->
+                <div class="dropdown-container">
+                    <a href="Curriculum.html" class="nav-link nav-link-with-arrow">
+                        <span>Curriculum</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu grid-dropdown">
+                        <div class="grid-dropdown-container">
+                            <!-- Left column -->
+                            <div class="dropdown-column">
+                                <a href="Curriculum.html#objectives" class="dropdown-item">
+                                    <i class="fas fa-bullseye"></i>
+                                    <div>
+                                        <span class="dropdown-title">Objectives</span>
+                                        <span class="dropdown-desc">Program goals & aims</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#learning-outcomes" class="dropdown-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <div>
+                                        <span class="dropdown-title">Learning Outcomes</span>
+                                        <span class="dropdown-desc">Skills & knowledge gained</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#target-group" class="dropdown-item">
+                                    <i class="fas fa-users"></i>
+                                    <div>
+                                        <span class="dropdown-title">Target Group</span>
+                                        <span class="dropdown-desc">Who should participate</span>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Right column -->
+                            <div class="dropdown-column">
+                                <a href="Curriculum.html#duration" class="dropdown-item">
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <span class="dropdown-title">Duration</span>
+                                        <span class="dropdown-desc">Program timeline</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#delivery-format" class="dropdown-item">
+                                    <i class="fas fa-laptop"></i>
+                                    <div>
+                                        <span class="dropdown-title">Delivery Format</span>
+                                        <span class="dropdown-desc">How it's delivered</span>
+                                    </div>
+                                </a>
+                                <a href="Curriculum.html#application-process" class="dropdown-item">
+                                    <i class="fas fa-file-signature"></i>
+                                    <div>
+                                        <span class="dropdown-title">Application Process</span>
+                                        <span class="dropdown-desc">How to apply</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="menuOverlay" class="menu-overlay"></div>
+
+    <!-- Enhanced Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <!-- Close Button -->
+        <button class="close-menu-btn" id="closeMenuBtn">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+
+        <!-- Menu Header with ELECT Logo -->
+        <div class="mobile-menu-header">
+            <a href="index.html" class="flex items-center gap-3">
+                <img
+                    src="/ELECT/assets/images/ELECT-Logo.png"
+                    alt="ELECT Logo"
+                    class="h-12 w-auto">
+                <div class="text-left">
+                    <h2 class="font-bold text-lg text-green-700">ELECT Project</h2>
+                    <p class="text-sm text-gray-600">Energy Efficient Lighting</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Menu Items -->
+        <a href="index.html" class="mobile-menu-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+
+        <a href="About.html" class="mobile-menu-item">
+            <i class="fas fa-info-circle"></i>
+            <span>About</span>
+        </a>
+
+        <a href="Objectives.html" class="mobile-menu-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Objectives</span>
+        </a>
+
+        <a href="Partners.html" class="mobile-menu-item">
+            <i class="fas fa-handshake"></i>
+            <span>Partners</span>
+        </a>
+
+        <a href="Events.html" class="mobile-menu-item">
+            <i class="fas fa-newspaper"></i>
+            <span>Events</span>
+        </a>
+         <a href="News.html" class="mobile-menu-item">
+            <i class="fas fa-newspaper"></i>
+            <span>News</span>
+        </a>
+
+        <a href="Curriculum.html" class="mobile-menu-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Curriculum</span>
+        </a>
+
+        <a href="Gallery.html" class="mobile-menu-item">
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+        </a>
+
+        <a href="Contacts.html" class="mobile-menu-item">
+            <i class="fas fa-address-book"></i>
+            <span>Contact</span>
+        </a>
+
+        <!-- Logos Section at Bottom -->
+        <div class="mobile-logos">
+            <!-- ELECT & EU Logos -->
+            <div class="logos-row">
+                <img src="/ELECT/assets/images/EU.png" alt="EU Logo" class="eu-logo-mobile">
+            </div>
+        </div>
+    </div>
 </header>
 
 <script>
-    // Mobile menu close functionality and footer logo injection
-    document.addEventListener('DOMContentLoaded', function() {
-        const navbarCollapse = document.getElementById('navbarCollapse');
-        
-        // Add mobile menu footer with EU logo
-        function addMobileMenuFooter() {
-            if (window.innerWidth < 1200) {
-                if (!document.querySelector('.mobile-menu-footer')) {
-                    const footer = document.createElement('div');
-                    footer.className = 'mobile-menu-footer';
-                    footer.innerHTML = '<img src="/ELECT/assets/images/EU.png" alt="EU Logo">';
-                    navbarCollapse.appendChild(footer);
-                }
-            } else {
-                const existingFooter = document.querySelector('.mobile-menu-footer');
-                if (existingFooter) existingFooter.remove();
-            }
-        }
-        
-        // Close mobile menu when clicking close button or outside
-        function setupMobileMenuClose() {
-            const closeBtn = document.createElement('button');
-            closeBtn.style.display = 'none'; // Hide default, use CSS pseudo-element
-            
-            // Close menu when clicking a link
-            const mobileLinks = document.querySelectorAll('.navbar-nav .nav-link, .dropdown-item');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth < 1200) {
-                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                        if (bsCollapse) bsCollapse.hide();
-                    }
-                });
-            });
-        }
-        
-        addMobileMenuFooter();
-        setupMobileMenuClose();
-        
-        window.addEventListener('resize', function() {
-            addMobileMenuFooter();
-        });
-        
-        // Sticky header on scroll
-        const header = document.querySelector('.header-sticky');
-        if (header) {
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('header-sticky-on');
-                } else {
-                    header.classList.remove('header-sticky-on');
-                }
-            });
+    // Mobile menu functionality (preserved as is)
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+    function openMenu() {
+        mobileMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+        mobileMenuBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', openMenu);
+    }
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', closeMenu);
+    }
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+            closeMenu();
         }
     });
 </script>
@@ -1170,18 +1073,18 @@ video::-webkit-media-controls-play-button {
         <div class="text-white max-w-xl">
             <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm font-semibold mb-3">
                OUR GOAL</span>
-            <h1 class="text-3xl md:text-5xl font-bold leading-tight">
+            <h1 class="text-3xl md:text-5xl font-semibold leading-tight">
                 Energy Efficient Lighting for a Clean Energy <span class="text-[#247646]">Future</span>
             </h1>
             <p class="mt-6 text-lg">
                 An EU co-funded initiative empowering Zambia's transition through education, innovation, and international collaboration.
             </p>
             <div class="flex flex-wrap gap-4 mt-8">
-                <a href="ELECT/assets/documents/ELECT-Brochure.pdf" download class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
+                <a href="ELECT/assets/documents/ELECT-Brochure.pdf" download class="inline-flex items-center justify-center gap-2 border border-green-600 px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
                     <i class="fas fa-download"></i>
                    Our Brochure
                 </a>
-                <a href="About.html" class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
+                <a href="About.html" class="inline-flex items-center justify-center gap-2 border border-[#fdbf30] px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
                     <i class="fas fa-phone"></i>
                     Call Us
                 </a>
@@ -1209,6 +1112,12 @@ video::-webkit-media-controls-play-button {
           The main activities of the project include the modernization of bachelor's and diploma curricula,
           the introduction of innovative teaching and learning methods, the establishment of teaching and research infrastructure, and teacher training.
         </p>
+            <div class="mt-6 w-full">
+                <a href="About.html" class="inline-flex justify-center items-center gap-2 w-full px-6 py-3 border border-[#247646] text-[#247646] font-semibold rounded-lg transition-all duration-300 hover:shadow-lg">
+                    <span>Read More About ELECT</span>
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+            </div>
       </div>
 
       <!-- RIGHT VIDEO SECTION -->
@@ -1220,7 +1129,7 @@ video::-webkit-media-controls-play-button {
           <div class="relative aspect-video bg-gray-900" id="videoContainer">
             <!-- Poster Image (visible initially) -->
             <div id="videoPoster" class="absolute inset-0 cursor-pointer group" onclick="playAboutVideo()">
-              <img src="ELECT/assets/images/About.jpg"
+              <img src="ELECT/assets/images/hero.jpg"
                    alt="ELECT Project Overview"
                    class="w-full h-full object-cover">
               
@@ -1229,7 +1138,7 @@ video::-webkit-media-controls-play-button {
               
               <!-- Play Button Overlay -->
               <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-10 h-10 bg-[#247646] rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
                   <i class="fas fa-play text-white text-2xl ml-1"></i>
                 </div>
               </div>
@@ -1248,47 +1157,7 @@ video::-webkit-media-controls-play-button {
               </video>
             </div>
           </div>
-          
-          <!-- Video Footer / Info Bar -->
-          <div class="bg-white p-4 flex items-center justify-between border-t border-gray-100">
-            <div>
-              <h4 class="font-semibold text-gray-800">ELECT Project Overview</h4>
-              <p class="text-sm text-gray-500 mt-0.5">Learn about our mission and impact</p>
-            </div>
-            <button onclick="playAboutVideo()" id="playVideoBtn" class="text-[#247646] hover:text-green-700 text-sm font-medium flex items-center gap-1">
-              <i class="fas fa-play-circle"></i>
-              <span>Watch Now</span>
-            </button>
-          </div>
         </div>
-        
-        <div class="mt-6 flex flex-wrap gap-3">
-            <!-- Key Highlights / Bullet Points -->
-            <div class="mt-6 flex flex-wrap justify-center gap-3">
-            <span class="inline-flex items-center gap-1.5 text-sm text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
-                <i class="fas fa-check-circle text-[#247646] text-xs"></i>
-                Curriculum Modernization
-            </span>
-            <span class="inline-flex items-center gap-1.5 text-sm text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
-                <i class="fas fa-check-circle text-[#247646] text-xs"></i>
-                Teacher Training
-            </span>
-            <span class="inline-flex items-center gap-1.5 text-sm text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
-                <i class="fas fa-check-circle text-[#247646] text-xs"></i>
-                Research Infrastructure
-            </span>
-            <span class="inline-flex items-center gap-1.5 text-sm text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
-                <i class="fas fa-check-circle text-[#247646] text-xs"></i>
-                International Collaboration
-            </span>
-            </div>
-            <div class="mt-6 w-full">
-                <a href="About.html" class="inline-flex justify-center items-center gap-2 w-full px-6 py-3 bg-[#247646] hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
-                    <span>Read More About ELECT</span>
-                    <i class="fas fa-arrow-right text-sm"></i>
-                </a>
-            </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1312,7 +1181,7 @@ video::-webkit-media-controls-play-button {
             <!-- Image Container with Multiple Images -->
             <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
                 <div class="objective-1-image active" style="background-image: url('ELECT/assets/images/lightbulb.jpg');"></div>
-                <div class="objective-1-image" style="background-image: url('ELECT/assets/images/lightbulb.jpeg');"></div>
+                <div class="objective-1-image" style="background-image: url('ELECT/assets/images/hero.jpg');"></div>
                 <div class="objective-1-image" style="background-image: url('ELECT/assets/images/About.jpg');"></div>
             </div>
             
@@ -1328,7 +1197,7 @@ video::-webkit-media-controls-play-button {
             <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
                 <div class="objective-2-image active" style="background-image: url('ELECT/assets/images/pedagogical.jpg');"></div>
                 <div class="objective-2-image" style="background-image: url('ELECT/assets/images/pedagogical.png');"></div>
-                <div class="objective-2-image" style="background-image: url('ELECT/assets/images/news1.jpg');"></div>
+                <div class="objective-2-image" style="background-image: url('ELECT/assets/images/pedagogical.jpg');"></div>
             </div>
             
             <h3 class="font-bold text-xl text-gray-800 mb-4">Pedagogical Excellence</h3>
@@ -1417,8 +1286,8 @@ video::-webkit-media-controls-play-button {
 <section id="newsSection" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-6">
         <!-- Section Header -->
-        <div class="border-b-4 border-red-600 pb-4 mb-8">
-            <h2 class="text-3xl font-bold text-gray-900">ELECT News & Updates</h2>
+        <div class="pb-4 mb-3">
+            <h2 class="text-3xl font-bold text-gray-900">Latest News</h2>
             <p class="text-gray-600 mt-2">Latest developments from the Energy Efficient Lighting project</p>
         </div>
         
@@ -1628,59 +1497,6 @@ video::-webkit-media-controls-play-button {
                         </article>
                     </div>
                 </div>
-                
-                <!-- Most Read -->
-                <div>
-                    <h3 class="font-bold text-xl mb-4 pb-2 border-b">Most Read</h3>
-                    <div class="space-y-4">
-                        <article class="flex gap-3">
-                            <div class="flex-shrink-0 w-20 h-16">
-                                <div class="w-full h-full bg-cover bg-center bg-no-repeat rounded" style="background-image: url('ELECT/assets/images/news1.jpg');"></div>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-sm mb-1">
-                                    <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
-                                        Energy Efficiency Report Published
-                                    </a>
-                                </h4>
-                                <span class="text-xs text-gray-500">2,456 views</span>
-                            </div>
-                        </article>
-                        
-                        <article class="flex gap-3">
-                            <div class="flex-shrink-0 w-20 h-16">
-                                <div class="w-full h-full bg-cover bg-center bg-no-repeat rounded" style="background-image: url('ELECT/assets/images/news2.jpg');"></div>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-sm mb-1">
-                                    <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
-                                        Project Annual Review Results
-                                    </a>
-                                </h4>
-                                <span class="text-xs text-gray-500">1,987 views</span>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                
-                <!-- Categories -->
-                <div>
-                    <h3 class="font-bold text-xl mb-4 pb-2 border-b">Categories</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="#" class="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded text-sm transition-colors">
-                            Research
-                        </a>
-                        <a href="#" class="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded text-sm transition-colors">
-                            Events
-                        </a>
-                        <a href="#" class="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded text-sm transition-colors">
-                            Publications
-                        </a>
-                        <a href="#" class="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded text-sm transition-colors">
-                            Training
-                        </a>
-                    </div>
-                </div>
                 <!-- View All Button -->
                 <div class="text-center mt-12">
                     <a href="News.html" class="inline-flex justify-center items-center gap-2 w-full bg-[#247646] text-white px-6 py-3 rounded font-semibold transition-colors duration-300 hover:bg-[#1d5f38]">
@@ -1693,7 +1509,6 @@ video::-webkit-media-controls-play-button {
     </div>
 </section>
 
-
 <!-- BOARD OF DIRECTORS SECTION -->
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
@@ -1702,463 +1517,57 @@ video::-webkit-media-controls-play-button {
             <h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Board of Directors</h2>
             <div class="w-24 h-1 bg-[#247646] mx-auto mb-6"></div>
             <p class="text-gray-600 max-w-2xl mx-auto">
-                Meet the distinguished leaders guiding the ELECT Project toward a sustainable energy future.
+                The distinguished leaders guiding the ELECT Project toward a sustainable energy future.
             </p>
         </div>
-
-        <!-- Carousel Container -->
-        <div class="relative board-carousel-container">
-            <!-- Carousel Track -->
-            <div class="board-carousel-track" data-omni-track>
-                <!-- Board Member 1 -->
-                <div class="board-slide" data-omni-slide>
-                    <div class="rounded-xl shadow overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
-                        <div class="relative h-80 overflow-hidden">
-                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Dr. Sarah Mwanza" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                        </div>
-                        <div class="p-6 text-center">
-                            <h3 class="font-bold text-xl text-gray-800 mb-1">Dr. Sarah Mwanza</h3>
-                            <p class="text-[#247646] font-semibold text-sm mb-2">Chairperson</p>
-                            <p class="text-gray-500 text-sm mb-4">Energy Regulatory Board</p>
-                            <div class="flex justify-center space-x-3">
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Board Member 2 -->
-                <div class="board-slide" data-omni-slide>
-                    <div class="rounded-xl shadow overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
-                        <div class="relative h-80 overflow-hidden">
-                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Prof. James Banda" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                        </div>
-                        <div class="p-6 text-center">
-                            <h3 class="font-bold text-xl text-gray-800 mb-1">Prof. James Banda</h3>
-                            <p class="text-[#247646] font-semibold text-sm mb-2">Vice Chairperson</p>
-                            <p class="text-gray-500 text-sm mb-4">University of Zambia</p>
-                            <div class="flex justify-center space-x-3">
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Board Member 3 -->
-                <div class="board-slide" data-omni-slide>
-                    <div class="rounded-xl shadow overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
-                        <div class="relative h-80 overflow-hidden">
-                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Dr. Elena Kowalski" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                        </div>
-                        <div class="p-6 text-center">
-                            <h3 class="font-bold text-xl text-gray-800 mb-1">Dr. Elena Kowalski</h3>
-                            <p class="text-[#247646] font-semibold text-sm mb-2">EU Representative</p>
-                            <p class="text-gray-500 text-sm mb-4">European Commission</p>
-                            <div class="flex justify-center space-x-3">
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Board Member 4 -->
-                <div class="board-slide" data-omni-slide>
-                    <div class="rounded-xl shadow overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
-                        <div class="relative h-80 overflow-hidden">
-                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Mr. Thomas Mulenga" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                        </div>
-                        <div class="p-6 text-center">
-                            <h3 class="font-bold text-xl text-gray-800 mb-1">Mr. Thomas Mulenga</h3>
-                            <p class="text-[#247646] font-semibold text-sm mb-2">Industry Expert</p>
-                            <p class="text-gray-500 text-sm mb-4">Zambia Electricity Supply</p>
-                            <div class="flex justify-center space-x-3">
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Board Member 5 -->
-                <div class="board-slide" data-omni-slide>
-                    <div class="rounded-xl shadow overflow-hidden h-full max-w-sm mx-auto transform transition-all duration-300 hover:shadow-xl">
-                        <div class="relative h-80 overflow-hidden">
-                            <img src="ELECT/assets/images/dr.-halubanza.jpg" alt="Prof. Anna Schmidt" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                        </div>
-                        <div class="p-6 text-center">
-                            <h3 class="font-bold text-xl text-gray-800 mb-1">Prof. Anna Schmidt</h3>
-                            <p class="text-[#247646] font-semibold text-sm mb-2">Academic Advisor</p>
-                            <p class="text-gray-500 text-sm mb-4">Aalto University</p>
-                            <div class="flex justify-center space-x-3">
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-[#247646] transition-colors">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation Arrows -->
-            <button class="board-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#247646] hover:text-white transition-all duration-300 z-10">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="board-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#247646] hover:text-white transition-all duration-300 z-10">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-
-            <!-- Dot Indicators -->
-            <div class="flex justify-center space-x-2 mt-8">
-                <button class="board-dot w-2.5 h-2.5 rounded-full bg-[#247646] transition-all duration-300" data-index="0"></button>
-                <button class="board-dot w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="1"></button>
-                <button class="board-dot w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="2"></button>
-                <button class="board-dot w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="3"></button>
-                <button class="board-dot w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="4"></button>
+        <!-- Button Container - Centered -->
+        <div class="flex justify-center">
+            <div class="w-72">
+                <a href="About.html" class="inline-flex justify-center items-center gap-2 w-full px-6 py-3 border border-[#247646] text-[#247646] font-semibold rounded-lg transition-all duration-300 hover:shadow-lg">
+                    <span>Meet Our Directors</span>
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </a>
             </div>
         </div>
     </div>
 </section>
 
-<style>
-/* Board Carousel - Omni Peek-a-Boo Pattern - Single Image on All Devices */
-.board-carousel-container {
-    --track-width: 100%;
-    --fraction: 0.85;
-    --slide-width: calc(var(--track-width) * var(--fraction));
-    --peek-areas-width: calc(var(--track-width) * (1 - var(--fraction)));
-    --peek-width: calc(var(--peek-areas-width) / 2);
-    --gap: 20px;
-}
-
-/* All devices show 1 slide with peek - consistent experience */
-@media (min-width: 1024px) {
-    .board-carousel-container {
-        --fraction: 0.75;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    .board-carousel-container {
-        --fraction: 0.8;
-    }
-}
-
-@media (max-width: 767px) {
-    .board-carousel-container {
-        --fraction: 0.85;
-    }
-}
-
-[data-omni-track] {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-}
-
-[data-omni-track]::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-}
-
-[data-omni-track]::before,
-[data-omni-track]::after {
-    content: "";
-    flex: none;
-    width: var(--peek-width);
-}
-
-.board-slide {
-    flex: none;
-    width: var(--slide-width);
-    scroll-snap-align: center;
-}
-
-.board-slide:not(:last-child) {
-    margin-right: var(--gap);
-}
-
-/* Active dot indicator */
-.board-dot.active {
-    background-color: #247646 !important;
-    width: 24px !important;
-    border-radius: 9999px !important;
-}
-
-/* Navigation arrows hover effect */
-.board-prev:hover,
-.board-next:hover {
-    transform: translateY(-50%) scale(1.05);
-}
-
-/* Smooth image hover */
-.board-slide img {
-    transition: transform 0.5s ease;
-}
-
-.board-slide:hover img {
-    transform: scale(1.05);
-}
-</style>
-
-<script>
-// Board of Directors Carousel - Omni Pattern
-(function() {
-    const track = document.querySelector('[data-omni-track]');
-    const prevBtn = document.querySelector('.board-prev');
-    const nextBtn = document.querySelector('.board-next');
-    const dots = document.querySelectorAll('.board-dot');
-    const slides = document.querySelectorAll('.board-slide');
-    
-    if (!track || !slides.length) return;
-    
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    let autoAdvanceInterval;
-    
-    // Get slide width including gap
-    function getSlideScrollWidth() {
-        const slide = slides[0];
-        const slideWidth = slide.offsetWidth;
-        const gap = parseInt(getComputedStyle(slide).marginRight) || 0;
-        return slideWidth + gap;
-    }
-    
-    // Update active dot
-    function updateDots(index) {
-        dots.forEach((dot, i) => {
-            if (i === index) {
-                dot.classList.add('active');
-                dot.classList.remove('bg-gray-300');
-                dot.classList.add('bg-[#247646]');
-            } else {
-                dot.classList.remove('active', 'bg-[#247646]');
-                dot.classList.add('bg-gray-300');
-            }
-        });
-    }
-    
-    // Scroll to specific slide
-    function scrollToSlide(index) {
-        if (index < 0) index = totalSlides - 1;
-        if (index >= totalSlides) index = 0;
-        
-        const slideWidth = getSlideScrollWidth();
-        const scrollPosition = index * slideWidth;
-        
-        track.scrollTo({
-            left: scrollPosition,
-            behavior: 'smooth'
-        });
-        
-        currentIndex = index;
-        updateDots(currentIndex);
-    }
-    
-    // Detect current slide based on scroll position
-    function detectCurrentSlide() {
-        const slideWidth = getSlideScrollWidth();
-        const scrollLeft = track.scrollLeft;
-        const newIndex = Math.round(scrollLeft / slideWidth);
-        
-        if (newIndex !== currentIndex && newIndex >= 0 && newIndex < totalSlides) {
-            currentIndex = newIndex;
-            updateDots(currentIndex);
-        }
-    }
-    
-    // Next slide
-    function nextSlide() {
-        scrollToSlide(currentIndex + 1);
-    }
-    
-    // Previous slide
-    function prevSlide() {
-        scrollToSlide(currentIndex - 1);
-    }
-    
-    // Start auto-advance
-    function startAutoAdvance() {
-        stopAutoAdvance();
-        autoAdvanceInterval = setInterval(nextSlide, 5000);
-    }
-    
-    // Stop auto-advance
-    function stopAutoAdvance() {
-        if (autoAdvanceInterval) {
-            clearInterval(autoAdvanceInterval);
-        }
-    }
-    
-    // Event listeners
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            stopAutoAdvance();
-            startAutoAdvance();
-        });
-    }
-    
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            stopAutoAdvance();
-            startAutoAdvance();
-        });
-    }
-    
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            scrollToSlide(index);
-            stopAutoAdvance();
-            startAutoAdvance();
-        });
-    });
-    
-    // Update dots on scroll
-    track.addEventListener('scroll', () => {
-        detectCurrentSlide();
-    });
-    
-    // Pause auto-advance on hover
-    track.addEventListener('mouseenter', stopAutoAdvance);
-    track.addEventListener('mouseleave', startAutoAdvance);
-    
-    // Touch events - pause on touch
-    track.addEventListener('touchstart', stopAutoAdvance);
-    track.addEventListener('touchend', () => {
-        setTimeout(startAutoAdvance, 1000);
-    });
-    
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            // Re-center current slide after resize
-            scrollToSlide(currentIndex);
-        }, 100);
-    });
-    
-    // Initialize
-    updateDots(0);
-    startAutoAdvance();
-    
-    // Ensure proper initial position
-    setTimeout(() => {
-        scrollToSlide(0);
-    }, 100);
-})();
-</script>
-
-
-    <section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4 max-w-7xl">
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-4xl">
         <!-- Section Header -->
         <div class="text-center mb-12">
             <h1 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Contact Us</h1>
             <div class="w-20 h-1 bg-[#247646] mx-auto"></div>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-12 items-start">
-            <!-- Contact Information -->
-            <div class="bg-white rounded shadow p-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Project Coordination</h2>
-                
-                <!-- Project Coordinator Card -->
-                <div class="border-l-4 border-[#fdbf30] p-6 rounded-r-lg mb-8">
-                    <div class="flex items-start gap-4">
-                        <div>
-                            <p class="text-sm text-blue-800 font-semibold uppercase tracking-wider mb-1">Project Coordinator</p>
-                            <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">Prof. John Mwansa</h3>
-                            <p class="text-lg text-gray-700 mb-2">Copperbelt University</p>
-                            <div class="flex items-center text-gray-600">
-                                <i class="fas fa-envelope mr-2 text-blue-600"></i>
-                                <a href="mailto:john.mwansa@elect-project.org" class="text-blue-700 hover:text-blue-900 hover:underline font-medium">
-                                    john.mwansa@elect-project.org
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Additional Contact Info -->
-                <div class="border-l-4 border-[#fdbf30] p-6 space-y-4">
-                    <h3 class="font-semibold text-gray-900 text-lg mb-3">Other Contacts</h3>
-                    
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-building text-blue-600 mt-1"></i>
-                        <div>
-                            <p class="font-medium text-gray-900">Institutional Address</p>
-                            <p class="text-gray-600">Copperbelt University<br>School of Engineering<br>Kitwe, Zambia</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-phone-alt text-blue-600 mt-1"></i>
-                        <div>
-                            <p class="font-medium text-gray-900">Project Office</p>
-                            <a href="tel:+260212123456" class="text-gray-600 hover:text-blue-700">+260 212 123456</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="flex justify-center items-start">
             <!-- Contact Form & EU Info -->
-            <div class="bg-white rounded shadow p-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+            <div class="bg-white rounded-lg shadow p-8 w-full max-w-2xl">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Send us a Message</h2>
                 
                 <form class="space-y-5">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent">
                     </div>
                     
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                        <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent">
                     </div>
                     
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent">
                     </div>
                     
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                        <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+                        <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent"></textarea>
                     </div>
                     
-                    <button type="submit" class="w-full bg-[#fdbf30] hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300">
+                    <button type="submit" class="w-full border border-[#247646] text-[#247646] font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-[#247646] hover:text-white hover:shadow-md">
+                        <i class="fas fa-message mr-2"></i>
                         Send Message
                     </button>
                 </form>
