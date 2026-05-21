@@ -15,2006 +15,1191 @@
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Global styles -->
-    <link rel="stylesheet" href="stye.css">
-</head>
-<style>
-    html {
-    scroll-behavior: smooth;
-}
-            /* Hide scrollbar for Chrome, Safari and Opera */
-            html::-webkit-scrollbar,
-            body::-webkit-scrollbar,
-            .mobile-menu::-webkit-scrollbar {
-                display: none;
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar,
+        .mobile-menu::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        html,
+        body,
+        .mobile-menu {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Prevent horizontal overflow */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Sticky Header Styles */
+        header {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 40 !important;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: visible !important;
+        }
+
+        .nav-link {
+            position: relative;
+            padding-bottom: 12px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            color: #1f2937;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #16a34a;
+        }
+
+        .orange-banner {
+            background: linear-gradient(135deg, #fdbf30 0%, #ff9900 100%);
+            padding: 4px 0;
+            width: 100%;
+            position: relative;
+            z-index: 40;
+            overflow: visible !important;
+        }
+
+        .orange-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+            animation: shimmer 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .navigation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 36px;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .nav-link-with-arrow {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link-with-arrow i {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-container {
+            position: relative;
+            z-index: 50;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 15px);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            min-width: 220px;
+            background-color: white;
+            border-radius: 3px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+
+        .dropdown-container:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-container:hover .nav-link-with-arrow i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+            z-index: 1001;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            color: #4b5563;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-item:hover {
+            color: #059669;
+            padding-left: 24px;
+        }
+
+        .dropdown-item i {
+            font-size: 14px;
+            width: 18px;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        .dropdown-item:hover i {
+            color: #059669;
+        }
+
+        /* Hero Carousel Styles */
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+        
+        .hero-carousel-btn {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .hero-carousel-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .hero-dot {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .hero-dot.active {
+            background-color: #247646 !important;
+            transform: scale(1.2);
+        }
+        
+        /* Mobile hero layout */
+        @media (max-width: 768px) {
+            .hero-mobile-stack {
+                display: flex;
+                flex-direction: column;
             }
             
-            /* Hide scrollbar for IE, Edge and Firefox */
-            html,
-            body,
-            .mobile-menu {
-                -ms-overflow-style: none;  /* IE and Edge */
-                scrollbar-width: none;  /* Firefox */
-            }
-
-            /* Prevent horizontal overflow */
-            body {
-                overflow-x: hidden;
-                width: 100%;
-                margin: 0;
-                padding: 0;
+            .hero-image-top {
+                order: 1;
+                height: 45vh;
             }
             
-            html {
-                overflow-: hidden;
-                width: 100%;
-                margin: 0;
-                padding: 0;
+            .hero-content-bottom {
+                order: 2;
+                background-color: #1f2937;
+                padding: 24px 20px;
+                border-radius: 0;
             }
-
-            * {
-                box-sizing: border-box;
+            
+            .hero-content-bottom h1,
+            .hero-content-bottom p,
+            .hero-content-bottom .flex {
+                color: white;
             }
-
-            /* Sticky Header Styles - CLEAN VERSION */
-            header {
-                position: sticky !important;
-                top: 0 !important;
-                z-index: 40 !important;
-                width: 100%;
-                background-color: white;
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-                overflow: visible !important;
+            
+            .hero-content-bottom .inline-block {
+                background-color: #247646;
             }
-
-            /* Base navigation styles - REMOVED UNDERLINE, ADDED TEXT COLOR CHANGE */
-            .nav-link {
-                position: relative;
-                padding-bottom: 12px;
-                font-weight: 600;
-                transition: color 0.3s ease;
-                color: #1f2937;
-                white-space: nowrap;
+            
+            .hero-section-desktop {
+                height: auto !important;
+                min-height: auto !important;
             }
-
-            /* Removed the ::after pseudo-element that created the green underline */
-            /* Text color changes on hover and active instead */
-            .nav-link:hover,
-            .nav-link.active {
-                color: #16a34a; /* Green color on hover/active */
+        }
+        
+        @media (min-width: 769px) {
+            .hero-mobile-stack {
+                display: block;
             }
-
-            /* Orange banner - reduced height (padding changed from 10px to 4px) */
-            .orange-banner {
-                background: linear-gradient(135deg, #fdbf30 0%, #ff9900 100%);
-                padding: 4px 0;  /* Reduced from 10px to 4px */
-                width: 100%;
-                position: relative;
-                z-index: 40;
-                overflow: visible !important;
-            }
-
-            .orange-banner::before {
-                content: "";
+            
+            .hero-image-top {
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
-                animation: shimmer 3s infinite;
-                pointer-events: none;
+                height: 100%;
             }
-
-            @keyframes shimmer {
-                0% { transform: translateX(-100%); }
-                100% { transform: translateX(100%); }
-            }
-
-            .navigation-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 24px;
+            
+            .hero-content-bottom {
                 position: relative;
-                z-index: 10;
-            }
-
-            .nav-links {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 36px;
-                position: relative;
-                flex-wrap: wrap;
-            }
-
-            .nav-link-with-arrow {
-                display: flex;
-                align-items: center;
-                gap: 6px;
-            }
-
-            .nav-link-with-arrow i {
-                font-size: 10px;
-                transition: transform 0.3s ease;
-            }
-
-            /* Enhanced dropdown styles - fixed to display outside */
-            .dropdown-container {
-                position: relative;
-                z-index: 50;
-            }
-
-            .dropdown-menu {
-                position: absolute;
-                top: calc(100% + 15px);
-                left: 50%;
-                transform: translateX(-50%) translateY(10px);
-                min-width: 220px;
-                background-color: white;
-                border-radius: 3px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.08);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                z-index: 1000;
-                border: 1px solid #e5e7eb;
-                overflow: hidden;
-            }
-
-            .dropdown-container:hover .dropdown-menu {
-                opacity: 1;
-                visibility: visible;
-                transform: translateX(-50%) translateY(0);
-            }
-
-            .dropdown-container:hover .nav-link-with-arrow i {
-                transform: rotate(180deg);
-            }
-
-            /* Dropdown arrow */
-            .dropdown-menu::before {
-                content: '';
-                position: absolute;
-                top: -8px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 0;
-                height: 0;
-                border-left: 8px solid transparent;
-                border-right: 8px solid transparent;
-                border-bottom: 8px solid white;
-                z-index: 1001;
-            }
-
-            .dropdown-item {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 14px 20px;
-                color: #4b5563;
-                font-weight: 500;
-                font-size: 15px;
-                transition: all 0.2s ease;
-                border-left: 3px solid transparent;
-            }
-
-            .dropdown-item:hover {
-                color: #059669;
-                padding-left: 24px;
-            }
-
-            .dropdown-item i {
-                font-size: 14px;
-                width: 18px;
-                text-align: center;
-                color: #6b7280;
-            }
-
-            .dropdown-item:hover i {
-                color: #059669;
-            }
-
-            /* Responsive adjustments */
-            @media (max-width: 768px) {
-                .orange-banner {
-                    display: none !important;
-                }
-                
-                .navigation-container {
-                    display: none !important;
-                }
-                
-                .nav-links {
-                    display: none !important;
-                }
-                
-                header > div:first-child {
-                    padding: 12px 16px;
-                }
-            }
-
-            @media (min-width: 769px) and (max-width: 1024px) {
-                .nav-links {
-                    gap: 20px;
-                }
-                
-                .nav-link {
-                    font-size: 14px;
-                    padding-bottom: 8px;
-                }
-                
-                .dropdown-menu {
-                    min-width: 200px;
-                }
-            }
-
-            /* Keep existing animations */
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            .animate-fadeIn {
-                animation: fadeIn 0.9s ease-out forwards;
-            }
-
-            /* Video Overlay Styles */
-            #videoOverlay {
-                transition: opacity 0.7s ease-out;
-            }
-
-            #videoContainer {
-                transition: all 1s ease-out;
-            }
-
-            /* Small Play Button Styles */
-            #smallPlayButton {
-                transition: opacity 1s ease-out;
-            }
-
-            /* News Slider Styles */
-            .slider-item {
-                transition: opacity 0.7s ease-in-out;
-            }
-
-            .line-clamp-2 {
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
-            /* Hide buttons from news slider preview */
-            .slider-next,
-            .slider-prev {
-                display: none !important;
-            }
-
-            /* BBC News inspired styles */
-            #newsSection .bg-red-600 {
-                background-color: #247646;
-            }
-
-            #newsSection a:hover {
-                text-decoration: underline;
-            }
-
-            /* Slider dot active state */
-            .slider-dot.bg-white {
-                background-color: white !important;
-            }
-
-            /* Ensure dots are not clickable */
-            .slider-dot {
-                cursor: default !important;
-                pointer-events: none !important;
-            }
-
-            /* Mobile menu styles */
-            .mobile-menu {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 320px;
-                height: 100vh;
-                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-                z-index: 1000;
-                flex-direction: column;
-                padding: 10px;
-                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
-                transform: translateX(-100%);
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                overflow-y: auto;
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-
-            .mobile-menu::-webkit-scrollbar {
-                display: none;
-            }
-
-            .mobile-menu.active {
-                display: flex;
-                transform: translateX(0);
-            }
-
-            .menu-overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background-color: rgba(54, 105, 20, 0.5);
-                z-index: 999;
-            }
-
-            .menu-overlay.active {
-                display: block;
-            }
-
-            /* Menu header with ELECT logo */
-            .mobile-menu-header {
-                padding: 15px 0;
-                border-bottom: 2px solid #e5e7eb;
-                margin-bottom: 20px;
-            }
-
-            /* Menu items */
-            .mobile-menu-item {
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                padding: 10px 20px;
-                color: #374151;
-                font-weight: 600;
-                font-size: 15px;
-                border-radius: 6px;
-                margin-bottom: 8px;
-            }
-
-            /* .mobile-menu-item:hover {
-                color: #16a34a;
-            } */
-
-            .mobile-menu-item i {
-                width: 24px;
-                text-align: center;
-                font-size: 20px;
-            }
-
-            /* .mobile-menu-item.active {
-                background-color: #16a34a;
-                color: white;
-            } */
-
-            /* Logos section at bottom */
-            .mobile-logos {
-                margin-top: auto;
-                padding: 25px 0;
-                border-top: 2px solid #e5e7eb;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-
-            .logos-row {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 30px;
-                flex-wrap: wrap;
-            }
-
-            .elect-logo-mobile {
-                height: 50px;
-                width: auto;
-                max-width: 100%;
-            }
-
-            .eu-logo-mobile {
-                height: 40px;
-                width: auto;
-                max-width: 100%;
-            }
-
-            .mobile-tagline {
-                text-align: center;
-                color: #374151;
-                font-size: 14px;
-                line-height: 1.4;
-                max-width: 280px;
-            }
-
-            /* Close button */
-            .close-menu-btn {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background-color: #f3f4f6;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #374151;
-                transition: all 0.3s ease;
-                border: none;
-                cursor: pointer;
-                z-index: 1001;
-            }
-
-            .close-menu-btn:hover {
-                background-color: #e5e7eb;
-                transform: rotate(90deg);
-            }
-
-            /* News page styles */
-            .filter-btn.active {
-                background-color: #247646 !important;
-                color: white !important;
-            }
-
-            .new-item {
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-
-            .new-item:hover {
-                transform: translateY(-5px);
-            }
-
-            @keyframes spin {
-                from {
-                    transform: rotate(0deg);
-                }
-                to {
-                    transform: rotate(360deg);
-                }
-            }
-
-            .animate-spin {
-                animation: spin 1s linear infinite;
-            }
-
-            .bg-red-600 {
-                background-color: #dc2626;
-            }
-            .bg-blue-600 {
-                background-color: #2563eb;
-            }
-            .bg-green-600 {
-                background-color: #16a34a;
-            }
-            .bg-purple-600 {
-                background-color: #9333ea;
-            }
-            .bg-yellow-600 {
-                background-color: #ca8a04;
-            }
-
-            /* Mobile menu button */
-            #mobileMenuBtn {
-                flex-direction: column;
-                justify-content: space-between;
-                width: 32px;
-                height: 24px;
+                z-index: 20;
                 background: transparent;
-                border: none;
-                cursor: pointer;
                 padding: 0;
             }
+        }
 
-            .menu-line {
-                width: 100%;
-                height: 3px;
-                background-color: #374151;
-                border-radius: 2px;
-                transition: all 0.3s ease;
+        @media (max-width: 768px) {
+            .orange-banner {
+                display: none !important;
             }
-
-            #mobileMenuBtn.active .menu-line:nth-child(1) {
-                transform: rotate(45deg) translate(6px, 6px);
+            
+            .navigation-container {
+                display: none !important;
             }
+            
+            .nav-links {
+                display: none !important;
+            }
+            
+            header > div:first-child {
+                padding: 12px 16px;
+            }
+        }
 
-            #mobileMenuBtn.active .menu-line:nth-child(2) {
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .nav-link {
+                font-size: 14px;
+                padding-bottom: 8px;
+            }
+            
+            .dropdown-menu {
+                min-width: 200px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
                 opacity: 0;
+                transform: translateY(20px);
             }
-
-            #mobileMenuBtn.active .menu-line:nth-child(3) {
-                transform: rotate(-45deg) translate(6px, -6px);
-            }
-
-            @media (max-width: 768px) {
-                .mobile-only {
-                    display: block;
-                }
-
-                .desktop-only {
-                    display: none;
-                }
-                
-                #mobileMenuBtn {
-                    display: flex !important;
-                }
-            }
-
-            @media (min-width: 769px) {
-                .mobile-only {
-                    display: none;
-                }
-                
-                #mobileMenuBtn {
-                    display: none !important;
-                }
-            }
-
-            .slider-dot {
-                display: none;
-            }
-
-            /* Dropdown mobile compatibility */
-            .group:hover .group-hover\:opacity-100 {
+            to {
                 opacity: 1;
-            }
-
-            .group:hover .group-hover\:visible {
-                visibility: visible;
-            }
-
-            .group:hover .group-hover\:translate-y-0 {
                 transform: translateY(0);
             }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.9s ease-out forwards;
+        }
 
-            .close-video-btn {
-                background: rgba(0, 0, 0, 0.7);
-                color: white;
-                border: none;
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                transition: background 0.3s ease;
-                font-size: 18px;
+        /* Video Overlay Styles */
+        #videoOverlay {
+            transition: opacity 0.7s ease-out;
+        }
+
+        #videoContainer {
+            transition: all 1s ease-out;
+        }
+
+        #smallPlayButton {
+            transition: opacity 1s ease-out;
+        }
+
+        /* News Slider Styles */
+        .slider-item {
+            transition: opacity 0.7s ease-in-out;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .slider-next,
+        .slider-prev {
+            display: none !important;
+        }
+
+        #newsSection .bg-red-600 {
+            background-color: #247646;
+        }
+
+        #newsSection a:hover {
+            text-decoration: underline;
+        }
+
+        .slider-dot.bg-white {
+            background-color: white !important;
+        }
+
+        .slider-dot {
+            cursor: default !important;
+            pointer-events: none !important;
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            z-index: 1000;
+            flex-direction: column;
+            padding: 10px;
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .mobile-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            transform: translateX(0);
+        }
+
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(54, 105, 20, 0.5);
+            z-index: 999;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        .mobile-menu-header {
+            padding: 15px 0;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 20px;
+            color: #374151;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .mobile-menu-item i {
+            width: 24px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .mobile-logos {
+            margin-top: auto;
+            padding: 25px 0;
+            border-top: 2px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logos-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .elect-logo-mobile {
+            height: 50px;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .eu-logo-mobile {
+            height: 40px;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .close-menu-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #374151;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .close-menu-btn:hover {
+            background-color: #e5e7eb;
+            transform: rotate(90deg);
+        }
+
+        .filter-btn.active {
+            background-color: #247646 !important;
+            color: white !important;
+        }
+
+        .new-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .new-item:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
             }
-
-            .close-video-btn:hover {
-                background: rgba(0, 0, 0, 0.9);
+            to {
+                transform: rotate(360deg);
             }
+        }
 
-            /* Floating card z-index adjustment */
-            #floatingCard {
-                z-index: 15;
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        #mobileMenuBtn {
+            flex-direction: column;
+            justify-content: space-between;
+            width: 32px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .menu-line {
+            width: 100%;
+            height: 3px;
+            background-color: #374151;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        #mobileMenuBtn.active .menu-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        #mobileMenuBtn.active .menu-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        #mobileMenuBtn.active .menu-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-only {
+                display: block;
             }
-
-            /* Objectives image rotation */
-            .objectives-image {
-                position: relative;
-                width: 100%;
-                height: 192px;
-                overflow: hidden;
+            .desktop-only {
+                display: none;
             }
+            #mobileMenuBtn {
+                display: flex !important;
+            }
+        }
 
-            .objectives-image > div {
-                position: absolute;
+        @media (min-width: 769px) {
+            .mobile-only {
+                display: none;
+            }
+            #mobileMenuBtn {
+                display: none !important;
+            }
+        }
+
+        .objectives-image {
+            position: relative;
+            width: 100%;
+            height: 192px;
+            overflow: hidden;
+        }
+
+        .objectives-image > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .objectives-image > div.active {
+            opacity: 1;
+        }
+
+        .grid-dropdown {
+            min-width: 500px !important;
+            padding: 0 !important;
+        }
+
+        .grid-dropdown-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .dropdown-column {
+            padding: 16px 0;
+        }
+
+        .dropdown-column:first-child {
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .dropdown-column .dropdown-item {
+            padding: 16px 24px;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .dropdown-column .dropdown-item i {
+            font-size: 20px;
+            width: 24px;
+            margin-top: 4px;
+        }
+
+        .dropdown-title {
+            display: block;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        .dropdown-desc {
+            display: block;
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        .dropdown-column .dropdown-item:hover .dropdown-title {
+            color: #059669;
+        }
+
+        @media (min-width: 769px) {
+            header {
+                position: fixed !important;
                 top: 0;
                 left: 0;
-                width: 100%;
-                height: 100%;
-                background-size: cover;
-                background-position: center;
-                opacity: 0;
-                transition: opacity 1s ease-in-out;
+                right: 0;
+                z-index: 100;
+                background: white;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                transform: translateY(0);
+                transition: transform 0.3s ease-in-out;
             }
-
-            .objectives-image > div.active {
-                opacity: 1;
+            
+            header.hide {
+                transform: translateY(-100%);
             }
-
-            /* Grid dropdown styles */
-            .grid-dropdown {
-                min-width: 500px !important;
-                padding: 0 !important;
+            
+            body {
+                padding-top: 0;
             }
+        }
 
-            .grid-dropdown-container {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0;
+        @media (max-width: 768px) {
+            header {
+                position: sticky !important;
+                top: 0 !important;
             }
+        }
 
-            .dropdown-column {
-                padding: 16px 0;
-            }
+        #videoPoster {
+            transition: opacity 0.3s ease;
+        }
+        #videoPoster.hidden {
+            display: none;
+        }
+        #videoPlayer.hidden {
+            display: none;
+        }
+    </style>
+</head>
 
-            .dropdown-column:first-child {
-                border-right: 1px solid #e5e7eb;
-            }
-
-            .dropdown-column .dropdown-item {
-                padding: 16px 24px;
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 16px;
-            }
-
-            .dropdown-column .dropdown-item i {
-                font-size: 20px;
-                width: 24px;
-                margin-top: 4px;
-            }
-
-            .dropdown-title {
-                display: block;
-                font-weight: 600;
-                color: #1f2937;
-                margin-bottom: 4px;
-                font-size: 15px;
-            }
-
-            .dropdown-desc {
-                display: block;
-                font-size: 13px;
-                color: #6b7280;
-                line-height: 1.4;
-            }
-
-            .dropdown-column .dropdown-item:hover .dropdown-title {
-                color: #059669;
-            }
-
-            .dropdown-column .dropdown-item:hover .dropdown-desc {
-                color: #4b7280;
-            }
-
-            /* Adjust arrow for wider dropdown */
-            .grid-dropdown::before {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            /* Responsive adjustments for grid dropdown */
-            @media (max-width: 1024px) {
-                .grid-dropdown {
-                    min-width: 450px !important;
-                }
-            }
-
-            @media (max-width: 768px) {
-                .grid-dropdown {
-                    display: none !important;
-                }
-                
-                .grid-dropdown-container {
-                    grid-template-columns: 1fr;
-                }
-                
-                .dropdown-column:first-child {
-                    border-right: none;
-                    border-bottom: 1px solid #e5e7eb;
-                }
-            }
-
-            /* Container max-width adjustments */
-            .max-w-7xl {
-                max-width: 80rem;
-                margin-left: auto;
-                margin-right: auto;
-                width: 100%;
-            }
-
-            /* Ensure images don't cause overflow */
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-
-            /* Fix for breadcrumb */
-            .bg-gray-100 {
-                width: 100%;
-                overflow-x: hidden;
-            }
-
-            /* Desktop header hide/show on scroll only */
-@media (min-width: 769px) {
-    header {
-        position: fixed !important;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        background: white;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transform: translateY(0);
-        transition: transform 0.3s ease-in-out;
-    }
-    
-    header.hide {
-        transform: translateY(-100%);
-    }
-    
-    body {
-        padding-top: 0;
-    }
-}
-
-/* Mobile - original sticky behavior */
-@media (max-width: 768px) {
-    header {
-        position: sticky !important;
-        top: 0 !important;
-    }
-}
-
-/* Smooth transitions for video elements */
-#videoPoster {
-  transition: opacity 0.3s ease;
-}
-
-#videoPoster.hidden {
-  display: none;
-}
-
-#videoPlayer.hidden {
-  display: none;
-}
-
-/* Custom video controls styling (optional) */
-video::-webkit-media-controls-panel {
-  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
-}
-
-video::-webkit-media-controls-play-button {
-  color: #247646;
-}
-
-
-</style>
-
-<header class="sticky top-0 z-40 w-full bg-white shadow-md" style="overflow: visible;">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <!-- Left Logo -->
-        <div class="flex items-center gap-4">
-            <a href="index.html">
-                <img
-                    src="ELECT/assets/images/ELECT-Logo.png"
-                    class="h-10 w-auto"
-                    alt="ELECT Logo">
-            </a>
+<body>
+    <header class="sticky top-0 z-40 w-full bg-white shadow-md" style="overflow: visible;">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="index.html">
+                    <img src="ELECT/assets/images/ELECT-Logo.png" class="h-10 w-auto" alt="ELECT Logo">
+                </a>
+            </div>
+            <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1 w-8">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </button>
+            <div class="hidden md:flex items-center gap-4">
+                <img src="ELECT/assets/images/EU.png" class="h-10 w-auto" alt="EU Logo">
+            </div>
         </div>
 
-        <!-- Mobile Menu Button - Always visible on mobile -->
-        <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1 w-8">
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
-        </button>
-
-        <!-- Desktop Right Logo -->
-        <div class="hidden md:flex items-center gap-4">
-            <img src="ELECT/assets/images/EU.png" class="h-10 w-auto" alt="EU Logo">
-        </div>
-    </div>
-
-    <!-- Orange Navigation Banner - reduced height due to padding: 4px -->
-    <div class="orange-banner desktop-only w-full" style="overflow: visible;">
-        <div class="navigation-container">
-            <div class="nav-links">
-                <!-- Home -->
-                <a href="index.html" class="nav-link">
-                    <span>Home</span>
-                </a>
-
-                <!-- About dropdown -->
-                <div class="dropdown-container">
-                    <a href="About.html" class="nav-link nav-link-with-arrow">
-                        <span>About</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="About.html#overview" class="dropdown-item">
-                            <i class="fas fa-eye"></i>
-                            <span>Project Overview</span>
-                        </a>
-                        <a href="About.html#background" class="dropdown-item">
-                            <i class="fas fa-history"></i>
-                            <span>Background</span>
-                        </a>
-                        <a href="About.html#target" class="dropdown-item">
-                            <i class="fas fa-users"></i>
-                            <span>Our Audience</span>
-                        </a>
+        <div class="orange-banner desktop-only w-full" style="overflow: visible;">
+            <div class="navigation-container">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link"><span>Home</span></a>
+                    <div class="dropdown-container">
+                        <a href="About.html" class="nav-link nav-link-with-arrow"><span>About</span><i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="About.html#overview" class="dropdown-item"><i class="fas fa-eye"></i><span>Project Overview</span></a>
+                            <a href="About.html#background" class="dropdown-item"><i class="fas fa-history"></i><span>Background</span></a>
+                            <a href="About.html#target" class="dropdown-item"><i class="fas fa-users"></i><span>Our Audience</span></a>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Objectives dropdown -->
-                <div class="dropdown-container">
-                    <a href="Objectives.html" class="nav-link nav-link-with-arrow">
-                        <span>Objectives</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="Objectives.html#main" class="dropdown-item">
-                            <i class="fas fa-bullseye"></i>
-                            <span>Main Objectives</span>
-                        </a>
-                        <a href="Objectives.html#outcomes" class="dropdown-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Outcomes & Benefits</span>
-                        </a>
+                    <div class="dropdown-container">
+                        <a href="Objectives.html" class="nav-link nav-link-with-arrow"><span>Objectives</span><i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="Objectives.html#main" class="dropdown-item"><i class="fas fa-bullseye"></i><span>Main Objectives</span></a>
+                            <a href="Objectives.html#outcomes" class="dropdown-item"><i class="fas fa-chart-line"></i><span>Outcomes & Benefits</span></a>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Partners -->
-                <a href="Partners.html" class="nav-link">
-                    <span>Partners</span>
-                </a>
-
-                <!-- Activities dropdown -->
-                <div class="dropdown-container">
-                    <a href="Events.html" class="nav-link nav-link-with-arrow">
-                        <span>Activities</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="News.html#latest" class="dropdown-item">
-                            <i class="fas fa-newspaper"></i>
-                            <span>Latest News</span>
-                        </a>
-                        <a href="Events.html#upcoming" class="dropdown-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Events</span>
-                        </a>
-                        <a href="Gallery.html#media" class="dropdown-item">
-                            <i class="fas fa-images"></i>
-                            <span>Gallery</span>
-                        </a>
+                    <a href="Partners.html" class="nav-link"><span>Partners</span></a>
+                    <div class="dropdown-container">
+                        <a href="Events.html" class="nav-link nav-link-with-arrow"><span>Activities</span><i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="News.html#latest" class="dropdown-item"><i class="fas fa-newspaper"></i><span>Latest News</span></a>
+                            <a href="Events.html#upcoming" class="dropdown-item"><i class="fas fa-calendar-alt"></i><span>Events</span></a>
+                            <a href="Gallery.html#media" class="dropdown-item"><i class="fas fa-images"></i><span>Gallery</span></a>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Curriculum dropdown with grid layout -->
-                <div class="dropdown-container">
-                    <a href="Curriculum.html" class="nav-link nav-link-with-arrow">
-                        <span>Curriculum</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu grid-dropdown">
-                        <div class="grid-dropdown-container">
-                            <!-- Left column -->
-                            <div class="dropdown-column">
-                                <a href="Curriculum.html#objectives" class="dropdown-item">
-                                    <i class="fas fa-bullseye"></i>
-                                    <div>
-                                        <span class="dropdown-title">Objectives</span>
-                                        <span class="dropdown-desc">Program goals & aims</span>
-                                    </div>
-                                </a>
-                                <a href="Curriculum.html#learning-outcomes" class="dropdown-item">
-                                    <i class="fas fa-graduation-cap"></i>
-                                    <div>
-                                        <span class="dropdown-title">Learning Outcomes</span>
-                                        <span class="dropdown-desc">Skills & knowledge gained</span>
-                                    </div>
-                                </a>
-                                <a href="Curriculum.html#target-group" class="dropdown-item">
-                                    <i class="fas fa-users"></i>
-                                    <div>
-                                        <span class="dropdown-title">Target Group</span>
-                                        <span class="dropdown-desc">Who should participate</span>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <!-- Right column -->
-                            <div class="dropdown-column">
-                                <a href="Curriculum.html#duration" class="dropdown-item">
-                                    <i class="fas fa-clock"></i>
-                                    <div>
-                                        <span class="dropdown-title">Duration</span>
-                                        <span class="dropdown-desc">Program timeline</span>
-                                    </div>
-                                </a>
-                                <a href="Curriculum.html#delivery-format" class="dropdown-item">
-                                    <i class="fas fa-laptop"></i>
-                                    <div>
-                                        <span class="dropdown-title">Delivery Format</span>
-                                        <span class="dropdown-desc">How it's delivered</span>
-                                    </div>
-                                </a>
-                                <a href="Curriculum.html#application-process" class="dropdown-item">
-                                    <i class="fas fa-file-signature"></i>
-                                    <div>
-                                        <span class="dropdown-title">Application Process</span>
-                                        <span class="dropdown-desc">How to apply</span>
-                                    </div>
-                                </a>
+                    <div class="dropdown-container">
+                        <a href="Curriculum.html" class="nav-link nav-link-with-arrow"><span>Curriculum</span><i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu grid-dropdown">
+                            <div class="grid-dropdown-container">
+                                <div class="dropdown-column">
+                                    <a href="Curriculum.html#objectives" class="dropdown-item"><i class="fas fa-bullseye"></i><div><span class="dropdown-title">Objectives</span><span class="dropdown-desc">Program goals & aims</span></div></a>
+                                    <a href="Curriculum.html#learning-outcomes" class="dropdown-item"><i class="fas fa-graduation-cap"></i><div><span class="dropdown-title">Learning Outcomes</span><span class="dropdown-desc">Skills & knowledge gained</span></div></a>
+                                    <a href="Curriculum.html#target-group" class="dropdown-item"><i class="fas fa-users"></i><div><span class="dropdown-title">Target Group</span><span class="dropdown-desc">Who should participate</span></div></a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <a href="Curriculum.html#duration" class="dropdown-item"><i class="fas fa-clock"></i><div><span class="dropdown-title">Duration</span><span class="dropdown-desc">Program timeline</span></div></a>
+                                    <a href="Curriculum.html#delivery-format" class="dropdown-item"><i class="fas fa-laptop"></i><div><span class="dropdown-title">Delivery Format</span><span class="dropdown-desc">How it's delivered</span></div></a>
+                                    <a href="Curriculum.html#application-process" class="dropdown-item"><i class="fas fa-file-signature"></i><div><span class="dropdown-title">Application Process</span><span class="dropdown-desc">How to apply</span></div></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="menuOverlay" class="menu-overlay"></div>
+        <div id="menuOverlay" class="menu-overlay"></div>
+        <div id="mobileMenu" class="mobile-menu">
+            <button class="close-menu-btn" id="closeMenuBtn"><i class="fas fa-times text-xl"></i></button>
+            <div class="mobile-menu-header">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="/ELECT/assets/images/ELECT-Logo.png" alt="ELECT Logo" class="h-12 w-auto">
+                    <div class="text-left">
+                        <h2 class="font-bold text-lg text-green-700">ELECT Project</h2>
+                        <p class="text-sm text-gray-600">Energy Efficient Lighting</p>
+                    </div>
+                </a>
+            </div>
+            <a href="index.html" class="mobile-menu-item"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="About.html" class="mobile-menu-item"><i class="fas fa-info-circle"></i><span>About</span></a>
+            <a href="Objectives.html" class="mobile-menu-item"><i class="fas fa-bullseye"></i><span>Objectives</span></a>
+            <a href="Partners.html" class="mobile-menu-item"><i class="fas fa-handshake"></i><span>Partners</span></a>
+            <a href="Events.html" class="mobile-menu-item"><i class="fas fa-newspaper"></i><span>Events</span></a>
+            <a href="News.html" class="mobile-menu-item"><i class="fas fa-newspaper"></i><span>News</span></a>
+            <a href="Curriculum.html" class="mobile-menu-item"><i class="fas fa-graduation-cap"></i><span>Curriculum</span></a>
+            <a href="Gallery.html" class="mobile-menu-item"><i class="fas fa-images"></i><span>Gallery</span></a>
+            <a href="Contacts.html" class="mobile-menu-item"><i class="fas fa-address-book"></i><span>Contact</span></a>
+            <div class="mobile-logos">
+                <div class="logos-row">
+                    <img src="/ELECT/assets/images/EU.png" alt="EU Logo" class="eu-logo-mobile">
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <!-- Enhanced Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu">
-        <!-- Close Button -->
-        <button class="close-menu-btn" id="closeMenuBtn">
-            <i class="fas fa-times text-xl"></i>
+    <!-- HERO CAROUSEL SECTION -->
+    <section class="relative hero-section-desktop" style="height: 85vh; overflow: hidden;">
+        <!-- Slides Container -->
+        <div class="relative w-full h-full">
+            
+            <!-- Slide 1 -->
+            <div class="hero-slide active" data-slide="0">
+                <div class="relative w-full h-full hero-mobile-stack">
+                    <div class="hero-image-top absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('ELECT/assets/images/hero.jpg');"></div>
+                    <div class="hero-content-bottom relative z-10 max-w-7xl mx-auto px-6 h-full flex items-end pb-8 md:pb-12">
+                        <div class="text-white max-w-xl">
+                            <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm font-semibold mb-3">OUR GOAL</span>
+                            <h1 class="text-3xl md:text-5xl font-semibold leading-tight">Energy Efficient Lighting for a Clean Energy <span class="text-[#247646]">Future</span></h1>
+                            <p class="mt-6 text-lg">An EU co-funded initiative empowering Zambia's transition through education, innovation, and international collaboration.</p>
+                            <div class="flex flex-wrap gap-4 mt-8">
+                                <a href="ELECT/assets/documents/ELECT-Brochure.pdf" download class="inline-flex items-center justify-center gap-2 border border-green-600 px-6 py-3 rounded text-white font-semibold transition-colors duration-300"><i class="fas fa-download"></i>Our Brochure</a>
+                                <a href="About.html" class="inline-flex items-center justify-center gap-2 border border-[#fdbf30] px-6 py-3 rounded text-white font-semibold transition-colors duration-300"><i class="fas fa-phone"></i>Call Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="hero-slide" data-slide="1">
+                <div class="relative w-full h-full hero-mobile-stack">
+                    <div class="hero-image-top absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('ELECT/assets/images/news1.jpg');"></div>
+                    <div class="hero-content-bottom relative z-10 max-w-7xl mx-auto px-6 h-full flex items-end pb-8 md:pb-12">
+                        <div class="text-white max-w-xl">
+                            <span class="inline-block bg-blue-600 text-white px-3 py-1 text-sm font-semibold mb-3">INNOVATION</span>
+                            <h1 class="text-3xl md:text-5xl font-semibold leading-tight">Smart Lighting Solutions for <span class="text-[#fdbf30]">Sustainable</span> Development</h1>
+                            <p class="mt-6 text-lg">Cutting-edge LED technology and intelligent lighting systems designed to reduce energy consumption and costs.</p>
+                            <div class="flex flex-wrap gap-4 mt-8">
+                                <a href="Objectives.html" class="inline-flex items-center justify-center gap-2 bg-[#247646] hover:bg-[#1d5f38] px-6 py-3 rounded text-white font-semibold transition-colors duration-300"><i class="fas fa-bullseye"></i>Our Mission</a>
+                                <a href="Partners.html" class="inline-flex items-center justify-center gap-2 border border-white px-6 py-3 rounded text-white font-semibold transition-colors duration-300"><i class="fas fa-handshake"></i>Our Partners</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="hero-slide" data-slide="2">
+                <div class="relative w-full h-full hero-mobile-stack">
+                    <div class="hero-image-top absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('ELECT/assets/images/news2.jpg');"></div>
+                    <div class="hero-content-bottom relative z-10 max-w-7xl mx-auto px-6 h-full flex items-end pb-8 md:pb-12">
+                        <div class="text-white max-w-xl">
+                            <span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm font-semibold mb-3">EDUCATION</span>
+                            <h1 class="text-3xl md:text-5xl font-semibold leading-tight">Empowering Future <span class="text-[#fdbf30]">Engineers</span> Through Modern Curriculum</h1>
+                            <p class="mt-6 text-lg">Transforming higher education with hands-on training, research infrastructure, and international collaboration.</p>
+                            <div class="flex flex-wrap gap-4 mt-8">
+                                <a href="Curriculum.html" class="inline-flex items-center justify-center gap-2 bg-[#247646] hover:bg-[#1d5f38] px-6 py-3 rounded text-white font-semibold transition-colors duration-300"><i class="fas fa-graduation-cap"></i>View Curriculum</a>
+                                <a href="Events.html" class="inline-flex items-center justify-center gap-2 border border-white px-6 py-3 rounded text-white font-semibold transition-colors duration-300"><i class="fas fa-calendar-alt"></i>Upcoming Events</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button class="hero-carousel-btn absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center z-20" id="heroPrevBtn">
+            <i class="fas fa-chevron-left"></i>
         </button>
+        <button class="hero-carousel-btn absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center z-20" id="heroNextBtn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        
+        <!-- Navigation Dots -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+            <div class="hero-dot w-3 h-3 rounded-full bg-white/50 active" data-dot="0"></div>
+            <div class="hero-dot w-3 h-3 rounded-full bg-white/50" data-dot="1"></div>
+            <div class="hero-dot w-3 h-3 rounded-full bg-white/50" data-dot="2"></div>
+        </div>
+    </section>
 
-        <!-- Menu Header with ELECT Logo -->
-        <div class="mobile-menu-header">
-            <a href="index.html" class="flex items-center gap-3">
-                <img
-                    src="/ELECT/assets/images/ELECT-Logo.png"
-                    alt="ELECT Logo"
-                    class="h-12 w-auto">
-                <div class="text-left">
-                    <h2 class="font-bold text-lg text-green-700">ELECT Project</h2>
-                    <p class="text-sm text-gray-600">Energy Efficient Lighting</p>
+    <!-- ABOUT SECTION -->
+    <section class="bg-white py-20" id="aboutSection">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl text-center font-bold text-[#247646] mb-12">About the ELECT Project</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="animate-fadeIn">
+                    <p class="text-gray-600 leading-relaxed text-lg">ELECT is a curriculum development project aimed to improve the accessibility and quality of higher education in the field of energy efficient lighting at Universities in Zambia. The project is being implemented at two Universities in Zambia in cooperation with two European Universities.</p>
+                    <p class="mt-6 text-gray-600 leading-relaxed text-lg">The main activities of the project include the modernization of bachelor's and diploma curricula, the introduction of innovative teaching and learning methods, the establishment of teaching and research infrastructure, and teacher training.</p>
+                    <div class="mt-6 w-full"><a href="About.html" class="inline-flex justify-center items-center gap-2 w-full px-6 py-3 border border-[#247646] text-[#247646] font-semibold rounded-lg transition-all duration-300 hover:shadow-lg"><span>Read More About ELECT</span><i class="fas fa-arrow-right text-sm"></i></a></div>
                 </div>
-            </a>
-        </div>
-
-        <!-- Menu Items -->
-        <a href="index.html" class="mobile-menu-item">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-
-        <a href="About.html" class="mobile-menu-item">
-            <i class="fas fa-info-circle"></i>
-            <span>About</span>
-        </a>
-
-        <a href="Objectives.html" class="mobile-menu-item">
-            <i class="fas fa-bullseye"></i>
-            <span>Objectives</span>
-        </a>
-
-        <a href="Partners.html" class="mobile-menu-item">
-            <i class="fas fa-handshake"></i>
-            <span>Partners</span>
-        </a>
-
-        <a href="Events.html" class="mobile-menu-item">
-            <i class="fas fa-newspaper"></i>
-            <span>Events</span>
-        </a>
-         <a href="News.html" class="mobile-menu-item">
-            <i class="fas fa-newspaper"></i>
-            <span>News</span>
-        </a>
-
-        <a href="Curriculum.html" class="mobile-menu-item">
-            <i class="fas fa-graduation-cap"></i>
-            <span>Curriculum</span>
-        </a>
-
-        <a href="Gallery.html" class="mobile-menu-item">
-            <i class="fas fa-images"></i>
-            <span>Gallery</span>
-        </a>
-
-        <a href="Contacts.html" class="mobile-menu-item">
-            <i class="fas fa-address-book"></i>
-            <span>Contact</span>
-        </a>
-
-        <!-- Logos Section at Bottom -->
-        <div class="mobile-logos">
-            <!-- ELECT & EU Logos -->
-            <div class="logos-row">
-                <img src="/ELECT/assets/images/EU.png" alt="EU Logo" class="eu-logo-mobile">
-            </div>
-        </div>
-    </div>
-</header>
-
-<script>
-    // Mobile menu functionality (preserved as is)
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-
-    function openMenu() {
-        mobileMenu.classList.add('active');
-        menuOverlay.classList.add('active');
-        mobileMenuBtn.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenu() {
-        mobileMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', openMenu);
-    }
-    if (closeMenuBtn) {
-        closeMenuBtn.addEventListener('click', closeMenu);
-    }
-    if (menuOverlay) {
-        menuOverlay.addEventListener('click', closeMenu);
-    }
-
-    // Close menu on escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
-            closeMenu();
-        }
-    });
-</script>
-
-<!-- HERO SECTION - Responsive version -->
-<section class="relative mt-0 bg-cover bg-center h-[85vh] md:h-[82vh] items-end" style="background-image:linear-gradient(rgba(0,0,0,0.4)),url('ELECT/assets/images/hero.jpg');">
-    <div class="absolute inset-0 bg-blac bg-opacity-50"></div>
-    
-    <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-end pb-8 md:pb-12">
-        <div class="text-white max-w-xl">
-            <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm font-semibold mb-3">
-               OUR GOAL</span>
-            <h1 class="text-3xl md:text-5xl font-semibold leading-tight">
-                Energy Efficient Lighting for a Clean Energy <span class="text-[#247646]">Future</span>
-            </h1>
-            <p class="mt-6 text-lg">
-                An EU co-funded initiative empowering Zambia's transition through education, innovation, and international collaboration.
-            </p>
-            <div class="flex flex-wrap gap-4 mt-8">
-                <a href="ELECT/assets/documents/ELECT-Brochure.pdf" download class="inline-flex items-center justify-center gap-2 border border-green-600 px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
-                    <i class="fas fa-download"></i>
-                   Our Brochure
-                </a>
-                <a href="About.html" class="inline-flex items-center justify-center gap-2 border border-[#fdbf30] px-6 py-3 rounded text-white font-semibold transition-colors duration-300">
-                    <i class="fas fa-phone"></i>
-                    Call Us
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section class="bg-white py-20" id="aboutSection">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl md:text-4xl text-center font-bold text-[#247646] mb-12">About the ELECT Project</h2>
-
-    <!-- TOP CONTENT ROW -->
-    <div class="grid md:grid-cols-2 gap-12 items-start">
-      <!-- LEFT TEXT -->
-      <div class="animate-fadeIn">
-        <p class="text-gray-600 leading-relaxed text-lg">
-          ELECT is a curriculum development project aimed to improve the accessibility
-          and quality of higher education in the field of energy efficient lighting at Universities in Zambia.
-          The project is being implemented at two Universities in Zambia in cooperation with two European Universities.
-        </p>
-
-        <p class="mt-6 text-gray-600 leading-relaxed text-lg">
-          The main activities of the project include the modernization of bachelor's and diploma curricula,
-          the introduction of innovative teaching and learning methods, the establishment of teaching and research infrastructure, and teacher training.
-        </p>
-            <div class="mt-6 w-full">
-                <a href="About.html" class="inline-flex justify-center items-center gap-2 w-full px-6 py-3 border border-[#247646] text-[#247646] font-semibold rounded-lg transition-all duration-300 hover:shadow-lg">
-                    <span>Read More About ELECT</span>
-                    <i class="fas fa-arrow-right text-sm"></i>
-                </a>
-            </div>
-      </div>
-
-      <!-- RIGHT VIDEO SECTION -->
-      <div class="animate-fadeIn delay-200">
-        <!-- Video Card Container -->
-        <div class="rounded overflow-hidden shadow border border-gray-100">
-          
-          <!-- Video Thumbnail / Player Area -->
-          <div class="relative aspect-video bg-gray-900" id="videoContainer">
-            <!-- Poster Image (visible initially) -->
-            <div id="videoPoster" class="absolute inset-0 cursor-pointer group" onclick="playAboutVideo()">
-              <img src="ELECT/assets/images/hero.jpg"
-                   alt="ELECT Project Overview"
-                   class="w-full h-full object-cover">
-              
-              <!-- Gradient Overlay -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-              
-              <!-- Play Button Overlay -->
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
-                  <i class="fas fa-play text-white text-2xl ml-1"></i>
+                <div class="animate-fadeIn delay-200">
+                    <div class="rounded overflow-hidden shadow border border-gray-100">
+                        <div class="relative aspect-video bg-gray-900" id="videoContainer">
+                            <div id="videoPoster" class="absolute inset-0 cursor-pointer group" onclick="playAboutVideo()">
+                                <img src="ELECT/assets/images/hero.jpg" alt="ELECT Project Overview" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                                <div class="absolute inset-0 flex items-center justify-center"><div class="w-10 h-10 rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-300"><i class="fas fa-play text-white text-2xl ml-1"></i></div></div>
+                                <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 1:07</div>
+                            </div>
+                            <div id="videoPlayer" class="absolute inset-0 hidden"><video id="aboutVideo" controls class="w-full h-full" playsinline><source src="ELECT/assets/Video/overview.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              
-              <!-- Video Duration Badge -->
-              <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full">
-                <i class="far fa-clock mr-1"></i> 1:07
-              </div>
             </div>
-            
-            <!-- Video Player (hidden initially) -->
-            <div id="videoPlayer" class="absolute inset-0 hidden">
-              <video id="aboutVideo" controls class="w-full h-full" playsinline>
-                <source src="ELECT/assets/Video/overview.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
         </div>
-    </div>
-  </div>
-</section>
-<!-- OBJECTIVES SECTION -->
-<section class="py-20">
-  <div class="max-w-7xl mx-auto mt-6 px-6">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Our Core Objectives</h2>
-      <div class="w-24 h-1 bg-[#247646] mx-auto mb-6"></div>
-      <p class="text-gray-600 mx-auto text-lg leading-relaxed">
-        The overall objective of the ELECT project is to improve access and quality of higher education in energy efficient lighting in Zambia, through the development and implementation of a modern curriculum, applied research, and international collaboration.
-      </p>
-    </div>
-    
-    <!-- Objectives Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- OBJECTIVE 1 -->
-        <div class="group">
-            <!-- Image Container with Multiple Images -->
-            <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
-                <div class="objective-1-image active" style="background-image: url('ELECT/assets/images/lightbulb.jpg');"></div>
-                <div class="objective-1-image" style="background-image: url('ELECT/assets/images/hero.jpg');"></div>
-                <div class="objective-1-image" style="background-image: url('ELECT/assets/images/About.jpg');"></div>
+    </section>
+
+    <!-- OBJECTIVES SECTION -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto mt-6 px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Our Core Objectives</h2>
+                <div class="w-24 h-1 bg-[#247646] mx-auto mb-6"></div>
+                <p class="text-gray-600 mx-auto text-lg leading-relaxed">The overall objective of the ELECT project is to improve access and quality of higher education in energy efficient lighting in Zambia, through the development and implementation of a modern curriculum, applied research, and international collaboration.</p>
             </div>
-            
-            <h3 class="font-bold text-xl text-gray-800 mb-4">Awareness & Cooperation</h3>
-            <p class="text-gray-600 leading-relaxed">
-                To raise awareness and stimulate cooperation between universities, industry, and public sectors for promoting energy efficient lighting.
-            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group">
+                    <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
+                        <div class="objective-1-image active" style="background-image: url('ELECT/assets/images/lightbulb.jpg');"></div>
+                        <div class="objective-1-image" style="background-image: url('ELECT/assets/images/hero.jpg');"></div>
+                        <div class="objective-1-image" style="background-image: url('ELECT/assets/images/About.jpg');"></div>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-4">Awareness & Cooperation</h3>
+                    <p class="text-gray-600 leading-relaxed">To raise awareness and stimulate cooperation between universities, industry, and public sectors for promoting energy efficient lighting.</p>
+                </div>
+                <div class="group">
+                    <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
+                        <div class="objective-2-image active" style="background-image: url('ELECT/assets/images/pedagogical.jpg');"></div>
+                        <div class="objective-2-image" style="background-image: url('ELECT/assets/images/pedagogical.png');"></div>
+                        <div class="objective-2-image" style="background-image: url('ELECT/assets/images/pedagogical.jpg');"></div>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-4">Pedagogical Excellence</h3>
+                    <p class="text-gray-600 leading-relaxed">To improve pedagogical expertise and teaching infrastructure for high quality, student-centered digital education.</p>
+                </div>
+                <div class="group">
+                    <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
+                        <div class="objective-3-image active" style="background-image: url('ELECT/assets/images/news2.jpg');"></div>
+                        <div class="objective-3-image" style="background-image: url('ELECT/assets/images/news3.jpg');"></div>
+                        <div class="objective-3-image" style="background-image: url('ELECT/assets/images/hero.jpg');"></div>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-4">Curriculum Development</h3>
+                    <p class="text-gray-600 leading-relaxed">To develop and modernize courses with hands-on learning in efficient and smart lighting technologies.</p>
+                </div>
+            </div>
         </div>
-        
-        <!-- OBJECTIVE 2 -->
-        <div class="group">
-            <!-- Image Container with Multiple Images -->
-            <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
-                <div class="objective-2-image active" style="background-image: url('ELECT/assets/images/pedagogical.jpg');"></div>
-                <div class="objective-2-image" style="background-image: url('ELECT/assets/images/pedagogical.png');"></div>
-                <div class="objective-2-image" style="background-image: url('ELECT/assets/images/pedagogical.jpg');"></div>
+    </section>
+
+    <!-- PARTNERS SECTION -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0"></div>
+        <div class="relative max-w-7xl mx-auto px-6 py-24">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div><h2 class="text-4xl md:text-5xl font-bold text-[#247646] leading-tight">Trusted and Partnered with well recognized Universities around the world</h2></div>
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="space-y-8">
+                        <a href="https://www.aalto.fi" target="_blank" class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition"><img src="ELECT/assets/images/aalto-university-logo-finland.jpg" class="h-12"></a>
+                        <a href="https://www.mu.ac.zm" target="_blank" class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition"><img src="ELECT/assets/images/MU-logo.png" class="h-14"></a>
+                        <a href="https://elect-project-five.vercel.app" target="_blank" class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition"><img src="ELECT/assets/images/ELECT-Logo.png" class="h-10"></a>
+                    </div>
+                    <div class="space-y-8 pt-10">
+                        <a href="https://www.cbu.ac.zm" target="_blank" class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition"><img src="ELECT/assets/images/Copperbelt-University.jpeg" class="h-12"></a>
+                        <a href="https://www.eap.gr" target="_blank" class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition"><img src="ELECT/assets/images/Hellenic-logo.png" class="h-12"></a>
+                    </div>
+                </div>
             </div>
-            
-            <h3 class="font-bold text-xl text-gray-800 mb-4">Pedagogical Excellence</h3>
-            <p class="text-gray-600 leading-relaxed">
-                To improve pedagogical expertise and teaching infrastructure for high quality, student-centered digital education.
-            </p>
         </div>
-        
-        <!-- OBJECTIVE 3 -->
-        <div class="group">
-            <!-- Image Container with Multiple Images -->
-            <div class="objectives-image mx-auto mb-6 w-full h-48 overflow-hidden rounded">
-                <div class="objective-3-image active" style="background-image: url('ELECT/assets/images/news2.jpg');"></div>
-                <div class="objective-3-image" style="background-image: url('ELECT/assets/images/news3.jpg');"></div>
-                <div class="objective-3-image" style="background-image: url('ELECT/assets/images/hero.jpg');"></div>
-            </div>
-            
-            <h3 class="font-bold text-xl text-gray-800 mb-4">Curriculum Development</h3>
-            <p class="text-gray-600 leading-relaxed">
-                To develop and modernize courses with hands-on learning in efficient and smart lighting technologies.
-            </p>
-        </div>
-        
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- PARTNERS SECTION -->
-<section class="relative overflow-hidden">
-    <!-- Gradient Background -->
-    <div class="absolute inset-0"></div>
-
-    <div class="relative max-w-7xl mx-auto px-6 py-24">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-            <!-- LEFT CONTENT -->
-            <div>
-                <h2 class="text-4xl md:text-5xl font-bold text-[#247646] leading-tight">
-                    Trusted and Partnered with well<br>
-                    recognized<br>
-                    Universities around<br>
-                    the world
-                </h2>
-            </div>
-
-            <!-- RIGHT LOGO CARDS -->
-            <div class="grid grid-cols-2 gap-8">
-
-                <!-- Column 1 -->
+    <!-- NEWS SECTION -->
+    <section id="newsSection" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="pb-4 mb-3"><h2 class="text-3xl font-bold text-gray-900">Latest News</h2><p class="text-gray-600 mt-2">Latest developments from the Energy Efficient Lighting project</p></div>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="border-r lg:pr-8">
+                        <div class="relative overflow-hidden rounded mb-6 h-64 md:h-80 lg:h-96">
+                            <div class="slider-container absolute inset-0">
+                                <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="0"><div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('ELECT/assets/images/hero.jpg');"></div><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"><div class="absolute bottom-0 left-0 right-0 p-6 text-white"><span class="inline-block bg-red-600 text-white px-3 py-1 text-sm font-semibold mb-3">FEATURED</span><h3 class="text-md md:text-3xl font-bold mb-2 leading-tight">ELECT Project Launches New Training Program for Energy Professionals</h3><div class="flex items-center text-sm"><span class="flex items-center mr-6"><i class="fas fa-calendar-alt mr-2"></i>2 hours ago</span><span class="flex items-center"><i class="fas fa-eye mr-2"></i>1,245 views</span></div></div></div></div>
+                                <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="1"><div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('ELECT/assets/images/news1.jpg');"></div><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"><div class="absolute bottom-0 left-0 right-0 p-6 text-white"><span class="inline-block bg-blue-600 text-white px-3 py-1 text-sm font-semibold mb-3">WORKSHOP</span><h3 class="text-md md:text-3xl font-bold mb-2 leading-tight">Hands-on Workshop for University Lecturers Concludes Successfully</h3><div class="flex items-center text-sm"><span class="flex items-center mr-6"><i class="fas fa-calendar-alt mr-2"></i>3 days ago</span><span class="flex items-center"><i class="fas fa-eye mr-2"></i>987 views</span></div></div></div></div>
+                                <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="2"><div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('ELECT/assets/images/news2.jpg');"></div><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"><div class="absolute bottom-0 left-0 right-0 p-6 text-white"><span class="inline-block bg-green-600 text-white px-3 py-1 text-sm font-semibold mb-3">RESEARCH</span><h3 class="text-md md:text-3xl font-bold mb-2 leading-tight">New Research Shows 40% Energy Savings from Pilot Installations</h3><div class="flex items-center text-sm"><span class="flex items-center mr-6"><i class="fas fa-calendar-alt mr-2"></i>2 days ago</span><span class="flex items-center"><i class="fas fa-eye mr-2"></i>1,542 views</span></div></div></div></div>
+                                <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="3"><div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('ELECT/assets/images/hero.jpg');"></div><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"><div class="absolute bottom-0 left-0 right-0 p-6 text-white"><span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm font-semibold mb-3">COLLABORATION</span><h3 class="text-md md:text-3xl font-bold mb-2 leading-tight">EU Delegation Visits Project Sites, Commends Progress</h3><div class="flex items-center text-sm"><span class="flex items-center mr-6"><i class="fas fa-calendar-alt mr-2"></i>5 days ago</span><span class="flex items-center"><i class="fas fa-eye mr-2"></i>2,134 views</span></div></div></div></div>
+                            </div>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10"><div class="slider-dot w-3 h-3 bg-white/50 cursor-pointer hover:bg-white transition-colors" data-slide="0"></div><div class="slider-dot w-3 h-3 bg-white/50 cursor-pointer hover:bg-white transition-colors" data-slide="1"></div><div class="slider-dot w-3 h-3 bg-white/50 cursor-pointer hover:bg-white transition-colors" data-slide="2"></div><div class="slider-dot w-3 h-3 bg-white/50 cursor-pointer hover:bg-white transition-colors" data-slide="3"></div></div>
+                            <button class="slider-prev absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                            <button class="slider-next absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6 border-t pt-6">
+                            <article class="border-b pb-6"><h4 class="font-bold text-lg mb-2"><a href="#" class="text-gray-900 hover:text-[#247646] transition-colors">New Curriculum Materials Released Online</a></h4><p class="text-sm text-gray-600 mb-3">Educational resources for energy-efficient lighting now available for download...</p><span class="text-xs text-gray-500">1 week ago</span></article>
+                            <article class="border-b pb-6"><h4 class="font-bold text-lg mb-2"><a href="#" class="text-gray-900 hover:text-[#247646] transition-colors">Student Exchange Program Applications Open</a></h4><p class="text-sm text-gray-600 mb-3">Opportunity for Zambian students to study at European partner universities...</p><span class="text-xs text-gray-500">1 week ago</span></article>
+                        </div>
+                    </div>
+                </div>
                 <div class="space-y-8">
-                    <a href="https://www.aalto.fi" target="_blank"
-                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
-                        <img src="ELECT/assets/images/aalto-university-logo-finland.jpg" class="h-12">
-                    </a>
-
-                    <a href="https://www.mu.ac.zm" target="_blank"
-                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
-                        <img src="ELECT/assets/images/MU-logo.png" class="h-14">
-                    </a>
-
-                    <a href="https://elect-project-five.vercel.app" target="_blank"
-                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
-                        <img src="ELECT/assets/images/ELECT-Logo.png" class="h-10">
-                    </a>
-                </div>
-
-                <!-- Column 2 (slightly offset down) -->
-                <div class="space-y-8 pt-10">
-                    <a href="https://www.cbu.ac.zm" target="_blank"
-                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
-                        <img src="ELECT/assets/images/Copperbelt-University.jpeg" class="h-12">
-                    </a>
-
-                    <a href="https://www.eap.gr" target="_blank"
-                       class="bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center hover:scale-105 transition">
-                        <img src="ELECT/assets/images/Hellenic-logo.png" class="h-12">
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- NEWS SECTION -->
-<section id="newsSection" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-        <!-- Section Header -->
-        <div class="pb-4 mb-3">
-            <h2 class="text-3xl font-bold text-gray-900">Latest News</h2>
-            <p class="text-gray-600 mt-2">Latest developments from the Energy Efficient Lighting project</p>
-        </div>
-        
-        <!-- Main News Grid with Slider -->
-        <div class="grid lg:grid-cols-3 gap-8">
-            
-            <!-- Featured/Lead Story Slider (Left Column) -->
-            <div class="lg:col-span-2">
-                <div class="border-r lg:pr-8">
-                    <!-- Slider Container -->
-                    <div class="relative overflow-hidden rounded mb-6 h-64 md:h-80 lg:h-96">
-                        <!-- Slider Items -->
-                        <div class="slider-container absolute inset-0">
-                            <!-- Slide 1 -->
-                            <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="0">
-                                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('ELECT/assets/images/hero.jpg');"></div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
-                                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                        <span class="inline-block bg-red-600 text-white px-3 py-1 text-sm font-semibold mb-3">
-                                            FEATURED
-                                        </span>
-                                        <h3 class="text-md md:text-3xl font-bold mb-2 leading-tight">
-                                            ELECT Project Launches New Training Program for Energy Professionals
-                                        </h3>
-                                        
-                                        <div class="flex items-center text-sm">
-                                            <span class="flex items-center mr-6">
-                                                <i class="fas fa-calendar-alt mr-2"></i>
-                                                2 hours ago
-                                            </span>
-                                            <span class="flex items-center">
-                                                <i class="fas fa-eye mr-2"></i>
-                                                1,245 views
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Slide 2 -->
-                            <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="1">
-                                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('ELECT/assets/images/news1.jpg');"></div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
-                                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                        <span class="inline-block bg-blue-600 text-white px-3 py-1 text-sm font-semibold mb-3">
-                                            WORKSHOP
-                                        </span>
-                                        <h3 class="text-md md:text-3xl font-bold mb-2 leading-tight">
-                                            Hands-on Workshop for University Lecturers Concludes Successfully
-                                        </h3>
-                                       
-                                        <div class="flex items-center text-sm">
-                                            <span class="flex items-center mr-6">
-                                                <i class="fas fa-calendar-alt mr-2"></i>
-                                                3 days ago
-                                            </span>
-                                            <span class="flex items-center">
-                                                <i class="fas fa-eye mr-2"></i>
-                                                987 views
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Slide 3 -->
-                            <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="2">
-                                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('ELECT/assets/images/news2.jpg');"></div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
-                                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                        <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm font-semibold mb-3">
-                                            RESEARCH
-                                        </span>
-                                        <h3 class="text-md md:text-3xl font-bold mb-2 leading-tight">
-                                            New Research Shows 40% Energy Savings from Pilot Installations
-                                        </h3>
-                                      
-                                        <div class="flex items-center text-sm">
-                                            <span class="flex items-center mr-6">
-                                                <i class="fas fa-calendar-alt mr-2"></i>
-                                                2 days ago
-                                            </span>
-                                            <span class="flex items-center">
-                                                <i class="fas fa-eye mr-2"></i>
-                                                1,542 views
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Slide 4 -->
-                            <div class="slider-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out" data-index="3">
-                                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('ELECT/assets/images/hero.jpg');"></div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
-                                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                        <span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm font-semibold mb-3">
-                                            COLLABORATION
-                                        </span>
-                                        <h3 class="text-md md:text-3xl font-bold mb-2 leading-tight">
-                                            EU Delegation Visits Project Sites, Commends Progress
-                                        </h3>
-                                    
-                                        <div class="flex items-center text-sm">
-                                            <span class="flex items-center mr-6">
-                                                <i class="fas fa-calendar-alt mr-2"></i>
-                                                5 days ago
-                                            </span>
-                                            <span class="flex items-center">
-                                                <i class="fas fa-eye mr-2"></i>
-                                                2,134 views
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Slider Navigation Dots (Buttons hidden) -->
-                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-                            <div class="slider-dot w-3 h-3 /50 cursor-pointer hover:bg-white transition-colors" data-slide="0"></div>
-                            <div class="slider-dot w-3 h-3 /50 cursor-pointer hover:bg-white transition-colors" data-slide="1"></div>
-                            <div class="slider-dot w-3 h-3 /50 cursor-pointer hover:bg-white transition-colors" data-slide="2"></div>
-                            <div class="slider-dot w-3 h-3 /50 cursor-pointer hover:bg-white transition-colors" data-slide="3"></div>
-                        </div>
-                        
-                        <!-- Slider Navigation Arrows -->
-                        <button class="slider-prev absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all z-10">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="slider-next absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all z-10">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Sub Stories -->
-                    <div class="grid md:grid-cols-2 gap-6 border-t pt-6">
-                        <article class="border-b pb-6">
-                            <h4 class="font-bold text-lg mb-2">
-                                <a href="#" class="text-gray-900 hover:text-[#247646] transition-colors">
-                                    New Curriculum Materials Released Online
-                                </a>
-                            </h4>
-                            <p class="text-sm text-gray-600 mb-3">
-                                Educational resources for energy-efficient lighting now available for download...
-                            </p>
-                            <span class="text-xs text-gray-500">1 week ago</span>
-                        </article>
-                        
-                        <article class="border-b pb-6">
-                            <h4 class="font-bold text-lg mb-2">
-                                <a href="#" class="text-gray-900 hover:text-[#247646] transition-colors">
-                                    Student Exchange Program Applications Open
-                                </a>
-                            </h4>
-                            <p class="text-sm text-gray-600 mb-3">
-                                Opportunity for Zambian students to study at European partner universities...
-                            </p>
-                            <span class="text-xs text-gray-500">1 week ago</span>
-                        </article>
-                    </div>    
-                </div>
-            </div>
-            
-            <!-- Sidebar Stories (Right Column) -->
-            <div class="space-y-8">
-                <!-- Latest Updates -->
-                <div class="p-6 rounded-lg">
-                    <h3 class="font-bold text-xl mb-4 pb-2 border-b">Latest Updates</h3>
-                    <div class="space-y-4">
-                        <article>
-                            <h4 class="font-semibold mb-1">
-                                <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
-                                    New Research Partnership with European Universities
-                                </a>
-                            </h4>
-                            <p class="text-sm text-gray-600">Collaboration aims to advance energy-efficient lighting research...</p>
-                            <span class="text-xs text-gray-500">Yesterday</span>
-                        </article>
-                        
-                        <article>
-                            <h4 class="font-semibold mb-1">
-                                <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
-                                    Industry Advisory Board Meeting Held
-                                </a>
-                            </h4>
-                            <p class="text-sm text-gray-600">Stakeholders discuss curriculum alignment with industry needs...</p>
-                            <span class="text-xs text-gray-500">4 days ago</span>
-                        </article>
-                        
-                        <article>
-                            <h4 class="font-semibold mb-1">
-                                <a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">
-                                    Publication in International Journal
-                                </a>
-                            </h4>
-                            <p class="text-sm text-gray-600">ELECT research team publishes findings in Energy Efficiency journal...</p>
-                            <span class="text-xs text-gray-500">1 week ago</span>
-                        </article>
-                    </div>
-                </div>
-                <!-- View All Button -->
-                <div class="text-center mt-12">
-                    <a href="News.html" class="inline-flex justify-center items-center gap-2 w-full bg-[#247646] text-white px-6 py-3 rounded font-semibold transition-colors duration-300 hover:bg-[#1d5f38]">
-                        <i class="fas fa-newspaper"></i>
-                        View All News Stories
-                    </a>
+                    <div class="p-6 rounded-lg"><h3 class="font-bold text-xl mb-4 pb-2 border-b">Latest Updates</h3><div class="space-y-4"><article><h4 class="font-semibold mb-1"><a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">New Research Partnership with European Universities</a></h4><p class="text-sm text-gray-600">Collaboration aims to advance energy-efficient lighting research...</p><span class="text-xs text-gray-500">Yesterday</span></article><article><h4 class="font-semibold mb-1"><a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">Industry Advisory Board Meeting Held</a></h4><p class="text-sm text-gray-600">Stakeholders discuss curriculum alignment with industry needs...</p><span class="text-xs text-gray-500">4 days ago</span></article><article><h4 class="font-semibold mb-1"><a href="#" class="text-gray-800 hover:text-[#247646] transition-colors">Publication in International Journal</a></h4><p class="text-sm text-gray-600">ELECT research team publishes findings in Energy Efficiency journal...</p><span class="text-xs text-gray-500">1 week ago</span></article></div></div>
+                    <div class="text-center mt-12"><a href="News.html" class="inline-flex justify-center items-center gap-2 w-full bg-[#247646] text-white px-6 py-3 rounded font-semibold transition-colors duration-300 hover:bg-[#1d5f38]"><i class="fas fa-newspaper"></i>View All News Stories</a></div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- BOARD OF DIRECTORS SECTION -->
-<section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-6">
-        <!-- Section Header -->
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Board of Directors</h2>
-            <div class="w-24 h-1 bg-[#247646] mx-auto mb-6"></div>
-            <p class="text-gray-600 max-w-2xl mx-auto">
-                The distinguished leaders guiding the ELECT Project toward a sustainable energy future.
-            </p>
+    <!-- BOARD OF DIRECTORS SECTION -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Board of Directors</h2><div class="w-24 h-1 bg-[#247646] mx-auto mb-6"></div><p class="text-gray-600 max-w-2xl mx-auto">The distinguished leaders guiding the ELECT Project toward a sustainable energy future.</p></div>
+            <div class="flex justify-center"><div class="w-72"><a href="boardOfDirectors.html" class="inline-flex justify-center items-center gap-2 w-full px-6 py-3 border border-[#247646] text-[#247646] font-semibold rounded-lg transition-all duration-300 hover:shadow-lg"><span>Meet Our Directors</span><i class="fas fa-arrow-right text-sm"></i></a></div></div>
         </div>
-        <!-- Button Container - Centered -->
-        <div class="flex justify-center">
-            <div class="w-72">
-                <a href="boardOfDirectors.html" class="inline-flex justify-center items-center gap-2 w-full px-6 py-3 border border-[#247646] text-[#247646] font-semibold rounded-lg transition-all duration-300 hover:shadow-lg">
-                    <span>Meet Our Directors</span>
-                    <i class="fas fa-arrow-right text-sm"></i>
-                </a>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-12"><h1 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Contact Us</h1><div class="w-20 h-1 bg-[#247646] mx-auto"></div></div>
+            <div class="flex justify-center items-start"><div class="bg-white rounded-lg shadow p-8 w-full max-w-2xl"><h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Send us a Message</h2><form class="space-y-5"><div><label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label><input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent"></div><div><label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label><input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent"></div><div><label class="block text-sm font-medium text-gray-700 mb-1">Subject</label><input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent"></div><div><label class="block text-sm font-medium text-gray-700 mb-1">Message</label><textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent"></textarea></div><button type="submit" class="w-full border border-[#247646] text-[#247646] font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-[#247646] hover:text-white hover:shadow-md"><i class="fas fa-message mr-2"></i>Send Message</button></form></div></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
+                <div class="lg:col-span-1"><img src="ELECT/assets/images/ELECT-Logo.png" alt="ELECT" class="h-16 w-auto mb-4"><p class="text-sm text-gray-400 leading-relaxed">Energy Efficient Lighting for Clean Energy Transitions in Zambia.</p></div>
+                <div><h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4><ul class="space-y-2"><li><a href="About.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">About</a></li><li><a href="Objectives.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Objectives</a></li><li><a href="Partners.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Partners</a></li><li><a href="News.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">News</a></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4 text-lg">Partners</h4><ul class="space-y-2"><li><a href="https://www.aalto.fi" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Aalto University</a></li><li><a href="https://www.eap.gr" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Hellenic Open University</a></li><li><a href="https://www.cbu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Copperbelt University</a></li><li><a href="https://www.mu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Mulungushi University</a></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4 text-lg">Contact</h4><ul class="space-y-3"><li class="flex items-start"><i class="fas fa-envelope mt-1 mr-3 text-gray-400"></i><a href="mailto:info@elect-project.org" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">info@elect-project.org</a></li><li class="flex items-start"><i class="fas fa-phone mt-1 mr-3 text-gray-400"></i><a href="tel:+260211234567" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">+260 21 1234567</a></li><li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i><span class="text-sm text-gray-400">Lusaka, Zambia</span></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4 text-lg">Follow Us</h4><div class="flex space-x-4 mb-6"><a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110"><i class="fab fa-twitter text-xl"></i></a><a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110"><i class="fab fa-linkedin text-xl"></i></a><a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110"><i class="fab fa-facebook text-xl"></i></a></div><div class="mt-2"><img src="ELECT/assets/images/EU.png" alt="Co-funded by the European Union" class="h-14 w-auto"></div></div>
             </div>
+            <div class="border-t border-gray-800 pt-6 mt-4"><div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500"><p>© 2026 ELECT Project. All rights reserved.</p><p class="mt-2 md:mt-0">Co‑funded by the European Union</p></div></div>
         </div>
-    </div>
-</section>
+    </footer>
 
-<section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4 max-w-4xl">
-        <!-- Section Header -->
-        <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-[#247646] mb-4">Contact Us</h1>
-            <div class="w-20 h-1 bg-[#247646] mx-auto"></div>
-        </div>
+    <script>
+        function playAboutVideo() {
+            const poster = document.getElementById('videoPoster');
+            const player = document.getElementById('videoPlayer');
+            const video = document.getElementById('aboutVideo');
+            if (!poster || !player || !video) return;
+            poster.classList.add('hidden');
+            player.classList.remove('hidden');
+            video.play().catch(e => console.log("Play prevented:", e));
+        }
 
-        <div class="flex justify-center items-start">
-            <!-- Contact Form & EU Info -->
-            <div class="bg-white rounded-lg shadow p-8 w-full max-w-2xl">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Send us a Message</h2>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hero Carousel Logic
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.hero-dot');
+            const prevBtn = document.getElementById('heroPrevBtn');
+            const nextBtn = document.getElementById('heroNextBtn');
+            let currentHeroSlide = 0;
+            let heroInterval;
+
+            function showHeroSlide(index) {
+                if (!slides.length) return;
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
                 
-                <form class="space-y-5">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                        <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                        <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#247646] focus:border-transparent"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="w-full border border-[#247646] text-[#247646] font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-[#247646] hover:text-white hover:shadow-md">
-                        <i class="fas fa-message mr-2"></i>
-                        Send Message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ===== FOOTER (EU compliant) ===== -->
-<footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6">
-  <div class="container mx-auto px-4 max-w-7xl">
-    <!-- Main Footer Content -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
-      <!-- Brand Column -->
-      <div class="lg:col-span-1">
-        <img src="ELECT/assets/images/ELECT-Logo.png" alt="ELECT" class="h-16 w-auto mb-4">
-        <p class="text-sm text-gray-400 leading-relaxed">
-          Energy Efficient Lighting for Clean Energy Transitions in Zambia.
-        </p>
-      </div>
-
-      <!-- Quick Links -->
-      <div>
-        <h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4>
-        <ul class="space-y-2">
-          <li><a href="About.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">About</a></li>
-          <li><a href="Objectives.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Objectives</a></li>
-          <li><a href="Partners.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Partners</a></li>
-          <li><a href="News.html" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">News</a></li>
-        </ul>
-      </div>
-
-      <!-- Partners -->
-      <div>
-        <h4 class="text-white font-semibold mb-4 text-lg">Partners</h4>
-        <ul class="space-y-2">
-          <li><a href="https://www.aalto.fi" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Aalto University</a></li>
-          <li><a href="https://www.eap.gr" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Hellenic Open University</a></li>
-          <li><a href="https://www.cbu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Copperbelt University</a></li>
-           <li><a href="https://www.mu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">Mulungushi University</a></li>
-        </ul>
-      </div>
-
-      <!-- Contact -->
-      <div>
-        <h4 class="text-white font-semibold mb-4 text-lg">Contact</h4>
-        <ul class="space-y-3">
-          <li class="flex items-start">
-            <i class="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
-            <a href="mailto:info@elect-project.org" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">info@elect-project.org</a>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-phone mt-1 mr-3 text-gray-400"></i>
-            <a href="tel:+260211234567" class="text-sm text-gray-400 hover:text-white transition-colors duration-200">+260 21 1234567</a>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
-            <span class="text-sm text-gray-400">Lusaka, Zambia</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Social & EU Funding -->
-      <div>
-        <h4 class="text-white font-semibold mb-4 text-lg">Follow Us</h4>
-        <div class="flex space-x-4 mb-6">
-          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Twitter">
-            <i class="fab fa-twitter text-xl"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="LinkedIn">
-            <i class="fab fa-linkedin text-xl"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110" aria-label="Facebook">
-            <i class="fab fa-facebook text-xl"></i>
-          </a>
-        </div>
-        <div class="mt-2">
-          <img src="ELECT/assets/images/EU.png" alt="Co-funded by the European Union" class="h-14 w-auto">
-        </div>
-      </div>
-    </div>
-
-    <!-- Copyright Bar -->
-    <div class="border-t border-gray-800 pt-6 mt-4">
-      <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-        <p>© 2026 ELECT Project. All rights reserved.</p>
-        <p class="mt-2 md:mt-0">Co‑funded by the European Union</p>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script>
-// Define playAboutVideo globally so onclick can access it
-function playAboutVideo() {
-  const poster = document.getElementById('videoPoster');
-  const player = document.getElementById('videoPlayer');
-  const video = document.getElementById('aboutVideo');
-  const playBtn = document.getElementById('playVideoBtn');
-  
-  if (!poster || !player || !video) return;
-  
-  // Hide poster, show player
-  poster.classList.add('hidden');
-  player.classList.remove('hidden');
-  
-  // Play the video
-  video.play().catch(e => console.log("Play prevented:", e));
-  
-  // Update button state
-  if (playBtn) {
-    playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
-    playBtn.style.opacity = '0.7';
-    playBtn.style.pointerEvents = 'none';
-  }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Video Elements for Hero section
-    const smallPlayButton = document.getElementById('smallPlayButton');
-    const videoOverlay = document.getElementById('videoOverlay');
-    const videoContainer = document.getElementById('videoContainer');
-    const mainVideo = document.getElementById('mainVideo');
-    const closeVideoBtn = document.getElementById('closeVideoBtn');
-    const closeOverlayBtn = document.getElementById('closeOverlayBtn');
-    
-    // About Section Video Elements
-    const aboutSection = document.getElementById('aboutSection');
-    const aboutVideoWrapper = document.getElementById('aboutVideoWrapper');
-    const aboutVideo = document.getElementById('aboutVideo');
-    const aboutImage = document.getElementById('aboutImage');
-    const closeAboutVideoBtn = document.getElementById('closeAboutVideoBtn');
-    const floatingCard = document.getElementById('floatingCard');
-    
-    // Objectives Elements for Image Rotation
-    const objectiveImages = [
-        document.querySelectorAll('.objective-1-image'),
-        document.querySelectorAll('.objective-2-image'),
-        document.querySelectorAll('.objective-3-image')
-    ];
-    
-    // News Slider Elements
-    const sliderItems = document.querySelectorAll('.slider-item');
-    const sliderDots = document.querySelectorAll('.slider-dot');
-    
-    let currentSlide = 0;
-    let slideInterval;
-    let aboutVideoTriggered = false;
-    let objectivesInterval;
-    let objectiveCurrentImages = [0, 0, 0];
-    
-    // ===== ABOUT VIDEO EVENT LISTENERS =====
-    if (aboutVideo) {
-        // Handle video ended event
-        aboutVideo.addEventListener('ended', function() {
-            const playBtn = document.getElementById('playVideoBtn');
-            if (playBtn) {
-                playBtn.innerHTML = '<i class="fas fa-redo-alt"></i><span>Replay</span>';
-                playBtn.style.opacity = '1';
-                playBtn.style.pointerEvents = 'auto';
-                playBtn.onclick = function() {
-                    aboutVideo.currentTime = 0;
-                    aboutVideo.play();
-                    playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
-                    playBtn.style.opacity = '0.7';
-                    playBtn.style.pointerEvents = 'none';
-                };
+                slides[index].classList.add('active');
+                if (dots[index]) dots[index].classList.add('active');
+                currentHeroSlide = index;
             }
-        });
-        
-        // Handle pause event
-        aboutVideo.addEventListener('pause', function() {
-            const playBtn = document.getElementById('playVideoBtn');
-            if (playBtn && !aboutVideo.ended) {
-                playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Resume</span>';
-                playBtn.style.opacity = '1';
-                playBtn.style.pointerEvents = 'auto';
-                playBtn.onclick = function() {
-                    aboutVideo.play();
-                    playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
-                    playBtn.style.opacity = '0.7';
-                    playBtn.style.pointerEvents = 'none';
-                };
+
+            function nextHeroSlide() {
+                let next = (currentHeroSlide + 1) % slides.length;
+                showHeroSlide(next);
             }
-        });
-        
-        // Handle play event
-        aboutVideo.addEventListener('play', function() {
-            const playBtn = document.getElementById('playVideoBtn');
-            if (playBtn) {
-                playBtn.innerHTML = '<i class="fas fa-play-circle"></i><span>Playing...</span>';
-                playBtn.style.opacity = '0.7';
-                playBtn.style.pointerEvents = 'none';
+
+            function prevHeroSlide() {
+                let prev = (currentHeroSlide - 1 + slides.length) % slides.length;
+                showHeroSlide(prev);
             }
-        });
-    }
-    
-    // Play button on scroll from hero section
-    function showPlayButton() {
-        if (smallPlayButton) {
-            smallPlayButton.classList.remove('opacity-0');
-            smallPlayButton.classList.add('opacity-100');
-        }
-    }
-    
-    function hidePlayButton() {
-        if (smallPlayButton) {
-            smallPlayButton.classList.remove('opacity-100');
-            smallPlayButton.classList.add('opacity-0');
-        }
-    }
-    
-    // OBJECTIVES IMAGE ROTATION
-    function rotateObjectiveImages() {
-        objectiveImages.forEach((images, objectiveIndex) => {
-            if (images && images.length > 0) {
-                // Hide all images for this objective
-                images.forEach(img => {
-                    if (img) img.classList.remove('active');
+
+            function startHeroAutoSlide() {
+                if (heroInterval) clearInterval(heroInterval);
+                heroInterval = setInterval(nextHeroSlide, 8000);
+            }
+
+            if (slides.length > 0) {
+                startHeroAutoSlide();
+                
+                if (prevBtn) prevBtn.addEventListener('click', () => { prevHeroSlide(); startHeroAutoSlide(); });
+                if (nextBtn) nextBtn.addEventListener('click', () => { nextHeroSlide(); startHeroAutoSlide(); });
+                
+                dots.forEach((dot, idx) => {
+                    dot.addEventListener('click', () => { showHeroSlide(idx); startHeroAutoSlide(); });
                 });
-                
-                // Show current image
-                objectiveCurrentImages[objectiveIndex] = 
-                    (objectiveCurrentImages[objectiveIndex] + 1) % images.length;
-                if (images[objectiveCurrentImages[objectiveIndex]]) {
-                    images[objectiveCurrentImages[objectiveIndex]].classList.add('active');
-                }
             }
-        });
-    }
-    
-    function initObjectivesImageRotation() {
-        if (objectiveImages.some(arr => arr.length > 0)) {
-            objectivesInterval = setInterval(rotateObjectiveImages, 5000);
-            rotateObjectiveImages();
-        }
-    }
-    
-    // Scroll detection
-    window.addEventListener('scroll', function() {
-        const heroSection = document.querySelector('.relative.bg-cover');
-        if (heroSection) {
-            const heroBottom = heroSection.getBoundingClientRect().bottom;
-            const viewportHeight = window.innerHeight;
-            
-            if (heroBottom < viewportHeight * 0.9) {
-                showPlayButton();
-            } else {
-                hidePlayButton();
+
+            // About Video Elements
+            const aboutVideo = document.getElementById('aboutVideo');
+            if (aboutVideo) {
+                aboutVideo.addEventListener('ended', function() {});
+                aboutVideo.addEventListener('pause', function() {});
+                aboutVideo.addEventListener('play', function() {});
             }
-        }
-    });
-    
-    // News Slider Functions
-    function showSlide(index) {
-        if (!sliderItems.length) return;
-        
-        sliderItems.forEach(item => {
-            item.classList.remove('opacity-100');
-            item.classList.add('opacity-0');
+
+            // Objectives Elements for Image Rotation
+            const objectiveImages = [
+                document.querySelectorAll('.objective-1-image'),
+                document.querySelectorAll('.objective-2-image'),
+                document.querySelectorAll('.objective-3-image')
+            ];
+            let objectiveCurrentImages = [0, 0, 0];
+            let objectivesInterval;
+
+            function rotateObjectiveImages() {
+                objectiveImages.forEach((images, objectiveIndex) => {
+                    if (images && images.length > 0) {
+                        images.forEach(img => { if (img) img.classList.remove('active'); });
+                        objectiveCurrentImages[objectiveIndex] = (objectiveCurrentImages[objectiveIndex] + 1) % images.length;
+                        if (images[objectiveCurrentImages[objectiveIndex]]) {
+                            images[objectiveCurrentImages[objectiveIndex]].classList.add('active');
+                        }
+                    }
+                });
+            }
+
+            if (objectiveImages.some(arr => arr.length > 0)) {
+                objectivesInterval = setInterval(rotateObjectiveImages, 5000);
+                rotateObjectiveImages();
+            }
+
+            // News Slider
+            const sliderItems = document.querySelectorAll('.slider-item');
+            const sliderDots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(index) {
+                if (!sliderItems.length) return;
+                sliderItems.forEach(item => { item.classList.remove('opacity-100'); item.classList.add('opacity-0'); });
+                sliderItems[index].classList.remove('opacity-0');
+                sliderItems[index].classList.add('opacity-100');
+                sliderDots.forEach(dot => { dot.classList.remove('bg-white'); dot.classList.add('bg-white/50'); });
+                if (sliderDots[index]) { sliderDots[index].classList.remove('bg-white/50'); sliderDots[index].classList.add('bg-white'); }
+                currentSlide = index;
+            }
+
+            function nextSlide() { if (sliderItems.length) showSlide((currentSlide + 1) % sliderItems.length); }
+            function startSlider() { if (sliderItems.length > 0) slideInterval = setInterval(nextSlide, 10000); }
+            if (sliderItems.length > 0) { showSlide(0); startSlider(); }
+
+            // Small play button visibility
+            const smallPlayButton = document.getElementById('smallPlayButton');
+            if (smallPlayButton) { smallPlayButton.classList.add('opacity-0'); }
         });
-        
-        sliderItems[index].classList.remove('opacity-0');
-        sliderItems[index].classList.add('opacity-100');
-        
-        sliderDots.forEach(dot => {
-            dot.classList.remove('bg-white');
-            dot.classList.add('bg-white/50');
-        });
-        if (sliderDots[index]) {
-            sliderDots[index].classList.remove('bg-white/50');
-            sliderDots[index].classList.add('bg-white');
-        }
-        
-        currentSlide = index;
-    }
-    
-    function nextSlide() {
-        if (!sliderItems.length) return;
-        let nextIndex = (currentSlide + 1) % sliderItems.length;
-        showSlide(nextIndex);
-    }
-    
-    function startSlider() {
-        if (sliderItems.length > 0) {
-            slideInterval = setInterval(nextSlide, 10000);
-        }
-    }
-    
-    // Initialize slider
-    if (sliderItems.length > 0) {
-        showSlide(0);
-        startSlider();
-    }
-    
-    // Initialize play button opacity
-    if (smallPlayButton) {
-        smallPlayButton.classList.remove('opacity-100');
-        smallPlayButton.classList.add('opacity-0');
-    }
-    
-    // Initialize objectives image rotation
-    initObjectivesImageRotation();
-});
-                
-// ===== MOBILE MENU FUNCTIONALITY (runs immediately) =====
-(function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
 
-    if (!mobileMenuBtn || !mobileMenu) return;
+        // Mobile menu functionality
+        (function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            if (!mobileMenuBtn || !mobileMenu) return;
+            function closeMobileMenu() { mobileMenu.classList.remove('active'); if (menuOverlay) menuOverlay.classList.remove('active'); mobileMenuBtn.classList.remove('active'); document.body.style.overflow = ''; }
+            mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.add('active'); if (menuOverlay) menuOverlay.classList.add('active'); mobileMenuBtn.classList.add('active'); document.body.style.overflow = 'hidden'; });
+            if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+            if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
+            const mobileLinks = mobileMenu.querySelectorAll('.mobile-menu-item');
+            mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('active')) closeMobileMenu(); });
+        })();
 
-    function closeMobileMenu() {
-        mobileMenu.classList.remove('active');
-        if (menuOverlay) menuOverlay.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+        // Highlight current page
+        (function() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileLinks = document.querySelectorAll('.mobile-menu-item');
+            navLinks.forEach(link => { const linkPath = link.getAttribute('href'); if (linkPath && currentPage.includes(linkPath.split('#')[0])) link.classList.add('active'); });
+            mobileLinks.forEach(link => { const linkPath = link.getAttribute('href'); if (linkPath && currentPage.includes(linkPath.split('#')[0])) link.classList.add('active'); });
+        })();
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-        if (menuOverlay) menuOverlay.classList.add('active');
-        mobileMenuBtn.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-
-    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
-    if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
-
-    const mobileLinks = mobileMenu.querySelectorAll('.mobile-menu-item');
-    mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    });
-})();
-
-// ===== HIGHLIGHT CURRENT PAGE =====
-(function() {
-    const currentPage = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
-    const mobileLinks = document.querySelectorAll('.mobile-menu-item');
-    
-    navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath && currentPage.includes(linkPath.split('#')[0])) {
-            link.classList.add('active');
-        }
-    });
-    
-    mobileLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath && currentPage.includes(linkPath.split('#')[0])) {
-            link.classList.add('active');
-        }
-    });
-})();
-
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            e.preventDefault();
-            window.scrollTo({
-                top: targetElement.offsetTop - 100,
-                behavior: 'smooth'
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) { e.preventDefault(); window.scrollTo({ top: targetElement.offsetTop - 100, behavior: 'smooth' }); }
             });
-        }
-    });
-});
-
-// ===== DESKTOP HEADER HIDE ON SCROLL =====
-if (window.innerWidth >= 769) {
-    let lastScroll = 0;
-    const header = document.querySelector('header');
-    
-    if (header) {
-        document.body.style.paddingTop = header.offsetHeight + 'px';
-        
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                header.classList.add('hide');
-            } else if (currentScroll < lastScroll) {
-                header.classList.remove('hide');
-            }
-            
-            lastScroll = currentScroll;
         });
-    }
-}
 
-// ===== ADJUST HEADER PADDING ON RESIZE =====
-function adjustHeaderPadding() {
-    const headerDiv = document.querySelector('header > div:first-child');
-    if (headerDiv) {
-        headerDiv.style.padding = window.innerWidth <= 768 ? '12px 16px' : '16px 24px';
-    }
-}
-window.addEventListener('load', adjustHeaderPadding);
-window.addEventListener('resize', adjustHeaderPadding);
-</script>
+        // Desktop header hide on scroll
+        if (window.innerWidth >= 769) {
+            let lastScroll = 0;
+            const header = document.querySelector('header');
+            if (header) {
+                document.body.style.paddingTop = header.offsetHeight + 'px';
+                window.addEventListener('scroll', () => {
+                    const currentScroll = window.pageYOffset;
+                    if (currentScroll > lastScroll && currentScroll > 100) header.classList.add('hide');
+                    else if (currentScroll < lastScroll) header.classList.remove('hide');
+                    lastScroll = currentScroll;
+                });
+            }
+        }
+
+        function adjustHeaderPadding() {
+            const headerDiv = document.querySelector('header > div:first-child');
+            if (headerDiv) headerDiv.style.padding = window.innerWidth <= 768 ? '12px 16px' : '16px 24px';
+        }
+        window.addEventListener('load', adjustHeaderPadding);
+        window.addEventListener('resize', adjustHeaderPadding);
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
