@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>ELECT Project - News Details</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* ─── PRESERVE ALL ORIGINAL STYLES FROM MAIN SITE ─── */
+        html { scroll-behavior: smooth; }
+        html::-webkit-scrollbar, body::-webkit-scrollbar, .mobile-menu::-webkit-scrollbar { display: none; }
+        html, body, .mobile-menu { -ms-overflow-style: none; scrollbar-width: none; }
+        body { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
+        html { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
+        * { box-sizing: border-box; }
+
+        /* Header */
+        header { position: fixed !important; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); transition: transform 0.3s ease-in-out; }
+        header.hide { transform: translateY(-100%); }
+        @media (max-width: 768px) { header { position: sticky !important; top: 0 !important; transform: none !important; } }
+        .nav-link { position: relative; padding-bottom: 12px; font-weight: 600; transition: color 0.3s ease; color: #1f2937; white-space: nowrap; }
+        .nav-link:hover, .nav-link.active { color: #16a34a; }
+        .nav-link::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 3px; background-color: #16a34a; transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+        .orange-banner { background: linear-gradient(135deg, #fdbf30 0%, #ff9900 100%); padding: 12px 0; width: 100%; position: relative; z-index: 40; overflow: visible !important; }
+        .orange-banner::before { content: ""; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); animation: shimmer 3s infinite; pointer-events: none; }
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .navigation-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
+        .nav-links { display: flex; justify-content: center; align-items: center; gap: 36px; position: relative; flex-wrap: wrap; }
+        .nav-link-with-arrow { display: flex; align-items: center; gap: 6px; }
+        .dropdown-container { position: relative; z-index: 50; }
+        .dropdown-menu { position: absolute; top: calc(100% + 15px); left: 50%; transform: translateX(-50%) translateY(10px); min-width: 220px; background: white; border-radius: 3px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); border: 1px solid #e5e7eb; overflow: hidden; }
+        .dropdown-container:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown-container:hover .nav-link-with-arrow i { transform: rotate(180deg); }
+        .dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid white; }
+        .dropdown-item { display: flex; align-items: center; gap: 12px; padding: 14px 20px; color: #4b5563; font-weight: 500; transition: all 0.2s ease; border-left: 3px solid transparent; }
+        .dropdown-item:hover { color: #059669; padding-left: 24px; }
+        .grid-dropdown { min-width: 500px !important; padding: 0 !important; }
+        .grid-dropdown-container { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+        .dropdown-column { padding: 16px 0; }
+        .dropdown-column:first-child { border-right: 1px solid #e5e7eb; }
+        .dropdown-column .dropdown-item { padding: 16px 24px; flex-direction: row; align-items: flex-start; gap: 16px; }
+        .dropdown-title { display: block; font-weight: 600; color: #1f2937; margin-bottom: 4px; }
+        .dropdown-desc { display: block; font-size: 13px; color: #6b7280; }
+
+        /* Mobile Menu */
+        .mobile-menu { display: none; position: fixed; top:0; left:0; width:320px; height:100vh; background: linear-gradient(135deg,#ffffff 0%,#f8f9fa 100%); z-index:1000; flex-direction: column; padding:10px; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); overflow-y: auto; }
+        .mobile-menu.active { display: flex; transform: translateX(0); }
+        .menu-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100vh; background: rgba(54,105,20,0.5); z-index:999; }
+        .menu-overlay.active { display: block; }
+        .close-menu-btn { position: absolute; top:20px; right:20px; width:40px; height:40px; border-radius:50%; background:#f3f4f6; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+        .mobile-menu-item { display: flex; align-items: center; gap: 15px; padding: 10px 20px; color: #374151; font-weight: 600; border-radius: 6px; margin-bottom: 8px; }
+        .mobile-menu-item i { width: 24px; text-align: center; font-size: 20px; }
+        .mobile-logos { margin-top: auto; padding: 25px 0; border-top: 2px solid #e5e7eb; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .logos-row { display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .eu-logo-mobile { height: 40px; width: auto; }
+        #mobileMenuBtn { flex-direction: column; justify-content: space-between; width: 32px; height: 24px; background: transparent; border: none; cursor: pointer; padding: 0; }
+        .menu-line { width: 100%; height: 3px; background-color: #374151; border-radius: 2px; transition: all 0.3s ease; }
+        #mobileMenuBtn.active .menu-line:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
+        #mobileMenuBtn.active .menu-line:nth-child(2) { opacity: 0; }
+        #mobileMenuBtn.active .menu-line:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
+        @media (max-width: 768px) { .orange-banner, .navigation-container, .nav-links { display: none !important; } #mobileMenuBtn { display: flex !important; } .mobile-only { display: block; } .desktop-only { display: none; } }
+        @media (min-width: 769px) { .mobile-only { display: none; } #mobileMenuBtn { display: none !important; } }
+
+        /* News Detail Gallery */
+        .news-detail-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .gallery-card { border-radius: 0.25rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; background: white; cursor: pointer; }
+        .gallery-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .gallery-caption { padding: 0.75rem 1rem; font-size: 0.875rem; color: #4b5563; border-top: 1px solid #e5e7eb; background: #f9fafb; }
+        
+        /* Lightbox */
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 2000; display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: all 0.3s ease; backdrop-filter: blur(5px); }
+        .lightbox.active { visibility: visible; opacity: 1; }
+        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 40px rgba(0,0,0,0.3); }
+        .close-lightbox { position: absolute; top: 30px; right: 40px; color: white; font-size: 40px; cursor: pointer; background: none; border: none; transition: transform 0.2s; }
+        .close-lightbox:hover { transform: scale(1.1); }
+        .lightbox-caption { position: absolute; bottom: 30px; left: 0; right: 0; text-align: center; color: white; background: rgba(0,0,0,0.6); padding: 10px; font-size: 14px; max-width: 80%; margin: 0 auto; border-radius: 30px; }
+        
+        /* Back Button */
+        .back-to-news { display: inline-flex; align-items: center; gap: 8px; background: #247646; color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; transition: all 0.3s; margin-bottom: 1.5rem; }
+        .back-to-news:hover { background: #1d5f38; transform: translateX(-5px); }
+        
+        /* Hero spacing for desktop detail page */
+        .news-detail-hero-spacer { height: 130px; }
+        @media (max-width: 768px) { .news-detail-hero-spacer { height: 80px; } }
+        
+        /* Social Share */
+        .social-share { display: flex; gap: 12px; margin-top: 1.5rem; }
+        .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 4px 4px; border-radius: 10px; font-size: 14px; font-weight: 500; transition: all 0.2s; cursor: pointer; }
+        .share-twitter { background: #1DA1F2; color: white; }
+        .share-linkedin { background: #0077B5; color: white; }
+        .share-fb { background: #4267B2; color: white; }
+        .share-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+    </style>
+</head>
+<body>
+    <header id="siteHeader" style="overflow: visible;">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4"><a href="index.html"><img src="ELECT/assets/images/ELECT-Logo.png" class="h-10 w-auto" alt="ELECT Logo"></a></div>
+            <button id="mobileMenuBtn" class="md:hidden flex flex-col gap-1 w-8"><div class="menu-line"></div><div class="menu-line"></div><div class="menu-line"></div></button>
+            <div class="hidden md:flex items-center gap-4"><img src="ELECT/assets/images/EU.png" class="h-10 w-auto" alt="EU Logo"></div>
+        </div>
+        <div class="orange-banner desktop-only w-full">
+            <div class="navigation-container">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link"><span>Home</span></a>
+                    <div class="dropdown-container"><a href="About.html" class="nav-link nav-link-with-arrow"><span>About</span><i class="fas fa-chevron-down"></i></a><div class="dropdown-menu"><a href="About.html#overview" class="dropdown-item"><i class="fas fa-eye"></i><span>Project Overview</span></a><a href="About.html#background" class="dropdown-item"><i class="fas fa-history"></i><span>Background</span></a><a href="About.html#target" class="dropdown-item"><i class="fas fa-users"></i><span>Our Audience</span></a></div></div>
+                    <div class="dropdown-container"><a href="Objectives.html" class="nav-link nav-link-with-arrow"><span>Objectives</span><i class="fas fa-chevron-down"></i></a><div class="dropdown-menu"><a href="Objectives.html#main" class="dropdown-item"><i class="fas fa-bullseye"></i><span>Main Objectives</span></a><a href="Objectives.html#outcomes" class="dropdown-item"><i class="fas fa-chart-line"></i><span>Outcomes & Benefits</span></a></div></div>
+                    <a href="Partners.html" class="nav-link"><span>Partners</span></a>
+                    <div class="dropdown-container"><a href="Events.html" class="nav-link nav-link-with-arrow"><span>Activities</span><i class="fas fa-chevron-down"></i></a><div class="dropdown-menu"><a href="News.html#latest" class="dropdown-item"><i class="fas fa-newspaper"></i><span>Latest News</span></a><a href="Events.html#upcoming" class="dropdown-item"><i class="fas fa-calendar-alt"></i><span>Events</span></a><a href="Gallery.html#media" class="dropdown-item"><i class="fas fa-images"></i><span>Gallery</span></a></div></div>
+                    <div class="dropdown-container"><a href="Curriculum.html" class="nav-link nav-link-with-arrow"><span>Curriculum</span><i class="fas fa-chevron-down"></i></a><div class="dropdown-menu grid-dropdown"><div class="grid-dropdown-container"><div class="dropdown-column"><a href="Curriculum.html#objectives" class="dropdown-item"><i class="fas fa-bullseye"></i><div><span class="dropdown-title">Objectives</span><span class="dropdown-desc">Program goals</span></div></a><a href="Curriculum.html#learning-outcomes" class="dropdown-item"><i class="fas fa-graduation-cap"></i><div><span class="dropdown-title">Learning Outcomes</span><span class="dropdown-desc">Skills gained</span></div></a><a href="Curriculum.html#target-group" class="dropdown-item"><i class="fas fa-users"></i><div><span class="dropdown-title">Target Group</span><span class="dropdown-desc">Who should join</span></div></a></div><div class="dropdown-column"><a href="Curriculum.html#duration" class="dropdown-item"><i class="fas fa-clock"></i><div><span class="dropdown-title">Duration</span><span class="dropdown-desc">Timeline</span></div></a><a href="Curriculum.html#delivery-format" class="dropdown-item"><i class="fas fa-laptop"></i><div><span class="dropdown-title">Delivery Format</span><span class="dropdown-desc">How it's delivered</span></div></a><a href="Curriculum.html#application-process" class="dropdown-item"><i class="fas fa-file-signature"></i><div><span class="dropdown-title">Application Process</span><span class="dropdown-desc">How to apply</span></div></a></div></div></div></div>
+                </div>
+            </div>
+        </div>
+        <div id="menuOverlay" class="menu-overlay"></div>
+        <div id="mobileMenu" class="mobile-menu"><button class="close-menu-btn" id="closeMenuBtn"><i class="fas fa-times text-xl"></i></button><div class="mobile-menu-header"><a href="index.html" class="flex items-center gap-3"><img src="/ELECT/assets/images/ELECT-Logo.png" class="h-12 w-auto"><div><h2 class="font-bold text-lg text-green-700">ELECT Project</h2><p class="text-sm text-gray-600">Energy Efficient Lighting</p></div></a></div><a href="index.html" class="mobile-menu-item"><i class="fas fa-home"></i><span>Home</span></a><a href="About.html" class="mobile-menu-item"><i class="fas fa-info-circle"></i><span>About</span></a><a href="Objectives.html" class="mobile-menu-item"><i class="fas fa-bullseye"></i><span>Objectives</span></a><a href="Partners.html" class="mobile-menu-item"><i class="fas fa-handshake"></i><span>Partners</span></a><a href="Events.html" class="mobile-menu-item"><i class="fas fa-newspaper"></i><span>Events</span></a><a href="News.html" class="mobile-menu-item"><i class="fas fa-newspaper"></i><span>News</span></a><a href="Curriculum.html" class="mobile-menu-item"><i class="fas fa-graduation-cap"></i><span>Curriculum</span></a><a href="Gallery.html" class="mobile-menu-item"><i class="fas fa-images"></i><span>Gallery</span></a><a href="Contacts.html" class="mobile-menu-item"><i class="fas fa-address-book"></i><span>Contact</span></a><div class="mobile-logos"><div class="logos-row"><img src="/ELECT/assets/images/EU.png" class="eu-logo-mobile"></div></div></div>
+    </header>
+
+    <div class="news-detail-hero-spacer"></div>
+
+    <!-- DYNAMIC NEWS DETAIL SECTION -->
+    <section class="bg-white py-8 md:py-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Back Button -->
+            <a href="News.html" class="back-to-news inline-flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to News
+            </a>
+            
+            <!-- Dynamic Content injected here -->
+            <div id="newsDetailContainer">
+                <!-- JS will populate full news with title, date, content, and images gallery -->
+                <div class="text-center py-12">
+                    <div class="animate-pulse flex flex-col items-center">
+                        <div class="h-8 w-64 bg-gray-200 rounded mb-4"></div>
+                        <div class="h-4 w-32 bg-gray-200 rounded mb-8"></div>
+                        <div class="h-64 w-full bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (same as main site) -->
+    <footer class="footer bg-gray-900 text-gray-300 pt-12 pb-6">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-8">
+                <div class="lg:col-span-1"><img src="ELECT/assets/images/ELECT-Logo.png" alt="ELECT" class="h-16 w-auto mb-4"><p class="text-sm text-gray-400 leading-relaxed">Energy Efficient Lighting for Clean Energy Transitions in Zambia.</p></div>
+                <div><h4 class="text-white font-semibold mb-4 text-lg">Quick Links</h4><ul class="space-y-2"><li><a href="About.html" class="text-sm text-gray-400 hover:text-white">About</a></li><li><a href="Objectives.html" class="text-sm text-gray-400 hover:text-white">Objectives</a></li><li><a href="Partners.html" class="text-sm text-gray-400 hover:text-white">Partners</a></li><li><a href="News.html" class="text-sm text-gray-400 hover:text-white">News</a></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4 text-lg">Partners</h4><ul class="space-y-2"><li><a href="https://www.aalto.fi" target="_blank" class="text-sm text-gray-400 hover:text-white">Aalto University</a></li><li><a href="https://www.eap.gr" target="_blank" class="text-sm text-gray-400 hover:text-white">Hellenic Open University</a></li><li><a href="https://www.cbu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white">Copperbelt University</a></li><li><a href="https://www.mu.ac.zm" target="_blank" class="text-sm text-gray-400 hover:text-white">Mulungushi University</a></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4 text-lg">Contact</h4><ul class="space-y-3"><li class="flex items-start"><i class="fas fa-envelope mt-1 mr-3 text-gray-400"></i><a href="mailto:info@elect-project.org" class="text-sm text-gray-400 hover:text-white">info@elect-project.org</a></li><li class="flex items-start"><i class="fas fa-phone mt-1 mr-3 text-gray-400"></i><a href="tel:+260211234567" class="text-sm text-gray-400 hover:text-white">+260 21 1234567</a></li><li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i><span class="text-sm text-gray-400">Lusaka, Zambia</span></li></ul></div>
+                <div><h4 class="text-white font-semibold mb-4 text-lg">Follow Us</h4><div class="flex space-x-4 mb-6"><a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a><a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a><a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a></div><div class="mt-2"><img src="ELECT/assets/images/EU.png" alt="Co-funded by the European Union" class="h-14 w-auto"></div></div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 mt-4"><div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500"><p>© 2026 ELECT Project. All rights reserved.</p><p class="mt-2 md:mt-0">Co‑funded by the European Union</p></div></div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox">
+        <button class="close-lightbox" id="closeLightboxBtn">&times;</button>
+        <img id="lightboxImg" src="" alt="Event Image">
+        <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+
+    <script>
+        // ---------- NEWS DATABASE (with rich content & images for each news) ----------
+        const newsDatabase = {
+            1: {
+                id: 1,
+                title: "New Study Reveals 45% Energy Savings with LED Retrofits",
+                date: "March 15, 2024",
+                category: "Research",
+                views: "1,245",
+                content: `<p>The ELECT research team has completed a comprehensive study across three Zambian universities, demonstrating that systematic LED retrofitting can reduce lighting energy consumption by an average of 45%. The six-month pilot project involved replacing traditional fluorescent and incandescent fixtures with high-efficiency LED systems in lecture halls, laboratories, and administrative buildings.</p>
+                          <p class="mt-4">Key findings include not only substantial energy savings but also improved lighting quality, reduced maintenance costs, and positive feedback from students and staff. The study establishes a strong business case for widespread LED adoption in educational institutions across Zambia.</p>
+                          <p class="mt-4">Professor James Mwape, lead researcher, stated: "These results exceed our expectations. The combination of energy savings and enhanced learning environments makes LED retrofitting one of the most effective interventions for sustainable campus development."</p>
+                          <p class="mt-4">The research will be presented at the upcoming International Conference on Energy Efficiency in Pretoria, and a detailed white paper is available for download on the ELECT resources page.</p>`,
+                images: [
+                    { src: "ELECT/assets/images/hero.jpg", caption: "LED installation at Mulungushi University" },
+                    { src: "ELECT/assets/images/news1.jpg", caption: "Research team conducting light measurements" },
+                    { src: "ELECT/assets/images/news2.jpg", caption: "Comparison of old vs new lighting systems" },
+                    { src: "ELECT/assets/images/About.jpg", caption: "Energy monitoring dashboard showing savings" }
+                ]
+            },
+            2: {
+                id: 2,
+                title: "Successful Completion of Energy Efficiency Workshop",
+                date: "March 10, 2024",
+                category: "Events",
+                views: "987",
+                content: `<p>Over 50 participants from Zambian universities attended the three-day hands-on workshop on energy-efficient lighting technologies. The event, held at Copperbelt University, featured practical sessions on LED system design, smart lighting controls, and maintenance best practices.</p>
+                          <p class="mt-4">Workshop facilitators included experts from Aalto University and Hellenic Open University, who shared European best practices while adapting content to local contexts. Participants received certificates of completion and access to an online resource library.</p>
+                          <p class="mt-4">Feedback from attendees was overwhelmingly positive, with many expressing interest in integrating the learned concepts into their own teaching curricula. The workshop also facilitated valuable networking among Zambian and European academics.</p>`,
+                images: [
+                    { src: "ELECT/assets/images/news2.jpg", caption: "Workshop participants during practical session" },
+                    { src: "ELECT/assets/images/hero2.jpg", caption: "Group photo of attendees and facilitators" },
+                    { src: "ELECT/assets/images/pedagogical.jpg", caption: "Hands-on demonstration of lighting controls" }
+                ]
+            },
+            3: {
+                id: 3,
+                title: "New Training Program for University Lecturers Launched",
+                date: "March 5, 2024",
+                category: "Training",
+                views: "1,542",
+                content: `<p>ELECT officially launched its flagship "Train-the-Trainer" program aimed at building capacity among university lecturers in energy-efficient lighting. The 6-month blended learning program combines online modules with intensive residential workshops.</p>
+                          <p class="mt-4">Twenty lecturers from partner universities have been selected for the inaugural cohort. Upon completion, they will be equipped to deliver updated curriculum content and lead practical laboratory sessions at their respective institutions.</p>
+                          <p class="mt-4">The program is accredited by the Engineering Institution of Zambia and offers ECTS credits, ensuring formal recognition of participants' professional development.</p>`,
+                images: [
+                    { src: "ELECT/assets/images/news3.jpg", caption: "Launch event with university officials" },
+                    { src: "ELECT/assets/images/hero1.jpg", caption: "Training materials and equipment" },
+                    { src: "ELECT/assets/images/lightbulb.jpg", caption: "Interactive session with lecturers" }
+                ]
+            },
+            4: {
+                id: 4,
+                title: "EU Delegation Commends Project Progress During Site Visit",
+                date: "February 28, 2024",
+                category: "Collaboration",
+                views: "2,134",
+                content: `<p>A high-level delegation from the European Union visited ELECT project sites at Mulungushi University and Copperbelt University to assess implementation progress. The delegation expressed strong satisfaction with the achievements made since project inception.</p>
+                          <p class="mt-4">Ambassador Karolina Stasiak noted: "The ELECT project exemplifies how EU-Zambia cooperation can deliver tangible benefits in higher education and clean energy transitions. The dedication of all partners is truly commendable."</p>
+                          <p class="mt-4">The visit included demonstrations of newly installed laboratory equipment, review of curriculum drafts, and meetings with student representatives who will benefit from the modernized programs.</p>`,
+                images: [
+                    { src: "ELECT/assets/images/hero.jpg", caption: "EU delegation touring laboratory facilities" },
+                    { src: "ELECT/assets/images/About.jpg", caption: "Meeting with project management team" },
+                    { src: "ELECT/assets/images/news1.jpg", caption: "Group photo at Copperbelt University" }
+                ]
+            },
+            5: { id: 5, title: "ELECT Research Team Publishes Findings in International Journal", date: "February 20, 2024", category: "Publications", views: "876", content: `<p>The ELECT research team's paper "Energy Efficient Lighting in Sub-Saharan African Universities: Challenges and Opportunities" has been accepted for publication in the prestigious "Energy Efficiency" journal (Springer). The open-access article provides a comprehensive analysis of barriers and solutions specific to the Zambian context.</p><p class="mt-4">The publication marks an important milestone for the project, showcasing the high-quality research being produced through the EU-funded initiative.</p>`, images: [{ src: "ELECT/assets/images/news2.jpg", caption: "Journal cover page" }, { src: "ELECT/assets/images/hero.jpg", caption: "Research team celebrating" }] },
+            6: { id: 6, title: "New Curriculum Materials for Energy-Efficient Lighting Released", date: "February 15, 2024", category: "Training", views: "1,123", content: `<p>Comprehensive educational resources for energy-efficient lighting are now available for all partner universities. The materials include lecture slides, laboratory manuals, assessment tools, and multimedia resources aligned with international standards while adapted to local needs.</p>`, images: [{ src: "ELECT/assets/images/news3.jpg", caption: "Sample curriculum materials" }, { src: "ELECT/assets/images/lightbulb.jpg", caption: "Digital resources preview" }] },
+            7: { id: 7, title: "Industry Advisory Board Meeting Strengthens Partnerships", date: "February 10, 2024", category: "Events", views: "765", content: `<p>The ELECT Industry Advisory Board convened for its quarterly meeting, bringing together representatives from leading energy companies, regulatory bodies, and professional associations. Discussions focused on aligning curriculum with current industry needs and creating internship pathways for students.</p>`, images: [{ src: "ELECT/assets/images/hero1.jpg", caption: "Board members in discussion" }, { src: "ELECT/assets/images/pedagogical.png", caption: "Industry partners sharing insights" }] },
+            8: { id: 8, title: "Pilot Installation Results Show 40% Energy Reduction", date: "February 5, 2024", category: "Research", views: "1,432", content: `<p>Initial results from pilot installations across three universities demonstrate significant energy savings, with some buildings achieving up to 40% reduction in lighting-related electricity consumption. The data validates the technical approach and provides strong evidence for scaling up.</p>`, images: [{ src: "ELECT/assets/images/news2.jpg", caption: "Energy monitoring graph" }, { src: "ELECT/assets/images/hero.jpg", caption: "Installed LED fixtures" }] },
+            9: { id: 9, title: "Student Exchange Program with European Universities Announced", date: "January 30, 2024", category: "Collaboration", views: "998", content: `<p>A new student exchange program offers Zambian students the opportunity to study for one semester at Aalto University (Finland) or Hellenic Open University (Greece). The program covers tuition, travel, and accommodation, with applications opening in March 2024.</p>`, images: [{ src: "ELECT/assets/images/news1.jpg", caption: "Exchange program announcement" }, { src: "ELECT/assets/images/hero2.jpg", caption: "European partner campus" }] }
+        };
+
+        // Get ID from URL parameter (?id=...)
+        function getNewsIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        // Render full news detail
+        function renderNewsDetail() {
+            const id = getNewsIdFromUrl();
+            const news = newsDatabase[id];
+            const container = document.getElementById('newsDetailContainer');
+            
+            if (!news) {
+                container.innerHTML = `<div class="text-center py-16 bg-gray-50 rounded"><i class="fas fa-newspaper text-6xl text-gray-300 mb-4"></i><h2 class="text-2xl font-bold text-gray-700">News not found</h2><p class="text-gray-500 mt-2">The article you're looking for doesn't exist.</p><a href="News.html" class="inline-block mt-6 text-[#247646] font-semibold hover:underline">← Back to News</a></div>`;
+                return;
+            }
+            
+            // Build images gallery HTML
+            let galleryHtml = '';
+            if (news.images && news.images.length > 0) {
+                galleryHtml = `<div class="mt-8"><h3 class="text-2xl font-bold text-gray-800 mb-6 pb-2 border-b-4 border-[#fdbf30] inline-block">Event Gallery</h3><div class="news-detail-gallery">`;
+                news.images.forEach((img, idx) => {
+                    galleryHtml += `
+                        <div class="gallery-card" data-img-src="${img.src}" data-caption="${img.caption}">
+                            <img src="${img.src}" alt="${img.caption}" class="gallery-img" loading="lazy">
+                            <div class="gallery-caption"><i class="fas fa-expand-alt mr-1 text-gray-500"></i> ${img.caption}</div>
+                        </div>
+                    `;
+                });
+                galleryHtml += `</div><p class="text-sm text-gray-500 mt-3"><i class="fas fa-mouse-pointer"></i> Click on any image to view full size</p></div>`;
+            } else {
+                galleryHtml = `<div class="mt-8 p-8 bg-gray-50 rounded-xl text-center"><i class="fas fa-camera text-4xl text-gray-400 mb-3"></i><p class="text-gray-500">No additional images available for this news.</p></div>`;
+            }
+            
+            // Build social share links (current URL)
+            const currentUrl = encodeURIComponent(window.location.href);
+            const shareText = encodeURIComponent(news.title);
+            
+            const fullHtml = `
+                <article class="bg-white rounded-xl">
+                    <div class="mb-6">
+                        <span class="inline-block bg-[#247646] text-white text-sm px-3 py-1 rounded-full mb-4">${news.category}</span>
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">${news.title}</h1>
+                        <div class="flex flex-wrap items-center gap-4 mt-4 text-gray-500 text-sm">
+                            <span><i class="far fa-calendar-alt mr-2"></i>${news.date}</span>
+                            <span><i class="far fa-eye mr-2"></i>${news.views} views</span>
+                            <span><i class="far fa-clock mr-2"></i>${Math.ceil(news.content.length / 800)} min read</span>
+                        </div>
+                    </div>
+                    
+                    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                        ${news.content}
+                    </div>
+                    
+                    ${galleryHtml}
+                    
+                    <div class="mt-10 pt-6 border-t border-gray-200">
+                        <div class="flex flex-wrap justify-between items-center gap-4">
+                            <div class="social-share">
+                                <span class="text-gray-600 font-medium">Share this article:</span>
+                                <a class="share-btn share-twitter" href="https://twitter.com/intent/tweet?text=${shareText}&url=${currentUrl}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a class="share-btn share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${currentUrl}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center mt-12"><a href="News.html" class="inline-flex justify-center items-center gap-2 w-full bg-[#247646] text-white px-7 py-4 text-base md:px-6 md:py-3 md:text-sm rounded font-semibold transition-colors duration-300 hover:bg-[#1d5f38]"><i class="fas fa-newspaper"></i>View All News Stories</a></div>
+                    </div>
+                </article>
+            `;
+            
+            container.innerHTML = fullHtml;
+            
+            // Re-attach gallery click handlers after content rendered
+            document.querySelectorAll('.gallery-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const imgSrc = card.dataset.imgSrc;
+                    const caption = card.dataset.caption;
+                    openLightbox(imgSrc, caption);
+                });
+            });
+        }
+        
+        // Lightbox functions
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            lightboxImg.src = src;
+            lightboxCaption.textContent = caption || '';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Mobile menu & header handlers (preserve original behavior)
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNewsDetail();
+            
+            // Header height & scroll hide (desktop)
+            function setHeaderHeight() {
+                const header = document.getElementById('siteHeader');
+                if (header) document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');
+            }
+            setHeaderHeight();
+            window.addEventListener('resize', setHeaderHeight);
+            
+            if (window.innerWidth >= 769) {
+                let lastScroll = 0;
+                const header = document.getElementById('siteHeader');
+                window.addEventListener('scroll', () => {
+                    const cur = window.pageYOffset;
+                    if (cur > lastScroll && cur > 100) header.classList.add('hide');
+                    else header.classList.remove('hide');
+                    lastScroll = cur;
+                });
+            }
+            
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                    if (menuOverlay) menuOverlay.classList.add('active');
+                    mobileMenuBtn.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                if (menuOverlay) menuOverlay.classList.remove('active');
+                if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+            if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
+            if (mobileMenu) {
+                mobileMenu.querySelectorAll('.mobile-menu-item').forEach(link => link.addEventListener('click', closeMobileMenu));
+            }
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+            
+            // Lightbox close
+            const closeBtn = document.getElementById('closeLightboxBtn');
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            document.getElementById('lightbox')?.addEventListener('click', (e) => { if (e.target === document.getElementById('lightbox')) closeLightbox(); });
+        });
+    </script>
+</body>
+</html>
